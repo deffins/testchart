@@ -15,15 +15,26 @@
 //     // element we actually clicked on
 //     e.target.style.fill = fill;
 // });
+
+
+var s = Snap();
 Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
-var chart = Snap("#chart");
-console.log(chart);
 
-
-
-function onSVGLoaded(svg) {
-    chart.append(svg);
+function onSVGLoaded(data) {
+    s.append(data);
 }
+
+// Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
+// var chart = Snap("#chart");
+// console.log(chart);
+
+// function onSVGLoaded(svg) {
+//     chart.append(svg);
+// }
+
+
+
+
 
 // window.addEventListener("mouseup", (e) => {
 //     if (e.srcElement.nodeName == "svg") {
