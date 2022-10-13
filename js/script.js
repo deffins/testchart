@@ -19,7 +19,7 @@
 var chart = Snap("#chart");
 console.log(chart);
 
-Snap.load("../chronic--tch-chart.svg", onSVGLoaded);
+Snap.load("../chronic-tch-chart.svg", onSVGLoaded);
 
 function onSVGLoaded(svg) {
     chart.append(svg);
