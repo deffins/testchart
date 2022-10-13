@@ -15,11 +15,11 @@
 //     // element we actually clicked on
 //     e.target.style.fill = fill;
 // });
-
+Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 var chart = Snap("#chart");
 console.log(chart);
 
-Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
+
 
 function onSVGLoaded(svg) {
     chart.append(svg);
