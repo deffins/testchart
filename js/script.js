@@ -7,10 +7,10 @@ function onSVGLoaded(data) {
     // console.log(data);
     // console.log(s);
 
-    let rectArr = Snap(s.select('#thc-abuse'));
+    let rect = Snap(s.select('#chronic-thc'));
     console.log(rectArr);
 
-    rectArr.attr({
+    rect.attr({
         stroke: "#263a1b",
         strokeWidth: 6,
     });
