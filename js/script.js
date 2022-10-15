@@ -18,7 +18,6 @@
 
 let mouse = Element.mouseup(handler)
 
-
 var s = Snap();
 Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 
