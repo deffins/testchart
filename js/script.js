@@ -16,6 +16,8 @@
 //     e.target.style.fill = fill;
 // });
 
+Element.mouseup(handler)
+
 
 var s = Snap();
 Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
@@ -23,6 +25,10 @@ Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 function onSVGLoaded(data) {
     s.append(data);
 }
+
+console.log(handler)
+
+
 
 // Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 // var chart = Snap("#chart");
