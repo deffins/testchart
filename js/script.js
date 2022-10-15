@@ -34,7 +34,7 @@ console.log(this.rectArr);
 
 
 this.dotGroup = this.s.select('#thc-abuse');
-dotGroup.log(this.rectArr);
+console.log(this.rectArr);
 
 // Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 // var chart = Snap("#chart");
