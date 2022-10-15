@@ -16,16 +16,21 @@
 //     e.target.style.fill = fill;
 // });
 
-let mouse = Element.mouseup(handler)
+Element.mousedown(handler)
+Element.mouseup(handler);
+Element.mouseover(handler);
+
 
 var s = Snap();
 Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 
 function onSVGLoaded(data) {
     s.append(data);
+    console.log(data);
+    console.log(s);
+
 }
 
-console.log(mouse)
 
 
 
