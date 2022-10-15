@@ -16,10 +16,10 @@ function onSVGLoaded(data) {
         stroke: "#263a1b",
         strokeWidth: 6,
     });
-
+    Snap.getElementByPoint(mouseX, mouseY).attr({ stroke: "#f00" });
 
 }
-Snap.getElementByPoint(mouseX, mouseY).attr({ stroke: "#f00" });
+
 /////////
 
 
