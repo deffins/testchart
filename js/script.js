@@ -16,9 +16,7 @@
 //     e.target.style.fill = fill;
 // });
 
-Element.mousedown()
-Element.mouseup();
-Element.mouseover();
+
 
 
 var s = Snap();
@@ -30,6 +28,8 @@ function onSVGLoaded(data) {
     console.log(s);
 
 }
+
+
 
 
 
