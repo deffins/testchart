@@ -16,9 +16,9 @@
 //     e.target.style.fill = fill;
 // });
 
-Element.mousedown(handler)
-Element.mouseup(handler);
-Element.mouseover(handler);
+Element.mousedown()
+Element.mouseup();
+Element.mouseover();
 
 
 var s = Snap();
