@@ -29,7 +29,8 @@ function onSVGLoaded(data) {
 
 }
 
-
+this.rectArr = Snap(document.getElementsByTagName('rect'));
+console.log(this.rectArr);
 
 
 
