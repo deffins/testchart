@@ -8,15 +8,19 @@ function onSVGLoaded(data) {
     // console.log(s);
 
     let rect = Snap(s.select('#chronic-thc'));
-    let rect2 = Snap(s.select('#BIeTZq3KbKyFNtU_o8Uz-20'));
+    // let rect2 = Snap(s.select('#BIeTZq3KbKyFNtU_o8Uz-20'));
     console.log(rect);
-    console.log(rect2);
+    // console.log(rect2);
 
-    rect2.attr({
+    rect.attr({
         stroke: "#263a1b",
         strokeWidth: 6,
     });
-    Snap.getElementByPoint(mouseX, mouseY).attr({ stroke: "#f00" });
+    // Snap.getElementByPoint(mouseX, mouseY).attr({ stroke: "#f00" });
+
+    rect.node.onclick = function (data) {
+        console.log(Snap(this));
+    }
 
 }
 
