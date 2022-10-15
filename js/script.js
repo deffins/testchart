@@ -20,7 +20,7 @@ function onSVGLoaded(data) {
     // });
     // Snap.getElementByPoint(mouseX, mouseY).attr({ stroke: "#f00" });
 
-    s.onclick = function (data) {
+    s.data.onclick = function (data) {
         console.log(Snap(this));
     }
 
