@@ -32,6 +32,10 @@ function onSVGLoaded(data) {
 
     this.rectArr = Snap(s.select('#thc-abuse'));
     console.log(this.rectArr);
+
+    this.thcRect.attr({
+        stroke: "#263a1b"
+    });
 }
 
 
