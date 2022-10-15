@@ -4,8 +4,8 @@ Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 
 function onSVGLoaded(data) {
     s.append(data);
-    console.log(data);
-    console.log(s);
+    // console.log(data);
+    // console.log(s);
 
     let shit = data.select('#thc-abuse')
 
