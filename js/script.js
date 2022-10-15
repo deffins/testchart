@@ -18,6 +18,8 @@ function onSVGLoaded(data) {
     console.log(this.rectArr);
 }
 
+/////////
+
 
 
 
