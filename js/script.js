@@ -7,7 +7,7 @@ function onSVGLoaded(data) {
     console.log(data);
     console.log(s);
 
-    s.select('#thc-abuse').attr({
+    data.select('#thc-abuse').attr({
         stroke: "#263a1b",
         strokeWidth: 6,
     });
