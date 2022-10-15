@@ -7,15 +7,15 @@ function onSVGLoaded(data) {
     // console.log(data);
     // console.log(s);
 
-    let shit = s.select('#thc-abuse')
+    let rectArr = Snap(s.select('#thc-abuse'));
+    console.log(rectArr);
 
     shit.attr({
         stroke: "#263a1b",
         strokeWidth: 6,
     });
 
-    this.rectArr = Snap(s.select('#thc-abuse'));
-    console.log(this.rectArr);
+
 }
 
 /////////
