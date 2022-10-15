@@ -12,7 +12,7 @@ function onSVGLoaded(data) {
     console.log(rect);
     console.log(rect2);
 
-    rect.attr({
+    rect2.attr({
         stroke: "#263a1b",
         strokeWidth: 6,
     });
