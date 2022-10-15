@@ -1,23 +1,3 @@
-// let chart = document.getElementById("stuff")
-
-// console.log(chart)
-
-// window.addEventListener("mouseup", (e) => {
-//     // Let's pick a random color between #000000 and #FFFFFF
-//     const color = Math.round(Math.random() * 0xffffff);
-//     let paths = e
-//     console.log(paths);
-
-//     // Let's format the color to fit CSS requirements
-//     const fill = `#${color.toString(16).padStart(6, "0")}`;
-
-//     // Let's apply our color in the
-//     // element we actually clicked on
-//     e.target.style.fill = fill;
-// });
-
-
-
 
 var s = Snap();
 Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
@@ -27,77 +7,19 @@ function onSVGLoaded(data) {
     console.log(data);
     console.log(s);
 
-    this.thcRect = s.select('#thc-abuse');
+    this.thcRect = s.select('#thc-abuse').attr({
+        stroke: "#263a1b",
+        strokeWidth: 6,
+    });
     console.log(this.thcRect);
 
     this.rectArr = Snap(s.select('#thc-abuse'));
     console.log(this.rectArr);
-
-    this.thcRect.attr({
-        stroke: "#263a1b"
-    });
 }
 
 
 
 
-
-
-
-
-// Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
-// var chart = Snap("#chart");
-// console.log(chart);
-
-// function onSVGLoaded(svg) {
-//     chart.append(svg);
-// }
-
-
-
-
-
-// window.addEventListener("mouseup", (e) => {
-//     if (e.srcElement.nodeName == "svg") {
-//         console.log(e.nodeName);
-//         return
-//     }
-//     // if (e.path[0].tagName == "path")
-//     if (e.target.style.stroke != null) {
-//         if (e.target.style.stroke == "blue") {
-//             e.target.style.stroke = "";
-//             // e.target.style.fill = "";
-//         } else {
-//             e.target.style.stroke = "blue";
-//             if (e.target.style.fill != null) {
-//                 // e.target.style.fill = "lightblue";
-//             }
-
-
-//         }
-//     } else {
-//         // console.log(e)
-//     }
-// });
-
-// window.addEventListener("mouseover", (e) => {
-//     if (e.path[0].tagName == "path") {
-//         e.path[0].style.strokeWidth = 6;
-//         // console.log(e.path[0].style.strokeWidth);
-//     }
-
-// });
-
-// window.addEventListener("mouseout", (e) => {
-//     if (e.path[0].tagName == "path") {
-//         console.log(e.path[0].style.strokeWidth)
-//         if (e.path[0].style.strokeWidth > 5) {
-//             e.path[0].style.strokeWidth = 3;
-
-//         }
-//     }
-
-// });
 
 
 
