@@ -8,7 +8,7 @@ function onSVGLoaded(data) {
     // console.log(s);
 
     let rect = Snap(s.select('#chronic-thc'));
-    console.log(rectArr);
+    console.log(rect);
 
     rect.attr({
         stroke: "#263a1b",
