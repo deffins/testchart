@@ -10,8 +10,8 @@ function onSVGLoaded(data) {
     let rect = Snap(s.select('#chronic-thc'));
     // let rect2 = Snap(s.select('#BIeTZq3KbKyFNtU_o8Uz-20'));
     console.log(rect);
-    rect.selectAll('g');
-    // console.log(rect2);
+    let groups = rect.selectAll('g');
+    console.log(groups);
 
 
     // rect.attr({
