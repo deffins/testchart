@@ -24,8 +24,8 @@ function onSVGLoaded(data) {
         console.log(Snap(this));
     }
 
-    let rectArr = Snap(s.selectAll('rect'));
-    let rectArr2 = Snap(s.selectAll('g'));
+    let rectArr = Snap(s.selectAll('.rect'));
+    let rectArr2 = Snap(s.selectAll('<g>'));
     // let rect2 = Snap(s.select('#BIeTZq3KbKyFNtU_o8Uz-20'));
     console.log(rectArr);
     console.log(rectArr2);
