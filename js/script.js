@@ -27,14 +27,19 @@ function onSVGLoaded(data) {
     console.log(data);
     console.log(s);
 
+    this.thcRect = s.select('#thc-abuse');
+    console.log(this.thcRect);
+
+    this.rectArr = Snap(s.select('#thc-abuse'));
+    console.log(this.rectArr);
 }
 
-this.rectArr = Snap(s.select('#thc-abuse'));
-console.log(this.rectArr);
 
 
-this.thcRect = s.select('#thc-abuse');
-console.log(this.thcRect);
+
+
+
+
 
 // Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
 // var chart = Snap("#chart");
