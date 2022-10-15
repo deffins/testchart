@@ -29,7 +29,7 @@ function onSVGLoaded(data) {
 
 }
 
-this.rectArr = Snap(s.getElementsByTagName('rect'));
+this.rectArr = Snap(s.select('#thc-abuse'));
 console.log(this.rectArr);
 
 
