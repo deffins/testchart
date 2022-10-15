@@ -16,7 +16,7 @@
 //     e.target.style.fill = fill;
 // });
 
-Element.mouseup(handler)
+let mouse = Element.mouseup(handler)
 
 
 var s = Snap();
@@ -26,7 +26,7 @@ function onSVGLoaded(data) {
     s.append(data);
 }
 
-console.log(handler)
+console.log(mouse)
 
 
 
