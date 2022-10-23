@@ -19,11 +19,15 @@ Draw.loadPlugin(function (ui) {
             var g = (svgDoc.createElementNS != null) ?
                 svgDoc.createElementNS(mxConstants.NS_SVG, 'g') : svgDoc.createElement('g');
             g.setAttribute('id', '' + state.cell.id);
-            if (state.cell.value != "") {
-                g.setAttribute('value', '' + state.cell.value);
+            if (state.cell.value != undefined) {
+
+                let string = state.cell.value.toLowerCase().trim().replace(/[^\x00-\x7F]/g, "").replaceAll('\n', " ").replaceAll(",", " ").replaceAll(">", " ").replaceAll("(", " ").replaceAll(")", " ").replaceAll("/", " ").replace(/  +/g, ' ').replaceAll(" ", "-").replaceAll("--", "-").replaceAll("--", "-").substring(0, 20)
+                console.log(string);
+                g.setAttribute('value', '' + string);
+
             }
             if (state.cell.source) {
-                console.log(state.cell.source);
+                // console.log(state.cell.source);
                 if (state.cell.source.id) {
                     g.setAttribute('source', '' + state.cell.source.id);
                 }
