@@ -1,0 +1,10 @@
+.selected {
+    stroke-width: 3;
+    fill: lightblue;
+    font-weight: bold;
+}
+
+.selectedLines {
+    stroke: lightblue;
+    stroke-width: 3;
+}
