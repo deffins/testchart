@@ -1,38 +1,91 @@
 
 var s = Snap();
-Snap.load("../chronic-thc-chart.svg", onSVGLoaded);
+Snap.load("../dm.svg", onSVGLoaded);
 
 function onSVGLoaded(data) {
     s.append(data);
-    // console.log(data);
-    // console.log(s);
-
-    let rect = Snap(s.select('#chronic-thc'));
-    // let rect2 = Snap(s.select('#BIeTZq3KbKyFNtU_o8Uz-20'));
-    console.log(rect);
-    let groups = rect.selectAll('path');
-    console.log(groups);
 
 
-    // rect.attr({
-    //     stroke: "#263a1b",
-    //     strokeWidth: 6,
-    // });
-    // Snap.getElementByPoint(mouseX, mouseY).attr({ stroke: "#f00" });
 
-    s.node.onclick = function (data) {
-        console.log(Snap(this));
+    Snap.selectAll("rect").forEach(function (element) {
+
+        element.click(function (event) {
+            let sourceRectID = Snap(event.srcElement).parent().attr().id;
+            // console.log(sourceRectID);
+
+            //Snap.select("#Lp-_7fw3k4eCupaw-q1m-23").select("rect").attr("fill", "blue")
+
+
+            let sourceLineGroups = Snap.selectAll("g")
+
+            sourceLineGroups.forEach(function (element) {
+
+                let hasSource = element.attr("source");
+                let hasTarget = element.attr("target");
+                if ((hasSource) && hasSource == sourceRectID) {
+
+                    element.attr();
+                    element.attr("strokeWidth", "3")
+                    element.attr("stroke", "blue")
+                    let hasTarget = element.attr("target");
+                    if (hasTarget) {
+                        console.log(hasTarget)
+                    }
+                    sourceLineGroups.forEach(function (element) {
+                        let targetRectID = element.attr("id")
+                        if (targetRectID == hasTarget) {
+                            let rect = getRectFromG(hasTarget)
+                            Snap(rect).attr("fill", "lightblue");
+                            element.attr("strokeWidth", "3");
+                        }
+                    })
+                }
+            })
+            if (!event.srcElement.classList.contains("selected")) {
+                Snap()
+                Snap(event.srcElement).attr("fill", "lightblue");
+                Snap(event.srcElement).attr("strokeWidth", "3");
+                Snap(event.srcElement).addClass("selected");
+                // Snap(event.srcElement).attr("strokeWidth", "3");
+            } else {
+                Snap(event.srcElement).attr("fill", "none");
+                Snap(event.srcElement).attr("strokeWidth", "1");
+                Snap(event.srcElement).removeClass("selected");
+            }
+        });
+    });
+
+    function getRectFromG(id) {
+        let element = document.getElementById(id)
+        if (element) {
+            let rect = element.getElementsByTagName("rect")[0];
+            return rect;
+        }
+
     }
 
-    let rectArr = Snap(s.selectAll('rect'));
-    let rectArr2 = Snap(s.selectAll('#g'));
-    // let rect2 = Snap(s.select('#BIeTZq3KbKyFNtU_o8Uz-20'));
-    console.log(rectArr);
-    console.log(rectArr2);
+
+
+    let rects = document.getElementsByTagName("rect");
+    for (let i = 0; i < rects.length; i++) {
+        let rect = rects[i];
+        let pointerEvent = rect.getAttribute("pointer-events");
+        if (pointerEvent == "none") {
+            rect.setAttribute("pointer-events", "all");
+        }
+    }
+    let divs = document.getElementsByTagName("div");
+    for (let i = 0; i < divs.length; i++) {
+        let div = divs[i];
+        let pointerEventValue = div.style.getPropertyValue("pointer-events");
+        if (pointerEventValue == "all") {
+            div.style.setProperty("pointer-events", "none");
+        }
+    }
+
 
 }
 
-/////////
 
 
 
@@ -40,53 +93,6 @@ function onSVGLoaded(data) {
 
 
 
-// let rects = document.getElementsByTagName("rect");
-// for (let i = 0; i < rects.length; i++) {
-//     let rect = rects[i];
-//     let pointerEvent = rect.getAttribute("pointer-events");
-//     if (pointerEvent == "none") {
-//         rect.setAttribute("pointer-events", "all");
-//     }
-
-//     // console.log(pointerEvent);
-// }
-// // sets "pointer-events" to "none" for all text nodes so rects can be clicked and highlighted
-// let divs = document.getElementsByTagName("div");
-// for (let i = 0; i < divs.length; i++) {
-//     let div = divs[i];
-//     // let text = div.outerText;
-//     let pointerEvent = div.style.item(5);
-//     let pointerEventValue = div.style.getPropertyValue("pointer-events");
-//     // console.log("pointerEvent: " + pointerEventValue);
-//     if (pointerEventValue == "all") {
-//         div.style.setProperty("pointer-events", "none");
-//     }
 
 
-//     // console.log(text);
-// }
 
-
-// let paths = document.getElementsByTagName("path");
-// for (let i = 0; i < paths.length; i++) {
-//     let path = paths[i];
-//     // let pointerEvent = path.item(5);
-//     let fillType = path.getAttribute("fill");
-
-//     let pointerEventValue = path.getAttribute("pointer-events");
-//     // console.log("pointerEvent: " + pointerEventValue);
-//     if (pointerEventValue == "none" && fillType == "none") {
-//         path.setAttribute("pointer-events", "stroke");
-//     }
-
-
-//     console.log(fillType);
-// }
-
-// window.addEventListener("mouseup", (e) => {
-
-//     // console.log(e.path[0].tagName);
-//     console.log(e);
-//     // e.path.forEach(element => console.log(element.tagName))
-
-// });
