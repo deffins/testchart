@@ -2,56 +2,62 @@
 var s = Snap();
 Snap.load("../dm2.svg", onSVGLoaded);
 
+
+
 function onSVGLoaded(data) {
-    s.append(data);
+    chart.append(data);
+
+
+    // var drag = Snap.select("#dmchart")
+    chart.drag(dragging, startDrag, function (evt) {
+        console.log("dropped at: " + evt.x + ", " + evt.y);
+    });
+    function startDrag(posx, posy) {
+        this.ox = posx - this.cx;
+        this.oy = posy - this.cy;
+    }
+    function dragging(dx, dy, posx, posy) {
+        this.cx = posx - this.ox;
+        this.cy = posy - this.oy;
+        t = 't' + this.cx + ',' + this.cy;
+        this.transform(t);
+    }
 
 
 
     Snap.selectAll("rect").forEach(function (element) {
 
         element.click(function (event) {
-            let sourceRectID = Snap(event.srcElement).parent().attr().id;
-            // console.log(sourceRectID);
+            let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+            console.log(sourceGroupID);
 
-            //Snap.select("#Lp-_7fw3k4eCupaw-q1m-23").select("rect").attr("fill", "blue")
-
-
-            let sourceLineGroups = Snap.selectAll("g")
-
+            let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+            if (!clickedRect.hasClass("selected")) {
+                clickedRect.addClass("selected");
+            } else {
+                clickedRect.removeClass("selected");
+            }
+            let sourceLineGroups = Snap.selectAll("g");
             sourceLineGroups.forEach(function (element) {
-
-                let hasSource = element.attr("source");
-                let hasTarget = element.attr("target");
-                if ((hasSource) && hasSource == sourceRectID) {
-
-                    element.attr();
-                    element.attr("strokeWidth", "3")
-                    element.attr("stroke", "blue")
-                    let hasTarget = element.attr("target");
-                    if (hasTarget) {
-                        console.log(hasTarget)
+                let hasSource = element.attr("source"); //getting all lines from rect
+                let hasTarget = element.attr("target"); //getting all ids from rects connected in other end of line
+                if ((hasSource) && hasSource == sourceGroupID) {
+                    if (!element.hasClass("selectedLines")) {
+                        element.addClass("selectedLines");
+                    } else {
+                        element.removeClass("selectedLines");
                     }
-                    sourceLineGroups.forEach(function (element) {
-                        let targetRectID = element.attr("id")
-                        if (targetRectID == hasTarget) {
-                            let rect = getRectFromG(hasTarget)
-                            Snap(rect).attr("fill", "lightblue");
-                            element.attr("strokeWidth", "3");
-                        }
-                    })
+
+                    let sourceRect = Snap("#" + hasTarget).select("rect");
+                    if (!sourceRect.hasClass("selected")) {
+                        sourceRect.addClass("selected");
+                    } else {
+                        sourceRect.removeClass("selected");
+                    }
+
                 }
             })
-            if (!event.srcElement.classList.contains("selected")) {
-                Snap()
-                Snap(event.srcElement).attr("fill", "lightblue");
-                Snap(event.srcElement).attr("strokeWidth", "3");
-                Snap(event.srcElement).addClass("selected");
-                // Snap(event.srcElement).attr("strokeWidth", "3");
-            } else {
-                Snap(event.srcElement).attr("fill", "none");
-                Snap(event.srcElement).attr("strokeWidth", "1");
-                Snap(event.srcElement).removeClass("selected");
-            }
+
         });
     });
 
