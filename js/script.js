@@ -8,20 +8,6 @@ function onSVGLoaded(data) {
     chart.append(data);
 
 
-    // var drag = Snap.select("#dmchart")
-    chart.drag(dragging, startDrag, function (evt) {
-        console.log("dropped at: " + evt.x + ", " + evt.y);
-    });
-    function startDrag(posx, posy) {
-        this.ox = posx - this.cx;
-        this.oy = posy - this.cy;
-    }
-    function dragging(dx, dy, posx, posy) {
-        this.cx = posx - this.ox;
-        this.cy = posy - this.oy;
-        t = 't' + this.cx + ',' + this.cy;
-        this.transform(t);
-    }
 
 
 
