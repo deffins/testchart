@@ -1,5 +1,5 @@
 
-var s = Snap("#chart");
+var chart = Snap("#chart");
 Snap.load("../dm2.svg", onSVGLoaded);
 
 
