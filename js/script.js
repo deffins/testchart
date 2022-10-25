@@ -1,6 +1,6 @@
 
 var s = Snap();
-Snap.load("../dm.svg", onSVGLoaded);
+Snap.load("../dm2.svg", onSVGLoaded);
 
 function onSVGLoaded(data) {
     s.append(data);
