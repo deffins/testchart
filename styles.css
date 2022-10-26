@@ -8,3 +8,11 @@
     stroke: lightblue;
     stroke-width: 3;
 }
+
+.selectedText {
+    font-weight: bold;
+}
+
+/* text {
+    font-weight: bold;
+} */

@@ -4,6 +4,8 @@ Snap.load("../dm2.svg", onSVGLoaded);
 
 
 
+
+
 function onSVGLoaded(data) {
     chart.append(data);
 
@@ -18,34 +20,103 @@ function onSVGLoaded(data) {
             console.log(sourceGroupID);
 
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
-            if (!clickedRect.hasClass("selected")) {
-                clickedRect.addClass("selected");
+            if (!clickedRect.hasClass("selected")) {//if not selected before
+                // clickedRect.addClass("selected");
+                addSelectionCount(clickedRect); //count 1 selection
             } else {
-                clickedRect.removeClass("selected");
+                if (clickedRect.attr("selectionCount") > 0) {
+                    deductSelectionCount(clickedRect);
+
+                } else {
+                    // clickedRect.removeClass("selected");
+
+                }
             }
             let sourceLineGroups = Snap.selectAll("g");
             sourceLineGroups.forEach(function (element) {
-                let hasSource = element.attr("source"); //getting all lines from rect
-                let hasTarget = element.attr("target"); //getting all ids from rects connected in other end of line
-                if ((hasSource) && hasSource == sourceGroupID) {
+                let sourceRectID = element.attr("source"); //getting all lines from rect
+                let targetRectID = element.attr("target"); //getting all ids from rects connected in other end of line
+                if ((sourceRectID) && sourceRectID == sourceGroupID) {
                     if (!element.hasClass("selectedLines")) {
                         element.addClass("selectedLines");
                     } else {
                         element.removeClass("selectedLines");
                     }
 
-                    let sourceRect = Snap("#" + hasTarget).select("rect");
-                    if (!sourceRect.hasClass("selected")) {
-                        sourceRect.addClass("selected");
+                    let targetRect = Snap("#" + targetRectID).select("rect");
+                    if (clickedRect.hasClass("selected")) {
+                        addSelectionCount(targetRect);
+
+                        // targetRect.addClass("selected");
+
+
                     } else {
-                        sourceRect.removeClass("selected");
+                        deductSelectionCount(targetRect);
+
+
+                        // if (targetRect.attr("selectionCount") > 0) {
+
+                        // } else {
+                        //     deductSelectionCount(targetRect);
+                        //     // targetRect.removeClass("selected");
+
+                        // }
                     }
 
                 }
             })
+            let fontAttr = { color: "blue", fontWeight: "bold" }
+            let sourceGroupText = getTextDiv(sourceGroupID);
+            if (sourceGroupText) {
+                sourceGroupText.attr(fontAttr);
+            }
 
         });
     });
+
+    function switchClass(element, className) {
+
+        let currentCount = parseInt(element.attr("selectionCount"));
+        if (Number.isNaN(currentCount)) {
+            currentCount = +(element.attr("selectionCount"));
+        }
+        if (currentCount > 0) {
+            element.addClass(className);
+
+        } else {
+            element.removeClass(className);
+        }
+    }
+
+    function addSelectionCount(element) {
+        let currentCount = parseInt(element.attr("selectionCount"));
+        if (Number.isNaN(currentCount)) {
+            element.attr("selectionCount", "0");
+            currentCount = +(element.attr("selectionCount"));
+        }
+
+        element.attr("selectionCount", currentCount + 1);
+        let rectValue = getRectElementValue(element);
+        console.log("rect: " + rectValue + " selected: " + element.attr("selectionCount"));
+        switchClass(element, "selected");
+
+    }
+    function deductSelectionCount(element) {
+        let currentCount = parseInt(element.attr("selectionCount"));
+
+        element.attr("selectionCount", currentCount - 1);
+        let rectValue = getRectElementValue(element);
+        console.log("rect: " + rectValue + " selected: " + element.attr("selectionCount"));
+        switchClass(element, "selected");
+    }
+
+    function getRectElementValue(rectElement) {
+        return rectElement.parent().attr().value;
+    }
+
+    function getTextDiv(id) {
+        return Snap.select("#" + id).select("foreignObject").select("div").select("div").select("div");
+    }
 
     function getRectFromG(id) {
         let element = document.getElementById(id)
