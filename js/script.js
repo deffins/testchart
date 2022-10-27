@@ -9,16 +9,10 @@ Snap.load("../dm2.svg", onSVGLoaded);
 function onSVGLoaded(data) {
     chart.append(data);
 
-
-
-
-
     Snap.selectAll("rect").forEach(function (element) {
-
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             console.log(sourceGroupID);
-
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
             if (!clickedRect.hasClass("selected")) {//if not selected before
                 // clickedRect.addClass("selected");
@@ -32,6 +26,7 @@ function onSVGLoaded(data) {
 
                 }
             }
+
             let sourceLineGroups = Snap.selectAll("g");
             sourceLineGroups.forEach(function (element) {
                 let sourceRectID = element.attr("source"); //getting all lines from rect
