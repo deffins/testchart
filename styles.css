@@ -1,7 +1,12 @@
 .selected {
     stroke-width: 3;
     fill: lightblue;
-    font-weight: bold;
+}
+
+.clicked {
+    stroke-width: 3;
+    color: green;
+    fill: lightgreen;
 }
 
 .selectedLines {

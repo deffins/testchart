@@ -1,83 +1,103 @@
-
+// vajag iezīmēto target rect apstrādāt lai līnijas izejošās nostrādā kā vajag
 var chart = Snap("#chart");
 Snap.load("../dm2.svg", onSVGLoaded);
-
-
-
-
 
 function onSVGLoaded(data) {
     chart.append(data);
 
     Snap.selectAll("rect").forEach(function (element) {
+        element.attr("selectionCount", 0);
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             console.log(sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+            let sourceLines = getSourceLines(sourceGroupID);
             if (!clickedRect.hasClass("selected")) {//if not selected before
-                // clickedRect.addClass("selected");
-                addSelectionCount(clickedRect); //count 1 selection
+                clickedRect.addClass("selected");
+
+                switchLineClass(sourceLines, 1);
+                selectTargetRect(sourceLines, 1)
+                // addSelectionCount(clickedRect); //count 1 selection
             } else {
-                if (clickedRect.attr("selectionCount") > 0) {
-                    deductSelectionCount(clickedRect);
+                if (clickedRect.attr("selectionCount") < 1) {
+                    clickedRect.removeClass("selected");
+                    switchLineClass(sourceLines, 0);
+                    selectTargetRect(sourceLines, 0)
 
-                } else {
-                    // clickedRect.removeClass("selected");
-
+                    // deductSelectionCount(clickedRect);
                 }
             }
 
-            let sourceLineGroups = Snap.selectAll("g");
-            sourceLineGroups.forEach(function (element) {
-                let sourceRectID = element.attr("source"); //getting all lines from rect
-                let targetRectID = element.attr("target"); //getting all ids from rects connected in other end of line
-                if ((sourceRectID) && sourceRectID == sourceGroupID) {
-                    if (!element.hasClass("selectedLines")) {
-                        element.addClass("selectedLines");
-                    } else {
-                        element.removeClass("selectedLines");
-                    }
-
-                    let targetRect = Snap("#" + targetRectID).select("rect");
-                    if (clickedRect.hasClass("selected")) {
-                        addSelectionCount(targetRect);
-
-                        // targetRect.addClass("selected");
-
-
-                    } else {
-                        deductSelectionCount(targetRect);
-
-
-                        // if (targetRect.attr("selectionCount") > 0) {
-
-                        // } else {
-                        //     deductSelectionCount(targetRect);
-                        //     // targetRect.removeClass("selected");
-
-                        // }
-                    }
-
-                }
-            })
-            let fontAttr = { color: "blue", fontWeight: "bold" }
-            let sourceGroupText = getTextDiv(sourceGroupID);
-            if (sourceGroupText) {
-                sourceGroupText.attr(fontAttr);
-            }
+            // let fontAttr = { color: "blue", fontWeight: "bold" }
+            // let sourceGroupText = getTextDiv(sourceGroupID);
+            // if (sourceGroupText) {
+            //     sourceGroupText.attr(fontAttr);
+            // }
 
         });
     });
 
-    function switchClass(element, className) {
+    function getTargetRect(lineID) {
+        console.log(lineID)
+        let targetRect = Snap.select("#" + lineID).attr("target");
+        console.log(targetRect);
+    }
 
+    function switchLineClass(arrayOfLineIDs, add) {
+        arrayOfLineIDs.forEach(function (id) {
+            if (add) {
+                Snap.select("#" + id).addClass("selectedLines");
+            } else {
+                Snap.select("#" + id).removeClass("selectedLines");
+            }
+        })
+    }
+
+    function getSourceLines(sourceRectID) {
+        let result = [];
+        Snap.selectAll("g").forEach(function (element) {
+            let sourceLineID = element.attr("source");
+            // let targetRectID = element.attr("target");
+            if (sourceLineID == sourceRectID) {
+                // getTargetRect(sourceLineID);
+                // console.log(element.attr().id)
+                result.push(element.attr().id);
+            }
+        })
+        return result;
+    }
+
+    function getTargetLines(sourceRectID) {
+        let result = [];
+        Snap.selectAll("g").forEach(function (element) {
+            let targetLineID = element.attr("target");
+            if (targetLineID == sourceRectID) {
+                result.push(element.attr().id);
+            }
+        })
+        return result;
+    }
+
+    function selectTargetRect(arrayOfLineIDs, add) {
+        arrayOfLineIDs.forEach(function (id) {
+            let targetRectID = Snap.select("#" + id).attr("target");
+            let targetRect = Snap.select("#" + targetRectID).select("rect")
+            if (add) {
+                addSelectionCount(targetRect);
+            } else {
+                deductSelectionCount(targetRect);
+            }
+        })
+    }
+
+
+    function switchClass(element, className) {
         let currentCount = parseInt(element.attr("selectionCount"));
         if (Number.isNaN(currentCount)) {
             currentCount = +(element.attr("selectionCount"));
         }
         if (currentCount > 0) {
             element.addClass(className);
-
         } else {
             element.removeClass(className);
         }
@@ -89,7 +109,6 @@ function onSVGLoaded(data) {
             element.attr("selectionCount", "0");
             currentCount = +(element.attr("selectionCount"));
         }
-
         element.attr("selectionCount", currentCount + 1);
         let rectValue = getRectElementValue(element);
         console.log("rect: " + rectValue + " selected: " + element.attr("selectionCount"));
@@ -122,8 +141,6 @@ function onSVGLoaded(data) {
 
     }
 
-
-
     let rects = document.getElementsByTagName("rect");
     for (let i = 0; i < rects.length; i++) {
         let rect = rects[i];
@@ -143,6 +160,7 @@ function onSVGLoaded(data) {
 
 
 }
+
 
 
 
