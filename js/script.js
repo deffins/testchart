@@ -4,13 +4,22 @@ Snap.load("../dm2.svg", onSVGLoaded);
 function onSVGLoaded(data) {
     chart.append(data);
 
-    Snap.select("#svgchart").drag()
+    Snap("#svgchart").drag()
+    Snap("#svgchart").mouseover((event) => {
+        console.log(event.target.nodeName);
+        if (event.target.nodeName === "svg") {
+            document.body.style.cursor = "move";
+        } else {
+            document.body.style.cursor = "default";
+
+        }
+    })
 
     Snap.selectAll("rect").forEach(function (element) {
         element.attr("selectionCount", 0);
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            console.log(sourceGroupID);
+            console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
             let sourceLines = getSourceLines(sourceGroupID);
             if (!clickedRect.hasClass("selected")) {//if not selected before
