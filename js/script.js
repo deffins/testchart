@@ -14,17 +14,21 @@ function onSVGLoaded(data) {
             let sourceLines = getSourceLines(sourceGroupID);
             if (!clickedRect.hasClass("selected")) {//if not selected before
                 clickedRect.addClass("selected");
-
+                addSelectionCount(clickedRect);
                 switchLineClass(sourceLines, 1);
-                selectTargetRect(sourceLines, 1)
+                selectTargetRect(sourceLines, 1);
                 // addSelectionCount(clickedRect); //count 1 selection
-            } else {
-                if (clickedRect.attr("selectionCount") < 1) {
-                    clickedRect.removeClass("selected");
-                    switchLineClass(sourceLines, 0);
-                    selectTargetRect(sourceLines, 0)
-
-                    // deductSelectionCount(clickedRect);
+            } else { //selected
+                let selectionCount = clickedRect.attr("selectionCount")
+                console.log("clickedRect selectionCount: " + selectionCount);
+                let linesSelected = sourceLinesSelected(sourceLines);
+                console.log("are lines selected: " + linesSelected);
+                switchLineClass(sourceLines, !linesSelected);
+                selectTargetRect(sourceLines, !linesSelected);
+                if (linesSelected) {
+                    deductSelectionCount(clickedRect);
+                } else {
+                    addSelectionCount(clickedRect);
                 }
             }
 
@@ -36,6 +40,13 @@ function onSVGLoaded(data) {
 
         });
     });
+
+    function sourceLinesSelected(sourceLines) {
+        let firstLineID = sourceLines[0];
+        let hasClass = Snap.select("#" + firstLineID).hasClass("selectedLines");
+        console.log(sourceLines + " hasClass: " + hasClass)
+        return hasClass;
+    }
 
     function getTargetRect(lineID) {
         console.log(lineID)
@@ -57,13 +68,11 @@ function onSVGLoaded(data) {
         let result = [];
         Snap.selectAll("g").forEach(function (element) {
             let sourceLineID = element.attr("source");
-            // let targetRectID = element.attr("target");
             if (sourceLineID == sourceRectID) {
-                // getTargetRect(sourceLineID);
-                // console.log(element.attr().id)
                 result.push(element.attr().id);
             }
         })
+        console.log(result)
         return result;
     }
 
