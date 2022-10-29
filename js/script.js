@@ -1,9 +1,10 @@
-// vajag iezīmēto target rect apstrādāt lai līnijas izejošās nostrādā kā vajag
 var chart = Snap("#chart");
 Snap.load("../dm2.svg", onSVGLoaded);
 
 function onSVGLoaded(data) {
     chart.append(data);
+
+    Snap.select("#svgchart").drag()
 
     Snap.selectAll("rect").forEach(function (element) {
         element.attr("selectionCount", 0);
@@ -25,10 +26,15 @@ function onSVGLoaded(data) {
                 console.log("are lines selected: " + linesSelected);
                 switchLineClass(sourceLines, !linesSelected);
                 selectTargetRect(sourceLines, !linesSelected);
-                if (linesSelected) {
-                    deductSelectionCount(clickedRect);
+                if (sourceLines.length > 0) {
+                    if (linesSelected) {
+                        deductSelectionCount(clickedRect);
+                    } else {
+                        addSelectionCount(clickedRect);
+
+                    }
                 } else {
-                    addSelectionCount(clickedRect);
+                    deductSelectionCount(clickedRect);
                 }
             }
 
@@ -42,10 +48,13 @@ function onSVGLoaded(data) {
     });
 
     function sourceLinesSelected(sourceLines) {
-        let firstLineID = sourceLines[0];
-        let hasClass = Snap.select("#" + firstLineID).hasClass("selectedLines");
-        console.log(sourceLines + " hasClass: " + hasClass)
-        return hasClass;
+        if (Array.isArray(sourceLines) && sourceLines.length > 0) {
+            let firstLineID = sourceLines[0];
+            let hasClass = Snap.select("#" + firstLineID).hasClass("selectedLines");
+            console.log(sourceLines + " hasClass: " + hasClass)
+            return hasClass;
+        } else return false;
+
     }
 
     function getTargetRect(lineID) {
@@ -166,6 +175,8 @@ function onSVGLoaded(data) {
             div.style.setProperty("pointer-events", "none");
         }
     }
+
+
 
 
 }
