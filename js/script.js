@@ -17,7 +17,7 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         element.attr("selectionCount", 0);
-        element.dblclick(function (event) {
+        element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
