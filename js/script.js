@@ -6,7 +6,7 @@ function onSVGLoaded(data) {
 
     Snap("#svgchart").drag()
     Snap("#svgchart").mouseover((event) => {
-        console.log(event.target.nodeName);
+        // console.log(event.target.nodeName);
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
         } else {
@@ -17,11 +17,15 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         element.attr("selectionCount", 0);
+        // getInnerText(Snap(element).parent().attr().id);
+        // console.log(getInnerText(Snap(element).parent().attr().id))
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+
+            buildElementMap(element);
             console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
-            let sourceLines = getSourceLines(sourceGroupID);
+            let sourceLines = getLines(sourceGroupID, "source");
             if (!clickedRect.hasClass("selected")) {//if not selected before
                 clickedRect.addClass("selected");
                 addSelectionCount(clickedRect);
@@ -41,7 +45,6 @@ function onSVGLoaded(data) {
                         deductSelectionCount(clickedRect);
                     } else {
                         addSelectionCount(clickedRect);
-
                     }
                 } else {
                     deductSelectionCount(clickedRect);
@@ -55,7 +58,39 @@ function onSVGLoaded(data) {
             // }
 
         });
+        element.dblclick(function (event) {
+            let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+
+            console.log(event)
+            let
+        })
     });
+
+    function makeShitGlow() {
+        
+    }
+
+    function buildElementMap(rectElement) {
+        let rectElementID = Snap(rectElement).parent().attr().id;
+        let targetLines = getLines(rectElementID, "target");
+        let sourceLines = getLines(rectElementID, "source");
+        let innerText = getInnerText(rectElementID);
+        let targets = getLineRectIDs(targetLines, "target");
+        let sources = getLineRectIDs(sourceLines, "source");
+        let blockObject = {};
+        blockObject.id = rectElementID;
+        blockObject.targetLines = targetLines;
+        blockObject.sourceLines = sourceLines;
+        blockObject.text = innerText;
+        blockObject.targets = targets;
+        blockObject.sources = sources;
+        blockObject.selected = false;
+        blockObject.selectionCount = 0;
+
+
+        console.log(blockObject);
+        return blockObject;
+    }
 
     function drawCountCircle(rectElement) {
         let rectElementPosX = rectElement.attr("x")
@@ -82,6 +117,16 @@ function onSVGLoaded(data) {
         console.log(targetRect);
     }
 
+    function getLineRectIDs(arrayOfLineIDs, attr) {
+        //attr: source or target
+        let rectIDs = [];
+        arrayOfLineIDs.forEach(function (id) {
+            let rectID = Snap.select("#" + id).attr(attr);
+            rectIDs.push(rectID);
+        })
+        return rectIDs;
+    }
+
     function switchLineClass(arrayOfLineIDs, add) {
         arrayOfLineIDs.forEach(function (id) {
             if (add) {
@@ -92,26 +137,15 @@ function onSVGLoaded(data) {
         })
     }
 
-    function getSourceLines(sourceRectID) {
+    function getLines(rectID, attr) {
         let result = [];
         Snap.selectAll("g").forEach(function (element) {
-            let sourceLineID = element.attr("source");
-            if (sourceLineID == sourceRectID) {
+            let lineID = element.attr(attr);
+            if (lineID == rectID) {
                 result.push(element.attr().id);
             }
         })
-        console.log(result)
-        return result;
-    }
-
-    function getTargetLines(sourceRectID) {
-        let result = [];
-        Snap.selectAll("g").forEach(function (element) {
-            let targetLineID = element.attr("target");
-            if (targetLineID == sourceRectID) {
-                result.push(element.attr().id);
-            }
-        })
+        // console.log(result)
         return result;
     }
 
@@ -167,6 +201,10 @@ function onSVGLoaded(data) {
 
     function getTextDiv(id) {
         return Snap.select("#" + id).select("foreignObject").select("div").select("div").select("div");
+    }
+
+    function getInnerText(rectID) {
+        return Snap.select("#" + rectID).select("foreignObject").select("div").children("text")[1].node.innerText;
     }
 
     function getRectFromG(id) {
