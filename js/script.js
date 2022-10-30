@@ -17,7 +17,7 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         element.attr("selectionCount", 0);
-        element.click(function (event) {
+        element.dblclick(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
@@ -27,6 +27,7 @@ function onSVGLoaded(data) {
                 addSelectionCount(clickedRect);
                 switchLineClass(sourceLines, 1);
                 selectTargetRect(sourceLines, 1);
+                drawCountCircle(clickedRect);
                 // addSelectionCount(clickedRect); //count 1 selection
             } else { //selected
                 let selectionCount = clickedRect.attr("selectionCount")
@@ -55,6 +56,15 @@ function onSVGLoaded(data) {
 
         });
     });
+
+    function drawCountCircle(rectElement) {
+        let rectElementPosX = rectElement.attr("x")
+        let rectElementPosY = rectElement.attr("y")
+        console.log(rectElementPosX, rectElementPosY)
+        var bigCircle = Snap().circle(0, 0, 100);
+
+
+    }
 
     function sourceLinesSelected(sourceLines) {
         if (Array.isArray(sourceLines) && sourceLines.length > 0) {
