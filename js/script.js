@@ -1,5 +1,5 @@
 var chart = Snap("#chart");
-Snap.load("../dm2.svg", onSVGLoaded);
+Snap.load("../dm3.svg", onSVGLoaded);
 
 function onSVGLoaded(data) {
     chart.append(data);
@@ -62,12 +62,12 @@ function onSVGLoaded(data) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
 
             console.log(event)
-            let
+
         })
     });
 
     function makeShitGlow() {
-        
+
     }
 
     function buildElementMap(rectElement) {
