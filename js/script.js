@@ -31,7 +31,7 @@ function onSVGLoaded(data) {
                 addSelectionCount(clickedRect);
                 switchLineClass(sourceLines, 1);
                 selectTargetRect(sourceLines, 1);
-                drawCountCircle(clickedRect);
+                // drawCountCircle(clickedRect);
                 // addSelectionCount(clickedRect); //count 1 selection
             } else { //selected
                 let selectionCount = clickedRect.attr("selectionCount")
