@@ -31,7 +31,7 @@ function onSVGLoaded(data) {
                 addSelectionCount(clickedRect);
                 switchLineClass(sourceLines, 1);
                 selectTargetRect(sourceLines, 1);
-                // drawCountCircle(clickedRect);
+
                 // addSelectionCount(clickedRect); //count 1 selection
             } else { //selected
                 let selectionCount = clickedRect.attr("selectionCount")
@@ -92,13 +92,45 @@ function onSVGLoaded(data) {
         return blockObject;
     }
 
-    function drawCountCircle(rectElement) {
-        let rectElementPosX = rectElement.attr("x")
-        let rectElementPosY = rectElement.attr("y")
-        console.log(rectElementPosX, rectElementPosY)
-        var bigCircle = Snap().circle(0, 0, 100);
+    function drawCountCircle(rectElement, count) {
+        let parentG = rectElement.parent();
 
+        if (parentG.select(".circle")) {
+            if (count < 1) {
+                parentG.select(".circle").remove();
+                parentG.select(".count").remove();
+            } else {
+                parentG.select(".count").node.textContent = count;
+            }
+        } else {
 
+            let rectElementPosX = rectElement.attr("x");
+            let rectElementPosY = rectElement.attr("y");
+            let x = +rectElementPosX - 5;
+            let y = +rectElementPosY - 5;
+            var countCircle = Snap().circle(x, y, 12).addClass("circle");
+            countCircle.attr({
+                // fillOpacity: "0.5",
+                fill: "#bada55",
+                stroke: "#000",
+                strokeWidth: 1
+            })
+            rectElement.after(countCircle);
+            parentG.append(countCircle);
+            let text = countCircle.paper.text(x - 4, y + 6, count).addClass("count");
+            text.attr({ fontWeight: "bold", fill: "blue" })
+            parentG.append(text);
+        }
+
+        // let parentHasCircle = parentG.select(".circle");
+        // console.log(parentHasCircle);
+        // let parentHasText = parentG.select(".count");
+        // console.log(parentHasText);
+    }
+
+    function removeCountCircle(rect) {
+        rect.parent().select(".circle").remove();
+        rect.parent().select(".count").remove();
     }
 
     function sourceLinesSelected(sourceLines) {
@@ -176,27 +208,32 @@ function onSVGLoaded(data) {
 
     function addSelectionCount(element) {
         let currentCount = parseInt(element.attr("selectionCount"));
-        if (Number.isNaN(currentCount)) {
-            element.attr("selectionCount", "0");
-            currentCount = +(element.attr("selectionCount"));
-        }
+        // if (Number.isNaN(currentCount)) {
+        //     element.attr("selectionCount", "0");
+        //     currentCount = +(element.attr("selectionCount"));
+        // }
         element.attr("selectionCount", currentCount + 1);
+        let count = +element.attr("selectionCount");
         let rectValue = getRectElementValue(element);
-        console.log("rect: " + rectValue + " selected: " + element.attr("selectionCount"));
+        console.log("rect: " + rectValue + " selected: " + count);
+
         switchClass(element, "selected");
+
+        drawCountCircle(element, count);
 
     }
     function deductSelectionCount(element) {
         let currentCount = parseInt(element.attr("selectionCount"));
-
         element.attr("selectionCount", currentCount - 1);
+        let count = +element.attr("selectionCount");
         let rectValue = getRectElementValue(element);
-        console.log("rect: " + rectValue + " selected: " + element.attr("selectionCount"));
+        console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, "selected");
+        drawCountCircle(element, count);
     }
 
     function getRectElementValue(rectElement) {
-        return rectElement.parent().attr().value;
+        return rectElement.parent().attr().id;
     }
 
     function getTextDiv(id) {
