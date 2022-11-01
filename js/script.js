@@ -1,25 +1,38 @@
 var chart = Snap("#chart");
 Snap.load("../dm3.svg", onSVGLoaded);
 
+this.elements = [];
+
 function onSVGLoaded(data) {
     chart.append(data);
 
     Snap("#svgchart").drag()
     Snap("#svgchart").mouseover((event) => {
-        // console.log(event.target.nodeName);
+        let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+        console.log(sourceGroupID);
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
+        } else if (event.target.nodeName === "rect") {
+            // let fontAttr1 = { color: "blue", fontWeight: "bold" }
+            // let fontAttr2 = { color: "black", fontWeight: "" }
+            // let sourceGroupText = getTextDiv(sourceGroupID);
+            // if (sourceGroupText) {
+            //     sourceGroupText.attr(fontAttr1);
+            // } else {
+
+            // }
+
         } else {
             document.body.style.cursor = "default";
-
         }
     })
 
     Snap.selectAll("rect").forEach(function (element) {
+        this.elements.push(buildElementMap(element));
+
         element.attr("selectionCount", 0);
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            buildElementMap(element);
             console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
             let sourceLines = getLines(sourceGroupID, "source");
@@ -46,11 +59,7 @@ function onSVGLoaded(data) {
                 }
             }
 
-            // let fontAttr = { color: "blue", fontWeight: "bold" }
-            // let sourceGroupText = getTextDiv(sourceGroupID);
-            // if (sourceGroupText) {
-            //     sourceGroupText.attr(fontAttr);
-            // }
+
 
         });
         element.dblclick(function (event) {
@@ -81,8 +90,7 @@ function onSVGLoaded(data) {
         blockObject.selected = false;
         blockObject.selectionCount = 0;
 
-
-        console.log(blockObject);
+        // console.log(blockObject);
         return blockObject;
     }
 
@@ -115,11 +123,6 @@ function onSVGLoaded(data) {
             text.attr({ fontWeight: "bold", fill: "blue" })
             parentG.append(text);
         }
-
-        // let parentHasCircle = parentG.select(".circle");
-        // console.log(parentHasCircle);
-        // let parentHasText = parentG.select(".count");
-        // console.log(parentHasText);
     }
 
     function removeCountCircle(rect) {
@@ -202,26 +205,20 @@ function onSVGLoaded(data) {
 
     function addSelectionCount(element) {
         let currentCount = parseInt(element.attr("selectionCount"));
-        // if (Number.isNaN(currentCount)) {
-        //     element.attr("selectionCount", "0");
-        //     currentCount = +(element.attr("selectionCount"));
-        // }
         element.attr("selectionCount", currentCount + 1);
         let count = +element.attr("selectionCount");
         let rectValue = getRectElementValue(element);
-        console.log("rect: " + rectValue + " selected: " + count);
-
+        // console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, "selected");
-
         drawCountCircle(element, count);
-
     }
+
     function deductSelectionCount(element) {
         let currentCount = parseInt(element.attr("selectionCount"));
         element.attr("selectionCount", currentCount - 1);
         let count = +element.attr("selectionCount");
         let rectValue = getRectElementValue(element);
-        console.log("rect: " + rectValue + " selected: " + count);
+        // console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, "selected");
         drawCountCircle(element, count);
     }
