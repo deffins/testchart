@@ -17,11 +17,8 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         element.attr("selectionCount", 0);
-        // getInnerText(Snap(element).parent().attr().id);
-        // console.log(getInnerText(Snap(element).parent().attr().id))
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-
             buildElementMap(element);
             console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
@@ -31,8 +28,6 @@ function onSVGLoaded(data) {
                 addSelectionCount(clickedRect);
                 switchLineClass(sourceLines, 1);
                 selectTargetRect(sourceLines, 1);
-
-                // addSelectionCount(clickedRect); //count 1 selection
             } else { //selected
                 let selectionCount = clickedRect.attr("selectionCount")
                 console.log("clickedRect selectionCount: " + selectionCount);
@@ -60,7 +55,6 @@ function onSVGLoaded(data) {
         });
         element.dblclick(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-
             console.log(event)
 
         })
