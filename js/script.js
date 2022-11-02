@@ -215,6 +215,7 @@ function onSVGLoaded(data) {
 
     function selectTargetRect(arrayOfLineIDs, add, classType) {
         arrayOfLineIDs.forEach(function (id) {
+            console.log(id)
             let targetRectID = Snap.select("#" + id).attr("target");
             let targetRect = Snap.select("#" + targetRectID).select("rect")
             if (add) {
@@ -227,6 +228,7 @@ function onSVGLoaded(data) {
 
     function selectSourceRect(arrayOfLineIDs, add, classType) {
         arrayOfLineIDs.forEach(function (id) {
+            console.log(id)
             let sourceRectID = Snap.select("#" + id).attr("source");
             let sourceRect = Snap.select("#" + sourceRectID).select("rect")
             if (add) {
@@ -255,7 +257,7 @@ function onSVGLoaded(data) {
         element.attr("selectionCount", currentCount + 1);
         let count = +element.attr("selectionCount");
         let rectValue = getRectGID(element);
-        console.log("rect: " + rectValue + " selected: " + count);
+        // console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, classType);
         drawCountCircle(element, count);
     }
