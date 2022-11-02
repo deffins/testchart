@@ -30,6 +30,7 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         this.elements.push(buildElementMap(element));
+        drawCirclesOnRect(element);
 
         element.attr("selectionCount", 0);
         element.click(function (event) {
@@ -66,6 +67,7 @@ function onSVGLoaded(data) {
 
         });
         element.dblclick(function (event) {
+            return
             let classType = "selected-in";
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             let targetLines = getLines(sourceGroupID, "target");
@@ -130,7 +132,7 @@ function onSVGLoaded(data) {
         return blockObject;
     }
 
-    function drawCountCircle(rectElement, count) {
+    function drawCountCircle(rectElement, count, classTye) {
         let parentG = rectElement.parent();
 
         if (parentG.select(".circle")) {
@@ -159,6 +161,35 @@ function onSVGLoaded(data) {
             text.attr({ fontWeight: "bold", fill: "blue" })
             parentG.append(text);
         }
+    }
+
+    function drawCirclesOnRect(rect) {
+        let parentG = rect.parent();
+        let rectPosX = rect.attr("x");
+        let rectPosY = rect.attr("y");
+        let xBlue = +rectPosX - 5;
+        let yBlue = +rectPosY - 5;
+
+        let xGreen = +rectPosX + 15;
+        let yGreen = +rectPosY - 5;
+        // let arr = [[xBlue, yBlue], [xGreen, yGreen]]
+
+
+        let countCircleBlue = Snap().circle(xBlue, yBlue, 12).addClass("circle-out");
+        let countCircleGreen = Snap().circle(xGreen, yGreen, 12).addClass("circle-in");
+
+        rect.after(countCircleBlue);
+        parentG.append(countCircleBlue);
+        let textBlue = countCircleBlue.paper.text(xBlue - 4, yBlue + 6, 0).addClass("circle-out");
+        textBlue.attr({ fontWeight: "bold", fill: "black" })
+        parentG.append(textBlue);
+
+        rect.after(countCircleGreen);
+        parentG.append(countCircleGreen);
+        let textGreen = countCircleGreen.paper.text(xGreen - 4, yGreen + 6, 0).addClass("circle-in");
+        textGreen.attr({ fontWeight: "bold", fill: "black" })
+        parentG.append(textGreen);
+
     }
 
     function removeCountCircle(rect) {

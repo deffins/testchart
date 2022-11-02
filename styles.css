@@ -1,4 +1,4 @@
-.selected {
+.selected-out {
     stroke-width: 3;
     fill: lightblue;
 }
@@ -15,14 +15,31 @@
     fill: lightgreen;
 }
 
-.selectedLines {
+.selected-out-lines {
     stroke: lightblue;
     stroke-width: 3;
 }
 
-.selectedText {
-    font-weight: bold;
+.selected-in-lines {
+    stroke: lightgreen;
+    stroke-width: 3;
 }
+
+.circle-in {
+    stroke: black;
+    stroke-width: 1;
+    fill: greenyellow
+}
+
+.circle-out {
+    stroke: black;
+    stroke-width: 1;
+    fill: lightblue,
+}
+
+/* .selectedText {
+    font-weight: bold;
+} */
 
 /* text {
     font-weight: bold;
