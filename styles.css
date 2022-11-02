@@ -3,6 +3,12 @@
     fill: lightblue;
 }
 
+.selected-in {
+    stroke-width: 3;
+    fill: lightgreen;
+
+}
+
 .clicked {
     stroke-width: 3;
     color: green;

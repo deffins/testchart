@@ -8,11 +8,12 @@ function onSVGLoaded(data) {
 
     Snap("#svgchart").drag()
     Snap("#svgchart").mouseover((event) => {
-        let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-        console.log(sourceGroupID);
+        // let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+        // console.log(sourceGroupID);
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
         } else if (event.target.nodeName === "rect") {
+            document.body.style.cursor = "default";
             // let fontAttr1 = { color: "blue", fontWeight: "bold" }
             // let fontAttr2 = { color: "black", fontWeight: "" }
             // let sourceGroupText = getTextDiv(sourceGroupID);
@@ -32,13 +33,15 @@ function onSVGLoaded(data) {
 
         element.attr("selectionCount", 0);
         element.click(function (event) {
+            // return
+            let classType = "selected";
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             console.log("sourceRectID: " + sourceGroupID);
             let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
             let sourceLines = getLines(sourceGroupID, "source");
-            if (!clickedRect.hasClass("selected")) {//if not selected before
-                clickedRect.addClass("selected");
-                addSelectionCount(clickedRect);
+            if (!clickedRect.hasClass(classType)) {//if not selected before
+                clickedRect.addClass(classType);
+                addSelectionCount(clickedRect, classType);
                 switchLineClass(sourceLines, 1);
                 selectTargetRect(sourceLines, 1);
             } else { //selected
@@ -50,12 +53,12 @@ function onSVGLoaded(data) {
                 selectTargetRect(sourceLines, !linesSelected);
                 if (sourceLines.length > 0) {
                     if (linesSelected) {
-                        deductSelectionCount(clickedRect);
+                        deductSelectionCount(clickedRect, classType);
                     } else {
-                        addSelectionCount(clickedRect);
+                        addSelectionCount(clickedRect, classType);
                     }
                 } else {
-                    deductSelectionCount(clickedRect);
+                    deductSelectionCount(clickedRect, classType);
                 }
             }
 
@@ -63,11 +66,44 @@ function onSVGLoaded(data) {
 
         });
         element.dblclick(function (event) {
+            let classType = "selected-in";
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            console.log(event)
+            let targetLines = getLines(sourceGroupID, "target");
+            let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+            let linesSelected = sourceLinesSelected(targetLines);
+            let notClicked = !clickedRect.hasClass(classType);
+            if (notClicked) {
+                addSelectionCount(clickedRect, classType);
+                switchLineClass(targetLines, 1);
+                selectSourceRect(targetLines, 1, classType);
+                selectTargetRect(targetLines, !linesSelected, classType);
 
+            } else {
+                let selectionCount = clickedRect.attr("selectionCount");
+                console.log("clickedRect selectionCount: " + selectionCount);
+                console.log("are lines selected: " + linesSelected);
+                switchLineClass(targetLines, !linesSelected);
+                // selectSourceRect(targetLines, 0, classType);
+                if (targetLines.length > 0) {
+                    if (linesSelected) {
+                        deductSelectionCount(clickedRect, classType);
+                        selectSourceRect(targetLines, 0, classType);
+                        selectTargetRect(targetLines, 0, classType);
+                    } else {
+                        addSelectionCount(clickedRect, classType);
+                        selectSourceRect(targetLines, 1, classType);
+                        selectTargetRect(targetLines, 1, classType);
+                    }
+                } else {
+                    deductSelectionCount(clickedRect, classType);
+                    selectSourceRect(targetLines, 0, classType);
+                    selectTargetRect(targetLines, 0, classType);
+                }
+            }
         })
     });
+
+
 
     function makeShitGlow() {
 
@@ -136,8 +172,7 @@ function onSVGLoaded(data) {
             let hasClass = Snap.select("#" + firstLineID).hasClass("selectedLines");
             console.log(sourceLines + " hasClass: " + hasClass)
             return hasClass;
-        } else return false;
-
+        }
     }
 
     function getTargetRect(lineID) {
@@ -178,14 +213,26 @@ function onSVGLoaded(data) {
         return result;
     }
 
-    function selectTargetRect(arrayOfLineIDs, add) {
+    function selectTargetRect(arrayOfLineIDs, add, classType) {
         arrayOfLineIDs.forEach(function (id) {
             let targetRectID = Snap.select("#" + id).attr("target");
             let targetRect = Snap.select("#" + targetRectID).select("rect")
             if (add) {
-                addSelectionCount(targetRect);
+                addSelectionCount(targetRect, classType);
             } else {
-                deductSelectionCount(targetRect);
+                deductSelectionCount(targetRect, classType);
+            }
+        })
+    }
+
+    function selectSourceRect(arrayOfLineIDs, add, classType) {
+        arrayOfLineIDs.forEach(function (id) {
+            let sourceRectID = Snap.select("#" + id).attr("source");
+            let sourceRect = Snap.select("#" + sourceRectID).select("rect")
+            if (add) {
+                addSelectionCount(sourceRect, classType);
+            } else {
+                deductSelectionCount(sourceRect, classType);
             }
         })
     }
@@ -203,27 +250,27 @@ function onSVGLoaded(data) {
         }
     }
 
-    function addSelectionCount(element) {
+    function addSelectionCount(element, classType) {
         let currentCount = parseInt(element.attr("selectionCount"));
         element.attr("selectionCount", currentCount + 1);
         let count = +element.attr("selectionCount");
-        let rectValue = getRectElementValue(element);
-        // console.log("rect: " + rectValue + " selected: " + count);
-        switchClass(element, "selected");
+        let rectValue = getRectGID(element);
+        console.log("rect: " + rectValue + " selected: " + count);
+        switchClass(element, classType);
         drawCountCircle(element, count);
     }
 
-    function deductSelectionCount(element) {
+    function deductSelectionCount(element, classType) {
         let currentCount = parseInt(element.attr("selectionCount"));
         element.attr("selectionCount", currentCount - 1);
         let count = +element.attr("selectionCount");
-        let rectValue = getRectElementValue(element);
-        // console.log("rect: " + rectValue + " selected: " + count);
-        switchClass(element, "selected");
+        let rectValue = getRectGID(element);
+        console.log("rect: " + rectValue + " selected: " + count);
+        switchClass(element, classType);
         drawCountCircle(element, count);
     }
 
-    function getRectElementValue(rectElement) {
+    function getRectGID(rectElement) {
         return rectElement.parent().attr().id;
     }
 
