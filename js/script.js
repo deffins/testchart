@@ -2,6 +2,7 @@ var chart = Snap("#chart");
 Snap.load("../dm3.svg", onSVGLoaded);
 
 this.elements = [];
+// this.glow = glow();
 
 function onSVGLoaded(data) {
     chart.append(data);
@@ -34,34 +35,50 @@ function onSVGLoaded(data) {
 
         element.attr("selectionCount", 0);
         element.click(function (event) {
-            // return
-            let classType = "selected";
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            console.log("sourceRectID: " + sourceGroupID);
-            let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
-            let sourceLines = getLines(sourceGroupID, "source");
-            if (!clickedRect.hasClass(classType)) {//if not selected before
-                clickedRect.addClass(classType);
-                addSelectionCount(clickedRect, classType);
-                switchLineClass(sourceLines, 1);
-                selectTargetRect(sourceLines, 1);
-            } else { //selected
-                let selectionCount = clickedRect.attr("selectionCount")
-                console.log("clickedRect selectionCount: " + selectionCount);
-                let linesSelected = sourceLinesSelected(sourceLines);
-                console.log("are lines selected: " + linesSelected);
-                switchLineClass(sourceLines, !linesSelected);
-                selectTargetRect(sourceLines, !linesSelected);
-                if (sourceLines.length > 0) {
-                    if (linesSelected) {
-                        deductSelectionCount(clickedRect, classType);
-                    } else {
-                        addSelectionCount(clickedRect, classType);
-                    }
-                } else {
-                    deductSelectionCount(clickedRect, classType);
-                }
-            }
+            let clickState = getClickState(sourceGroupID) + 1;
+            console.log(clickState);
+            // setClickState(sourceGroupID, clickState);
+            setElementsByState(sourceGroupID, clickState);
+            setClickState(sourceGroupID, clickState)
+
+            // return
+
+
+            // console.log("sourceRectID: " + sourceGroupID);
+            // let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+            // let sourceLines = getLinesFromElements(sourceGroupID, "source");
+            // console.log(sourceLines);
+
+            // let targetRects = getRectsFromElements(sourceGroupID);
+            // addSelectionCount(clickedRect, classType);
+
+            // selectLines(sourceGroupID, targetRects)
+
+
+
+            // if (!clickedRect.hasClass(classType)) {//if not selected before
+            //     clickedRect.addClass(classType);
+            //     addSelectionCount(clickedRect, classType);
+            //     switchLineClass(sourceLines, 1);
+            //     selectTargetRect(sourceLines, 1);
+            // } else { //selected
+            //     let selectionCount = clickedRect.attr("selectionCount")
+            //     console.log("clickedRect selectionCount: " + selectionCount);
+            //     let linesSelected = sourceLinesSelected(sourceLines);
+            //     console.log("are lines selected: " + linesSelected);
+            //     switchLineClass(sourceLines, !linesSelected);
+            //     selectTargetRect(sourceLines, !linesSelected);
+            //     if (sourceLines.length > 0) {
+            //         if (linesSelected) {
+            //             deductSelectionCount(clickedRect, classType);
+            //         } else {
+            //             addSelectionCount(clickedRect, classType);
+            //         }
+            //     } else {
+            //         deductSelectionCount(clickedRect, classType);
+            //     }
+            // }
 
 
 
@@ -105,19 +122,70 @@ function onSVGLoaded(data) {
         })
     });
 
+    function setElementsByState(sourceID, state) {
+        let sourceRect = Snap.select("#" + sourceID).select("rect");
+        let sourceLines = getLinesFromElements(sourceID, "source");
+        let tagetLines = getLinesFromElements(sourceID, "target");
+        let sourceLineTargets = getRectsFromElements(sourceID, "source");
+        let targetLineTargets = getRectsFromElements(sourceID, "target");
+        if (state == 1) {
+            sourceRect.addClass("selected-out");
+            switchLineClass(sourceLines, 1, "selected-out-lines");
+            switchLineClass(tagetLines, 0);
+            selectRects(sourceLineTargets, 1, "selected-out");
+            selectRects(targetLineTargets, 0);
 
-
-    function makeShitGlow() {
-
+        } else if (state == 2) {
+            sourceRect.addClass("selected-in");
+            switchLineClass(tagetLines, 1, "selected-in-lines");
+            switchLineClass(sourceLines, 0);
+            selectRects(sourceLineTargets, 0);
+            selectRects(targetLineTargets, 1, "selected-in");
+        } else if (state == 3) {
+            sourceRect.addClass("selected-all");
+            switchLineClass(sourceLines, 1, "selected-all-lines");
+            switchLineClass(tagetLines, 1, "selected-all-lines");
+            selectRects(sourceLineTargets, 1, "selected-all");
+            selectRects(targetLineTargets, 1, "selected-all");
+        } else {
+            sourceRect.removeClass("selected-all selected-in selected-out");
+            switchLineClass(sourceLines, 0);
+            switchLineClass(tagetLines, 0);
+            selectRects(sourceLineTargets, 0);
+            selectRects(targetLineTargets, 0);
+        }
     }
+
+    function selectRects(arr, add, classType) {
+        arr.forEach((id) => {
+            let rect = Snap.select("#" + id).select("rect");
+            if (add) {
+                rect.toggleClass(classType, !!add);
+
+            } else {
+                rect.removeClass("selected-out selected-in selected-all");
+
+            }
+        })
+    }
+
+    function selectLines(sourceID, targetIDs) { //source id = id, targetIDs = array
+        let lines = Snap.selectAll("g").forEach((group) => {
+            if (group.attr("source") == sourceID) {
+                group.addClass("selected-out-lines");
+            }
+
+        })
+    }
+
 
     function buildElementMap(rectElement) {
         let rectElementID = Snap(rectElement).parent().attr().id;
         let targetLines = getLines(rectElementID, "target");
         let sourceLines = getLines(rectElementID, "source");
         let innerText = getInnerText(rectElementID);
-        let targets = getLineRectIDs(targetLines, "target");
-        let sources = getLineRectIDs(sourceLines, "source");
+        let targets = getLineRectIDs(targetLines, "source");
+        let sources = getLineRectIDs(sourceLines, "target");
         let blockObject = {};
         blockObject.id = rectElementID;
         blockObject.targetLines = targetLines;
@@ -125,11 +193,33 @@ function onSVGLoaded(data) {
         blockObject.text = innerText;
         blockObject.targets = targets;
         blockObject.sources = sources;
-        blockObject.selected = false;
+        blockObject.clickState = 0;
         blockObject.selectionCount = 0;
 
         // console.log(blockObject);
         return blockObject;
+    }
+
+    function getClickState(id) {
+        let state = 0;
+        this.elements.find((element) => {
+            if (element.id === id) {
+                state = element.clickState;
+            }
+        })
+        return state;
+    }
+
+    function setClickState(id, state) {
+        this.elements.find((element) => {
+            if (element.id === id) {
+                if (state > 2) {
+                    element.clickState = -1;
+                } else {
+                    element.clickState = state;
+                }
+            }
+        })
     }
 
     function drawCountCircle(rectElement, count, classTye) {
@@ -222,12 +312,15 @@ function onSVGLoaded(data) {
         return rectIDs;
     }
 
-    function switchLineClass(arrayOfLineIDs, add) {
+    function switchLineClass(arrayOfLineIDs, add, classType) {
         arrayOfLineIDs.forEach(function (id) {
+            let lineGroupArr = Snap.select("#" + id).selectAll("path");
             if (add) {
-                Snap.select("#" + id).addClass("selectedLines");
+                console.log("added class to: " + id)
+                lineGroupArr.forEach((path) => path.addClass(classType));
             } else {
-                Snap.select("#" + id).removeClass("selectedLines");
+                // console.log("removed class of line: " + id);
+                lineGroupArr.forEach((path) => path.removeClass("selected-out-lines selected-in-lines selected-all-lines"));
             }
         })
     }
@@ -240,8 +333,39 @@ function onSVGLoaded(data) {
                 result.push(element.attr().id);
             }
         })
-        // console.log(result)
         return result;
+    }
+
+    function getLinesFromElements(rectID, value) {
+        let lines = [];
+        this.elements.find((element) => {
+            if (element.id === rectID) {
+                if (value == "source") {
+                    lines = element.sourceLines;
+                } else {
+                    lines = element.targetLines;
+                }
+            }
+            // console.log(sourceLines);
+
+        })
+        return lines;
+    }
+    function getRectsFromElements(rectID, type) {
+        let arr = [];
+        this.elements.find((element) => {
+            if (element.id === rectID) {
+                if (type == "source") {
+                    arr = element.sources
+                } else {
+                    arr = element.targets
+                }
+
+            }
+            // console.log(sourceLines);
+
+        })
+        return arr;
     }
 
     function selectTargetRect(arrayOfLineIDs, add, classType) {
@@ -346,7 +470,10 @@ function onSVGLoaded(data) {
 
 }
 
+function glow(id) {
+    Snap.select("#" + id).addClass("glow")
 
+}
 
 
 

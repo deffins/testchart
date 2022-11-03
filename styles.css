@@ -6,7 +6,11 @@
 .selected-in {
     stroke-width: 3;
     fill: lightgreen;
+}
 
+.selected-all {
+    stroke-width: 3;
+    fill: lightsalmon;
 }
 
 .clicked {
@@ -16,12 +20,19 @@
 }
 
 .selected-out-lines {
-    stroke: lightblue;
+    stroke: blue;
     stroke-width: 3;
+    /* fill: rgb(17, 17, 160); */
+
 }
 
 .selected-in-lines {
-    stroke: lightgreen;
+    stroke: green;
+    stroke-width: 3;
+}
+
+.selected-all-lines {
+    stroke: lightcoral;
     stroke-width: 3;
 }
 
@@ -35,6 +46,12 @@
     stroke: black;
     stroke-width: 1;
     fill: lightblue,
+}
+
+.glow {
+    stroke: red;
+    stroke-width: 3;
+    fill: lightgrey;
 }
 
 /* .selectedText {
