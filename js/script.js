@@ -2,6 +2,7 @@ var chart = Snap("#chart");
 Snap.load("../dm3.svg", onSVGLoaded);
 
 this.elements = [];
+this.td = ""
 // this.glow = glow();
 
 function onSVGLoaded(data) {
@@ -30,11 +31,14 @@ function onSVGLoaded(data) {
     })
 
     Snap.selectAll("rect").forEach(function (element) {
+        let self = this;
         this.elements.push(buildElementMap(element));
-        drawCirclesOnRect(element);
+        // drawCirclesOnRect(element);
 
         element.attr("selectionCount", 0);
         element.click(function (event) {
+            console.log(this.elements)
+            testDiagram();
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             let clickState = getClickState(sourceGroupID) + 1;
             console.log(clickState);
@@ -122,6 +126,7 @@ function onSVGLoaded(data) {
         })
     });
 
+
     function setElementsByState(sourceID, state) {
         let sourceRect = Snap.select("#" + sourceID).select("rect");
         let sourceLines = getLinesFromElements(sourceID, "source");
@@ -177,6 +182,34 @@ function onSVGLoaded(data) {
 
         })
     }
+
+
+    function testDiagram() {
+        let array = this.elements;
+        let string = ""
+        for (let i = 0; i < 20; i++) {
+            let elementData = array[i];
+            let slicedText1 = elementData.text.slice(0, 16).trim();
+            // string = string.concat("[", slicedText, "]")
+
+            for (let j = 0; j < elementData.sources.length; j++) {
+                let sourceID = elementData.sources[j]
+                let sourceText = getInnerText(sourceID)
+                let slicedText2 = sourceText.slice(0, 16).trim();
+                string = string.concat("[", slicedText1, "]->[", slicedText2, "]","\n")
+            }
+
+
+
+
+
+        }
+        console.log(string)
+
+
+    }
+
+
 
 
     function buildElementMap(rectElement) {
