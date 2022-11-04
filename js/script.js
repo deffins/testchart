@@ -3,6 +3,7 @@ Snap.load("../dm3.svg", onSVGLoaded);
 
 this.elements = [];
 this.td = ""
+this.clones = [];
 // this.glow = glow();
 
 function onSVGLoaded(data) {
@@ -17,16 +18,11 @@ function onSVGLoaded(data) {
             document.body.style.cursor = "move";
         } else if (event.target.nodeName === "rect") {
             document.body.style.cursor = "default";
-            // let fontAttr1 = { color: "blue", fontWeight: "bold" }
-            // let fontAttr2 = { color: "black", fontWeight: "" }
-            // let sourceGroupText = getTextDiv(sourceGroupID);
-            // if (sourceGroupText) {
-            //     sourceGroupText.attr(fontAttr1);
-            // } else {
 
-            // }
-
-        } else {
+        } else if (event.target.nodeName === "path") {
+            console.log(
+                Snap(event.srcElement).parent().attr().id
+            )
             document.body.style.cursor = "default";
         }
     })
@@ -85,7 +81,6 @@ function onSVGLoaded(data) {
             switchLineClass(tagetLines, 0);
             selectRects(sourceLineTargets, 1, "selected-out");
             selectRects(targetLineTargets, 0);
-
         } else if (state == 2) {
             sourceRect.addClass("selected-in");
             switchLineClass(tagetLines, 1, "selected-in-lines");
@@ -107,15 +102,17 @@ function onSVGLoaded(data) {
         }
     }
 
+    function connectRects(rectIDArray) {
+
+    }
+
     function selectRects(arr, add, classType) {
         arr.forEach((id) => {
             let rect = Snap.select("#" + id).select("rect");
             if (add) {
                 rect.toggleClass(classType, !!add);
-
             } else {
                 rect.removeClass("selected-out selected-in selected-all");
-
             }
         })
     }
@@ -296,15 +293,33 @@ function onSVGLoaded(data) {
     }
 
     function switchLineClass(arrayOfLineIDs, add, classType) {
+
         arrayOfLineIDs.forEach(function (id) {
             let lineGroupArr = Snap.select("#" + id).selectAll("path");
+            let clone = lineGroupArr.clone();
             if (add) {
-                console.log("added class to: " + id)
-                lineGroupArr.forEach((path) => path.addClass(classType));
+                console.log(clone)
+
+                clone.forEach((path) => path.addClass(classType));
+                clone.addClass("clone");
+                // this.clones.push(clone);
             } else {
+
                 // console.log("removed class of line: " + id);
-                lineGroupArr.forEach((path) => path.removeClass("selected-out-lines selected-in-lines selected-all-lines"));
+                // lineGroupArr.forEach((path) => path.removeClass("selected-out-lines selected-in-lines selected-all-lines"));
+                // arrayOfLineIDs.forEach(function (id) {
+                //     let path = Snap.select("#" + id).selectAll("path");
+                //     if (path.hasClass("clone")) {
+                //         path.remove();
+                //     }
+                // })
+
+                // this.clones.forEach((clone) => {
+                //     clone.remove();
+                // })
+                // this.clones = []
             }
+            console.log(this.clones)
         })
     }
 
