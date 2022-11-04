@@ -43,13 +43,13 @@
 }
 
 .circle-out {
-    stroke: black;
+    /* stroke: black; */
     stroke-width: 1;
     fill: lightblue,
 }
 
 .glow {
-    stroke: red;
+    stroke: rgb(255, 174, 0);
     stroke-width: 3;
     fill: lightgrey;
 }

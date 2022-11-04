@@ -8,6 +8,7 @@ this.td = ""
 function onSVGLoaded(data) {
     chart.append(data);
 
+
     Snap("#svgchart").drag()
     Snap("#svgchart").mouseover((event) => {
         // let sourceGroupID = Snap(event.srcElement).parent().attr().id;
@@ -31,36 +32,17 @@ function onSVGLoaded(data) {
     })
 
     Snap.selectAll("rect").forEach(function (element) {
-        let self = this;
+        drawCirclesOnRect(element);
         this.elements.push(buildElementMap(element));
-        // drawCirclesOnRect(element);
-
         element.attr("selectionCount", 0);
         element.click(function (event) {
-            console.log(this.elements)
-            testDiagram();
+            console.log(this.elements);
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            let clickState = getClickState(sourceGroupID) + 1;
-            console.log(clickState);
-            // setClickState(sourceGroupID, clickState);
-            setElementsByState(sourceGroupID, clickState);
-            setClickState(sourceGroupID, clickState)
-
-            // return
-
-
-            // console.log("sourceRectID: " + sourceGroupID);
-            // let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+            let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
             // let sourceLines = getLinesFromElements(sourceGroupID, "source");
-            // console.log(sourceLines);
-
             // let targetRects = getRectsFromElements(sourceGroupID);
             // addSelectionCount(clickedRect, classType);
-
             // selectLines(sourceGroupID, targetRects)
-
-
-
             // if (!clickedRect.hasClass(classType)) {//if not selected before
             //     clickedRect.addClass(classType);
             //     addSelectionCount(clickedRect, classType);
@@ -84,45 +66,9 @@ function onSVGLoaded(data) {
             //     }
             // }
 
-
-
         });
         element.dblclick(function (event) {
             return
-            let classType = "selected-in";
-            let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            let targetLines = getLines(sourceGroupID, "target");
-            let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
-            let linesSelected = sourceLinesSelected(targetLines);
-            let notClicked = !clickedRect.hasClass(classType);
-            if (notClicked) {
-                addSelectionCount(clickedRect, classType);
-                switchLineClass(targetLines, 1);
-                selectSourceRect(targetLines, 1, classType);
-                selectTargetRect(targetLines, !linesSelected, classType);
-
-            } else {
-                let selectionCount = clickedRect.attr("selectionCount");
-                console.log("clickedRect selectionCount: " + selectionCount);
-                console.log("are lines selected: " + linesSelected);
-                switchLineClass(targetLines, !linesSelected);
-                // selectSourceRect(targetLines, 0, classType);
-                if (targetLines.length > 0) {
-                    if (linesSelected) {
-                        deductSelectionCount(clickedRect, classType);
-                        selectSourceRect(targetLines, 0, classType);
-                        selectTargetRect(targetLines, 0, classType);
-                    } else {
-                        addSelectionCount(clickedRect, classType);
-                        selectSourceRect(targetLines, 1, classType);
-                        selectTargetRect(targetLines, 1, classType);
-                    }
-                } else {
-                    deductSelectionCount(clickedRect, classType);
-                    selectSourceRect(targetLines, 0, classType);
-                    selectTargetRect(targetLines, 0, classType);
-                }
-            }
         })
     });
 
@@ -183,34 +129,24 @@ function onSVGLoaded(data) {
         })
     }
 
-
-    function testDiagram() {
-        let array = this.elements;
-        let string = ""
-        for (let i = 0; i < 20; i++) {
-            let elementData = array[i];
-            let slicedText1 = elementData.text.slice(0, 16).trim();
-            // string = string.concat("[", slicedText, "]")
-
-            for (let j = 0; j < elementData.sources.length; j++) {
-                let sourceID = elementData.sources[j]
-                let sourceText = getInnerText(sourceID)
-                let slicedText2 = sourceText.slice(0, 16).trim();
-                string = string.concat("[", slicedText1, "]->[", slicedText2, "]","\n")
+    /*
+        function testDiagram() {
+            let array = this.elements;
+            let string = ""
+            for (let i = 0; i < 20; i++) {
+                let elementData = array[i];
+                let slicedText1 = elementData.text.slice(0, 16).trim();
+                for (let j = 0; j < elementData.sources.length; j++) {
+                    let sourceID = elementData.sources[j]
+                    let sourceText = getInnerText(sourceID)
+                    let slicedText2 = sourceText.slice(0, 16).trim();
+                    string = string.concat("[", slicedText1, "]->[", slicedText2, "]","\n")
+                }
+    
             }
-
-
-
-
-
+            console.log(string)
         }
-        console.log(string)
-
-
-    }
-
-
-
+        */
 
     function buildElementMap(rectElement) {
         let rectElementID = Snap(rectElement).parent().attr().id;
@@ -266,7 +202,6 @@ function onSVGLoaded(data) {
                 parentG.select(".count").node.textContent = count;
             }
         } else {
-
             let rectElementPosX = rectElement.attr("x");
             let rectElementPosY = rectElement.attr("y");
             let x = +rectElementPosX - 5;
@@ -287,12 +222,19 @@ function onSVGLoaded(data) {
     }
 
     function drawCirclesOnRect(rect) {
+
         let parentG = rect.parent();
+        let id = parentG.attr().id;
+
+        // setClickState(sourceGroupID, clickState);
+
+
+
+
         let rectPosX = rect.attr("x");
         let rectPosY = rect.attr("y");
         let xBlue = +rectPosX - 5;
         let yBlue = +rectPosY - 5;
-
         let xGreen = +rectPosX + 15;
         let yGreen = +rectPosY - 5;
         // let arr = [[xBlue, yBlue], [xGreen, yGreen]]
@@ -307,11 +249,19 @@ function onSVGLoaded(data) {
         textBlue.attr({ fontWeight: "bold", fill: "black" })
         parentG.append(textBlue);
 
-        rect.after(countCircleGreen);
-        parentG.append(countCircleGreen);
-        let textGreen = countCircleGreen.paper.text(xGreen - 4, yGreen + 6, 0).addClass("circle-in");
-        textGreen.attr({ fontWeight: "bold", fill: "black" })
-        parentG.append(textGreen);
+        countCircleBlue.click(() => {
+            let clickState = getClickState(id) + 1;
+
+            console.log(clickState);
+            setElementsByState(id, clickState)
+            setClickState(id, clickState);
+        });
+
+        // rect.after(countCircleGreen);
+        // parentG.append(countCircleGreen);
+        // let textGreen = countCircleGreen.paper.text(xGreen - 4, yGreen + 6, 0).addClass("circle-in");
+        // textGreen.attr({ fontWeight: "bold", fill: "black" })
+        // parentG.append(textGreen);
 
     }
 
