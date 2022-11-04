@@ -2,8 +2,8 @@ var chart = Snap("#chart");
 Snap.load("../dm3.svg", onSVGLoaded);
 
 this.elements = [];
-this.td = ""
-this.clones = [];
+this.td = "";
+this.selectedRectArray = [];
 // this.glow = glow();
 
 function onSVGLoaded(data) {
@@ -12,16 +12,12 @@ function onSVGLoaded(data) {
 
     Snap("#svgchart").drag()
     Snap("#svgchart").mouseover((event) => {
-
-
-        let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-        console.log(sourceGroupID);
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
         } else if (event.target.nodeName === "rect") {
             document.body.style.cursor = "default";
         } else if (event.target.nodeName === "path") {
-            console.log(Snap(event.srcElement).parent().attr().id)
+            // console.log(Snap(event.srcElement).parent().attr().id)
             document.body.style.cursor = "default";
         } else if (event.target.nodeName === "circle") {
             document.body.style.cursor = "pointer";
@@ -33,9 +29,9 @@ function onSVGLoaded(data) {
         this.elements.push(buildElementMap(element));
         element.attr("selectionCount", 0);
         element.click(function (event) {
-            console.log(this.elements);
+            // console.log(this.elements);
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+            connectClickedRects(sourceGroupID);
             // let sourceLines = getLinesFromElements(sourceGroupID, "source");
             // let targetRects = getRectsFromElements(sourceGroupID);
             // addSelectionCount(clickedRect, classType);
@@ -68,6 +64,50 @@ function onSVGLoaded(data) {
             return
         })
     });
+
+    function connectClickedRects(sourceGroupID) {
+
+        let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
+        console.log(clickedRect)
+        clickedRect.addClass("clicked")
+        let selectedRectArray = Snap.selectAll(".clicked");
+        // console.log(selectedRectArray);
+        for (let i = 0; i < selectedRectArray.length; i++) {
+            let rect = selectedRectArray[i];
+            rectID = rect.parent().attr().id;
+            let relatedRectIDs = getRectsFromElements(rectID);
+            let index = relatedRectIDs.indexOf(sourceGroupID)
+            if (index != -1) {
+                let targetRectID = relatedRectIDs[index];
+                console.log(index);
+                let line = getLineByRectIDs(sourceGroupID, targetRectID);
+                if (line) {
+                    line.addClass("selected-in-lines");
+                } else {
+                    console.log("no result");
+                }
+
+            }
+
+
+
+        }
+    }
+
+    function getLineByRectIDs(id1, id2) {
+        Snap.selectAll("g").forEach((lineGroup) => {
+            if (lineGroup.attr("source")) {
+                let stuff = [lineGroup.attr("source")].concat(lineGroup.attr("target"))
+                let includes1 = stuff.indexOf(id1)
+                let includes2 = stuff.indexOf(id2)
+                if (includes1 != -1 && includes2 != -1) {
+                    let lineID = lineGroup.attr().id
+                    return lineID;
+                }
+
+            }
+        })
+    }
 
 
     function setElementsByState(sourceID, state) {
@@ -318,12 +358,15 @@ function onSVGLoaded(data) {
             if (element.id === rectID) {
                 if (type == "source") {
                     arr = element.sources
-                } else {
+                } else if (type == "target") {
                     arr = element.targets
+                } else {
+                    arr = element.sources.concat(element.targets);
                 }
 
             }
         })
+        console.log(arr)
         return arr;
     }
 

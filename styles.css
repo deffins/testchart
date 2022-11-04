@@ -1,15 +1,15 @@
 .selected-out {
-    stroke-width: 3;
+    stroke-width: 1;
     fill: lightblue;
 }
 
 .selected-in {
-    stroke-width: 3;
+    stroke-width: 1;
     fill: lightgreen;
 }
 
 .selected-all {
-    stroke-width: 3;
+    stroke-width: 1;
     fill: lightsalmon;
 }
 
@@ -20,20 +20,20 @@
 }
 
 .selected-out-lines {
-    stroke: blue;
-    stroke-width: 3;
+    stroke: lightblue;
+    stroke-width: 4;
     /* fill: rgb(17, 17, 160); */
 
 }
 
 .selected-in-lines {
     stroke: green;
-    stroke-width: 3;
+    stroke-width: 4;
 }
 
 .selected-all-lines {
     stroke: lightcoral;
-    stroke-width: 3;
+    stroke-width: 4;
 }
 
 .circle-in {
