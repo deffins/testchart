@@ -12,18 +12,19 @@ function onSVGLoaded(data) {
 
     Snap("#svgchart").drag()
     Snap("#svgchart").mouseover((event) => {
-        // let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-        // console.log(sourceGroupID);
+
+
+        let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+        console.log(sourceGroupID);
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
         } else if (event.target.nodeName === "rect") {
             document.body.style.cursor = "default";
-
         } else if (event.target.nodeName === "path") {
-            console.log(
-                Snap(event.srcElement).parent().attr().id
-            )
+            console.log(Snap(event.srcElement).parent().attr().id)
             document.body.style.cursor = "default";
+        } else if (event.target.nodeName === "circle") {
+            document.body.style.cursor = "pointer";
         }
     })
 
@@ -190,7 +191,6 @@ function onSVGLoaded(data) {
 
     function drawCountCircle(rectElement, count, classTye) {
         let parentG = rectElement.parent();
-
         if (parentG.select(".circle")) {
             if (count < 1) {
                 parentG.select(".circle").remove();
@@ -219,46 +219,27 @@ function onSVGLoaded(data) {
     }
 
     function drawCirclesOnRect(rect) {
-
         let parentG = rect.parent();
         let id = parentG.attr().id;
-
-        // setClickState(sourceGroupID, clickState);
-
-
-
-
         let rectPosX = rect.attr("x");
         let rectPosY = rect.attr("y");
         let xBlue = +rectPosX - 5;
         let yBlue = +rectPosY - 5;
         let xGreen = +rectPosX + 15;
         let yGreen = +rectPosY - 5;
-        // let arr = [[xBlue, yBlue], [xGreen, yGreen]]
-
-
         let countCircleBlue = Snap().circle(xBlue, yBlue, 12).addClass("circle-out");
         let countCircleGreen = Snap().circle(xGreen, yGreen, 12).addClass("circle-in");
-
         rect.after(countCircleBlue);
         parentG.append(countCircleBlue);
         let textBlue = countCircleBlue.paper.text(xBlue - 4, yBlue + 6, 0).addClass("circle-out");
         textBlue.attr({ fontWeight: "bold", fill: "black" })
         parentG.append(textBlue);
-
-        countCircleBlue.click(() => {
+        countCircleBlue.click((event) => {
             let clickState = getClickState(id) + 1;
-
             console.log(clickState);
             setElementsByState(id, clickState)
             setClickState(id, clickState);
         });
-
-        // rect.after(countCircleGreen);
-        // parentG.append(countCircleGreen);
-        // let textGreen = countCircleGreen.paper.text(xGreen - 4, yGreen + 6, 0).addClass("circle-in");
-        // textGreen.attr({ fontWeight: "bold", fill: "black" })
-        // parentG.append(textGreen);
 
     }
 
@@ -283,7 +264,6 @@ function onSVGLoaded(data) {
     }
 
     function getLineRectIDs(arrayOfLineIDs, attr) {
-        //attr: source or target
         let rectIDs = [];
         arrayOfLineIDs.forEach(function (id) {
             let rectID = Snap.select("#" + id).attr(attr);
@@ -293,33 +273,18 @@ function onSVGLoaded(data) {
     }
 
     function switchLineClass(arrayOfLineIDs, add, classType) {
-
         arrayOfLineIDs.forEach(function (id) {
             let lineGroupArr = Snap.select("#" + id).selectAll("path");
-            let clone = lineGroupArr.clone();
             if (add) {
-                console.log(clone)
-
-                clone.forEach((path) => path.addClass(classType));
-                clone.addClass("clone");
-                // this.clones.push(clone);
+                lineGroupArr.forEach((path) => path.clone().addClass("clone"));
+                Snap.selectAll(".clone").forEach((clone) => clone.addClass(classType))
             } else {
-
-                // console.log("removed class of line: " + id);
-                // lineGroupArr.forEach((path) => path.removeClass("selected-out-lines selected-in-lines selected-all-lines"));
-                // arrayOfLineIDs.forEach(function (id) {
-                //     let path = Snap.select("#" + id).selectAll("path");
-                //     if (path.hasClass("clone")) {
-                //         path.remove();
-                //     }
-                // })
-
-                // this.clones.forEach((clone) => {
-                //     clone.remove();
-                // })
-                // this.clones = []
+                lineGroupArr.forEach((path) => {
+                    if (path.hasClass("clone")) {
+                        path.remove();
+                    }
+                });
             }
-            console.log(this.clones)
         })
     }
 
@@ -344,8 +309,6 @@ function onSVGLoaded(data) {
                     lines = element.targetLines;
                 }
             }
-            // console.log(sourceLines);
-
         })
         return lines;
     }
@@ -360,8 +323,6 @@ function onSVGLoaded(data) {
                 }
 
             }
-            // console.log(sourceLines);
-
         })
         return arr;
     }
@@ -410,7 +371,6 @@ function onSVGLoaded(data) {
         element.attr("selectionCount", currentCount + 1);
         let count = +element.attr("selectionCount");
         let rectValue = getRectGID(element);
-        // console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, classType);
         drawCountCircle(element, count);
     }
