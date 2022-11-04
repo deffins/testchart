@@ -69,7 +69,13 @@ function onSVGLoaded(data) {
 
         let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
         console.log(clickedRect)
-        clickedRect.addClass("clicked")
+
+        if (!clickedRect.hasClass("clicked")) {
+            clickedRect.addClass("clicked")
+        } else {
+            clickedRect.removeClass("clicked")
+        }
+
         let selectedRectArray = Snap.selectAll(".clicked");
         // console.log(selectedRectArray);
         for (let i = 0; i < selectedRectArray.length; i++) {
