@@ -1,5 +1,21 @@
 var chart = Snap("#chart");
-Snap.load("../dm3.svg", onSVGLoaded);
+
+let thcChart = "../chronic-thc-chart.svg";
+let dmChart = "../dm3.svg";
+
+const btn1 = document.querySelector(".button1");
+btn1.addEventListener("click", loadSVG(thcChart))
+
+const btn2 = document.querySelector(".button2");
+btn2.addEventListener("click", loadSVG(dmChart))
+
+
+function loadSVG(chartPath) {
+    Snap.load(chartPath, onSVGLoaded);
+}
+
+// Snap.load("../dm3.svg", onSVGLoaded);
+
 
 this.elements = [];
 this.td = "";
@@ -443,7 +459,10 @@ function onSVGLoaded(data) {
     }
 
     function getInnerText(rectID) {
-        return Snap.select("#" + rectID).select("foreignObject").select("div").children("text")[1].node.innerText;
+        if (rectID != null) {
+            return Snap.select("#" + rectID).select("foreignObject").select("div").children("text")[1].node.innerText;
+
+        }
     }
 
     function getRectFromG(id) {
