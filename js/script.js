@@ -47,12 +47,6 @@ function onSVGLoaded(data) {
                 }
             }
 
-            // let fontAttr = { color: "blue", fontWeight: "bold" }
-            // let sourceGroupText = getTextDiv(sourceGroupID);
-            // if (sourceGroupText) {
-            //     sourceGroupText.attr(fontAttr);
-            // }
-
         });
     });
 
