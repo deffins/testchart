@@ -37,7 +37,7 @@
 }
 
 .circle-in {
-    stroke: black;
+    /* stroke: black; */
     stroke-width: 1;
     fill: greenyellow
 }

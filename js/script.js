@@ -3,31 +3,56 @@ var chart = Snap("#chart");
 let thcChart = "../chronic-thc-chart.svg";
 let dmChart = "../dm3.svg";
 
-const btn1 = document.querySelector(".button1");
-btn1.addEventListener("click", loadSVG(thcChart))
+Snap.load(dmChart, onSVGLoaded);
 
-const btn2 = document.querySelector(".button2");
-btn2.addEventListener("click", loadSVG(dmChart))
+function loadSVG() {
+    let svg = chart.select("svg");
+    if (svg != null) {
+        let id = svg.attr().id;
+        chart.children().forEach((element) => element.remove())
+        if (id == "dmd") {
+            Snap.load(thcChart, onSVGLoaded);
+        } else {
+            Snap.load(dmChart, onSVGLoaded);
+        }
+    } else {
+        Snap.load(dmChart, onSVGLoaded);
+    }
 
-
-function loadSVG(chartPath) {
-    Snap.load(chartPath, onSVGLoaded);
 }
 
-// Snap.load("../dm3.svg", onSVGLoaded);
+
+const btn2 = document.querySelector(".button2");;
+console.log(btn2)
+btn2.addEventListener("click", loadSVG)
+
+
+const btn1 = document.querySelector(".button1");
+btn1.addEventListener("click", function () {
+    chart.children().forEach((element) => element.remove())
+})
 
 
 this.elements = [];
 this.td = "";
 this.selectedRectArray = [];
-// this.glow = glow();
 
 function onSVGLoaded(data) {
     chart.append(data);
+    // console.log(chart.select("svg").attr().id)
+
+    let chartType = chart.select("svg").attr().id;
+    Snap("#" + chartType).drag()
 
 
-    Snap("#svgchart").drag()
-    Snap("#svgchart").mouseover((event) => {
+    if (Snap("#dmd") == null) {
+        console.log("no dm diagram")
+        return
+    }
+
+
+
+    Snap("#dmd").mouseover((event) => {
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
         } else if (event.target.nodeName === "rect") {
@@ -251,34 +276,34 @@ function onSVGLoaded(data) {
         })
     }
 
-    function drawCountCircle(rectElement, count, classTye) {
-        let parentG = rectElement.parent();
-        if (parentG.select(".circle")) {
-            if (count < 1) {
-                parentG.select(".circle").remove();
-                parentG.select(".count").remove();
-            } else {
-                parentG.select(".count").node.textContent = count;
-            }
-        } else {
-            let rectElementPosX = rectElement.attr("x");
-            let rectElementPosY = rectElement.attr("y");
-            let x = +rectElementPosX - 5;
-            let y = +rectElementPosY - 5;
-            var countCircle = Snap().circle(x, y, 12).addClass("circle");
-            countCircle.attr({
-                // fillOpacity: "0.5",
-                fill: "#bada55",
-                stroke: "#000",
-                strokeWidth: 1
-            })
-            rectElement.after(countCircle);
-            parentG.append(countCircle);
-            let text = countCircle.paper.text(x - 4, y + 6, count).addClass("count");
-            text.attr({ fontWeight: "bold", fill: "blue" })
-            parentG.append(text);
-        }
-    }
+    // function drawCountCircle(rectElement, count, classTye) {
+    //     let parentG = rectElement.parent();
+    //     if (parentG.select(".circle")) {
+    //         if (count < 1) {
+    //             parentG.select(".circle").remove();
+    //             parentG.select(".count").remove();
+    //         } else {
+    //             parentG.select(".count").node.textContent = count;
+    //         }
+    //     } else {
+    //         let rectElementPosX = rectElement.attr("x");
+    //         let rectElementPosY = rectElement.attr("y");
+    //         let x = +rectElementPosX - 5;
+    //         let y = +rectElementPosY - 5;
+    //         var countCircle = Snap().circle(x, y, 12).addClass("circle");
+    //         countCircle.attr({
+    //             // fillOpacity: "0.5",
+    //             fill: "#bada55",
+    //             stroke: "#000",
+    //             strokeWidth: 1
+    //         })
+    //         rectElement.after(countCircle);
+    //         parentG.append(countCircle);
+    //         let text = countCircle.paper.text(x - 4, y + 6, count).addClass("count");
+    //         text.attr({ fontWeight: "bold", fill: "blue" })
+    //         parentG.append(text);
+    //     }
+    // }
 
     function drawCirclesOnRect(rect) {
         let parentG = rect.parent();
@@ -289,13 +314,17 @@ function onSVGLoaded(data) {
         let yBlue = +rectPosY - 5;
         let xGreen = +rectPosX + 15;
         let yGreen = +rectPosY - 5;
-        let countCircleBlue = Snap().circle(xBlue, yBlue, 12).addClass("circle-out");
-        let countCircleGreen = Snap().circle(xGreen, yGreen, 12).addClass("circle-in");
+        // let countCircleBlue = Snap().circle(xBlue, yBlue, 12).addClass("circle-out");
+
+        let countCircleBlue = parentG.circle(xBlue, yBlue, 12).appendTo(parentG);
+
+        // let countCircleGreen = Snap().circle(xGreen, yGreen, 12).addClass("circle-in");
         rect.after(countCircleBlue);
-        parentG.append(countCircleBlue);
-        let textBlue = countCircleBlue.paper.text(xBlue - 4, yBlue + 6, 0).addClass("circle-out");
+
+        let textBlue = parentG.text(xBlue - 4, yBlue + 6, 0).addClass("circle-out");
         textBlue.attr({ fontWeight: "bold", fill: "black" })
-        parentG.append(textBlue);
+        // parentG.append(countCircleBlue);
+        countCircleBlue.append(textBlue);
         countCircleBlue.click((event) => {
             let clickState = getClickState(id) + 1;
             console.log(clickState);
