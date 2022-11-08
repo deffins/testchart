@@ -23,13 +23,10 @@ function loadSVG() {
 
 
 const btn2 = document.querySelector(".button2");;
-console.log(btn2)
 btn2.addEventListener("click", loadSVG)
-
 
 const btn1 = document.querySelector(".button1");
 btn1.addEventListener("click", function () {
-    chart.children().forEach((element) => element.remove())
 })
 
 
@@ -43,16 +40,7 @@ function onSVGLoaded(data) {
 
     let chartType = chart.select("svg").attr().id;
     Snap("#" + chartType).drag()
-
-
-    if (Snap("#dmd") == null) {
-        console.log("no dm diagram")
-        return
-    }
-
-
-
-    Snap("#dmd").mouseover((event) => {
+    Snap("#" + chartType).mouseover((event) => {
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
         } else if (event.target.nodeName === "rect") {
@@ -65,6 +53,16 @@ function onSVGLoaded(data) {
         }
     })
 
+
+    if (Snap("#dmd") == null) {
+        console.log("no dm diagram")
+        return
+    }
+
+
+
+
+
     Snap.selectAll("rect").forEach(function (element) {
         drawCirclesOnRect(element);
         this.elements.push(buildElementMap(element));
@@ -72,7 +70,8 @@ function onSVGLoaded(data) {
         element.click(function (event) {
             // console.log(this.elements);
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            connectClickedRects(sourceGroupID);
+            // connectClickedRects(sourceGroupID);
+            selectAllOutwardRelations(sourceGroupID);
             // let sourceLines = getLinesFromElements(sourceGroupID, "source");
             // let targetRects = getRectsFromElements(sourceGroupID);
             // addSelectionCount(clickedRect, classType);
@@ -105,6 +104,22 @@ function onSVGLoaded(data) {
             return
         })
     });
+
+    function selectAllOutwardRelations(rectID) {
+        let clickedRect = Snap.select("#" + rectID).select("rect");
+        if (clickedRect.hasClass("clicked")) {
+            clickedRect.removeClass("clicked")
+        } else {
+            clickedRect.addClass("clicked")
+        }
+
+
+        let targetLineTargets = getRectsFromElements(rectID, "source");
+        selectRects(targetLineTargets, 1, "clicked");
+
+
+
+    }
 
     function connectClickedRects(sourceGroupID) {
 
@@ -249,8 +264,6 @@ function onSVGLoaded(data) {
         blockObject.sources = sources;
         blockObject.clickState = 0;
         blockObject.selectionCount = 0;
-
-        // console.log(blockObject);
         return blockObject;
     }
 
