@@ -16,7 +16,7 @@
 .clicked {
     stroke-width: 3;
     color: green;
-    fill: lightgreen;
+    /* fill: lightgreen; */
 }
 
 .selected-out-lines {

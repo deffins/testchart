@@ -71,7 +71,7 @@ function onSVGLoaded(data) {
             // console.log(this.elements);
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             // connectClickedRects(sourceGroupID);
-            selectAllOutwardRelations(sourceGroupID);
+            clickRectOutLines(sourceGroupID);
             // let sourceLines = getLinesFromElements(sourceGroupID, "source");
             // let targetRects = getRectsFromElements(sourceGroupID);
             // addSelectionCount(clickedRect, classType);
@@ -105,39 +105,22 @@ function onSVGLoaded(data) {
         })
     });
 
-    function selectAllOutwardRelations(rectID) {
-        let clickedRect = Snap.select("#" + rectID).select("rect");
-        if (clickedRect.hasClass("clicked")) {
-            clickedRect.removeClass("clicked")
-        } else {
-            clickedRect.addClass("clicked")
-        }
 
-
-        let targetLineTargets = getRectsFromElements(rectID, "source");
-        selectRects(targetLineTargets, 1, "clicked");
-
-
-
-    }
 
     function connectClickedRects(sourceGroupID) {
-
         let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
         console.log(clickedRect)
-
         if (!clickedRect.hasClass("clicked")) {
             clickedRect.addClass("clicked")
         } else {
             clickedRect.removeClass("clicked")
         }
-
         let selectedRectArray = Snap.selectAll(".clicked");
         // console.log(selectedRectArray);
         for (let i = 0; i < selectedRectArray.length; i++) {
             let rect = selectedRectArray[i];
             rectID = rect.parent().attr().id;
-            let relatedRectIDs = getRectsFromElements(rectID);
+            let relatedRectIDs = getRectsFromElements(rectID, "source");
             let index = relatedRectIDs.indexOf(sourceGroupID)
             if (index != -1) {
                 let targetRectID = relatedRectIDs[index];
@@ -148,11 +131,7 @@ function onSVGLoaded(data) {
                 } else {
                     console.log("no result");
                 }
-
             }
-
-
-
         }
     }
 
@@ -169,6 +148,32 @@ function onSVGLoaded(data) {
 
             }
         })
+    }
+    function clickRectOutLines(rectID) {
+        let clickedRect = Snap.select("#" + rectID).select("rect");
+        if (clickedRect.hasClass("clicked")) {
+            clickedRect.removeClass("clicked")
+        } else {
+            clickedRect.addClass("clicked")
+        }
+        let sourceLineTargets = getRectsFromElements(rectID, "target");
+        // selectRects(sourceLineTargets, 1, "clicked");
+        let sourceLines = getLinesFromElements(rectID, "source");
+        switchLineClass(sourceLines, 1, "clicked");
+        selectAllOutward(sourceLineTargets)
+    }
+
+    function selectAllOutward(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            let rectID = arr[i];
+            let clickedRect = Snap.select("#" + rectID).select("rect");
+            if (clickedRect.hasClass("clicked")) {
+                return
+            } else {
+                clickRectOutLines(rectID);
+
+            }
+        }
     }
 
 
@@ -375,13 +380,18 @@ function onSVGLoaded(data) {
         })
         return rectIDs;
     }
-
+    //bug here - need to check for multiple clones on each line
     function switchLineClass(arrayOfLineIDs, add, classType) {
         arrayOfLineIDs.forEach(function (id) {
             let lineGroupArr = Snap.select("#" + id).selectAll("path");
             if (add) {
-                lineGroupArr.forEach((path) => path.clone().addClass("clone"));
-                Snap.selectAll(".clone").forEach((clone) => clone.addClass(classType))
+                lineGroupArr.clone().addClass("clone");
+
+                Snap.selectAll(".clone").forEach((clone) => {
+                    clone.addClass(classType);
+                    // clone.before();
+                })
+
             } else {
                 lineGroupArr.forEach((path) => {
                     if (path.hasClass("clone")) {
@@ -479,7 +489,7 @@ function onSVGLoaded(data) {
         let count = +element.attr("selectionCount");
         let rectValue = getRectGID(element);
         switchClass(element, classType);
-        drawCountCircle(element, count);
+        // drawCountCircle(element, count);
     }
 
     function deductSelectionCount(element, classType) {
@@ -489,7 +499,7 @@ function onSVGLoaded(data) {
         let rectValue = getRectGID(element);
         console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, classType);
-        drawCountCircle(element, count);
+        // drawCountCircle(element, count);
     }
 
     function getRectGID(rectElement) {
