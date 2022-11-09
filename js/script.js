@@ -385,13 +385,11 @@ function onSVGLoaded(data) {
         arrayOfLineIDs.forEach(function (id) {
             let lineGroupArr = Snap.select("#" + id).selectAll("path");
             if (add) {
-                lineGroupArr.clone().addClass("clone");
-
-                Snap.selectAll(".clone").forEach((clone) => {
-                    clone.addClass(classType);
-                    // clone.before();
+                let lineGroupArrClone = lineGroupArr.clone();
+                lineGroupArrClone.forEach((path) => {
+                    path.addClass("clone");
+                    path.addClass(classType);
                 })
-
             } else {
                 lineGroupArr.forEach((path) => {
                     if (path.hasClass("clone")) {
@@ -440,7 +438,7 @@ function onSVGLoaded(data) {
 
             }
         })
-        console.log(arr)
+        // console.log(arr)
         return arr;
     }
 

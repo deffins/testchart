@@ -22,18 +22,20 @@
 .selected-out-lines {
     stroke: lightblue;
     stroke-width: 4;
-    /* fill: rgb(17, 17, 160); */
-
+    opacity: 0.5
+        /* fill: rgb(17, 17, 160); */
 }
 
 .selected-in-lines {
     stroke: green;
     stroke-width: 4;
+    opacity: 0.5
 }
 
 .selected-all-lines {
     stroke: lightcoral;
     stroke-width: 4;
+    opacity: 0.5
 }
 
 .circle-in {
