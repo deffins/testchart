@@ -69,27 +69,52 @@ function onSVGLoaded(data) {
         });
     });
 
-    function connectClickedRects() {
-
-
-
-        // console.log(selectedRectArray);
+    function connectClickedRects(lastClickedRectID) {
         for (let i = 0; i < this.selectedRectArray.length; i++) {
-            let rect = selectedRectArray[i];
-            rectID = rect.parent().attr().id;
-            let relatedRectIDs = getRectsFromElements(rectID, "source");
-            let index = relatedRectIDs.indexOf(sourceGroupID)
-            if (index != -1) {
-                let targetRectID = relatedRectIDs[index];
-                console.log(index);
-                let line = getLineByRectIDs(sourceGroupID, targetRectID);
-                if (line) {
-                    line.addClass("selected-in-lines");
+            let line = "";
+
+            if (this.selectedRectArray.length > 1) {
+                let clickedRectID = this.selectedRectArray[i];
+                let state = rectClicked(lastClickedRectID)
+                console.log(state)
+                if (state) {
+
+                    if (clickedRectID != lastClickedRectID) {
+                        line = getLineByRectIDs(lastClickedRectID, clickedRectID)
+                        if (line != "") {
+                            Snap.select("#" + line).toggleClass("clicked", 1)
+                        }
+                    }
                 } else {
-                    console.log("no result");
+                    if (clickedRectID != lastClickedRectID) {
+                        line = getLineByRectIDs(lastClickedRectID, clickedRectID)
+                        if (line != "") {
+                            Snap.select("#" + line).toggleClass("clicked", 0)
+                        }
+                    }
+
                 }
+                // let lastClickedRectID = this.selectedRectArray[this.selectedRectArray.length - 1];
+
             }
         }
+    }
+    function rectClicked(id) {
+        let stuff = this.elements.find((element) => element.id === id)
+        console.log(stuff.clickState)
+        return stuff.clickState;
+    }
+
+
+    function show(arr) {
+        arr.forEach((id) => {
+            let something = Snap.select("#" + id);
+            if (something) {
+                Snap.select("#" + id).remove();
+            } else {
+                console.log("deleted")
+            }
+        })
     }
 
     function clickOnRect(rectID) {
@@ -109,10 +134,8 @@ function onSVGLoaded(data) {
                 console.log(this.selectedRectArray)
                 processRect(element);
             }
-
-
         })
-        connectClickedRects()
+        connectClickedRects(rectID)
 
     }
 
@@ -120,22 +143,22 @@ function onSVGLoaded(data) {
         let rect = Snap.select("#" + element.id).select("rect");
         let flag = element.clickState;
         rect.toggleClass("clicked", flag)
-
     }
 
     function getLineByRectIDs(id1, id2) {
+        let lineID = "";
         Snap.selectAll("g").forEach((lineGroup) => {
-            if (lineGroup.attr("source")) {
-                let stuff = [lineGroup.attr("source")].concat(lineGroup.attr("target"))
-                let includes1 = stuff.indexOf(id1)
-                let includes2 = stuff.indexOf(id2)
-                if (includes1 != -1 && includes2 != -1) {
-                    let lineID = lineGroup.attr().id
-                    return lineID;
-                }
-
+            let stuff = [lineGroup.attr("source")].concat(lineGroup.attr("target"))
+            let includes1 = stuff.indexOf(id1)
+            let includes2 = stuff.indexOf(id2)
+            if (includes1 != -1 && includes2 != -1) {
+                lineID = lineGroup.attr().id
             }
+            // console.log(lineID)
         })
+        // console.log(lineID)
+        return lineID;
+
     }
     function clickRectOutLines(rectID) {
         let clickedRect = Snap.select("#" + rectID).select("rect");
@@ -179,12 +202,14 @@ function onSVGLoaded(data) {
             selectRects(targetLineTargets, 0);
         } else if (state == 2) {
             sourceRect.addClass("selected-in");
-            switchLineClass(tagetLines, 1, "selected-in-lines");
             switchLineClass(sourceLines, 0);
+            switchLineClass(tagetLines, 1, "selected-in-lines");
+
             selectRects(sourceLineTargets, 0);
             selectRects(targetLineTargets, 1, "selected-in");
         } else if (state == 3) {
             sourceRect.addClass("selected-all");
+            switchLineClass(tagetLines, 0);
             switchLineClass(sourceLines, 1, "selected-all-lines");
             switchLineClass(tagetLines, 1, "selected-all-lines");
             selectRects(sourceLineTargets, 1, "selected-all");
@@ -198,9 +223,6 @@ function onSVGLoaded(data) {
         }
     }
 
-    function connectRects(rectIDArray) {
-
-    }
 
     function selectRects(arr, add, classType) {
         arr.forEach((id) => {
@@ -235,7 +257,7 @@ function onSVGLoaded(data) {
                     let slicedText2 = sourceText.slice(0, 16).trim();
                     string = string.concat("[", slicedText1, "]->[", slicedText2, "]","\n")
                 }
-    
+     
             }
             console.log(string)
         }
@@ -257,26 +279,27 @@ function onSVGLoaded(data) {
         blockObject.sources = sources;
         blockObject.clickState = 0;
         blockObject.selectionCount = 0;
+        blockObject.highLightState = 0;
         return blockObject;
     }
 
-    function getClickState(id) {
+    function getHighLightState(id) {
         let state = 0;
         this.elements.find((element) => {
             if (element.id === id) {
-                state = element.clickState;
+                state = element.highLightState;
             }
         })
         return state;
     }
 
-    function setClickState(id, state) {
+    function setHighLightState(id, state) {
         this.elements.find((element) => {
             if (element.id === id) {
                 if (state > 2) {
-                    element.clickState = -1;
+                    element.highLightState = -1;
                 } else {
-                    element.clickState = state;
+                    element.highLightState = state;
                 }
             }
         })
@@ -321,23 +344,19 @@ function onSVGLoaded(data) {
         let xGreen = +rectPosX + 15;
         let yGreen = +rectPosY - 5;
         // let countCircleBlue = Snap().circle(xBlue, yBlue, 12).addClass("circle-out");
-
         let countCircleBlue = parentG.circle(xBlue, yBlue, 12).appendTo(parentG);
-
         // let countCircleGreen = Snap().circle(xGreen, yGreen, 12).addClass("circle-in");
         rect.after(countCircleBlue);
-
         let textBlue = parentG.text(xBlue - 4, yBlue + 6, 0).addClass("circle-out");
         textBlue.attr({ fontWeight: "bold", fill: "black" })
         // parentG.append(countCircleBlue);
         countCircleBlue.append(textBlue);
         countCircleBlue.click((event) => {
-            let clickState = getClickState(id) + 1;
+            let clickState = getHighLightState(id) + 1;
             console.log(clickState);
             setElementsByState(id, clickState)
-            setClickState(id, clickState);
+            setHighLightState(id, clickState);
         });
-
     }
 
     function removeCountCircle(rect) {
@@ -368,7 +387,7 @@ function onSVGLoaded(data) {
         })
         return rectIDs;
     }
-    //bug here - need to check for multiple clones on each line
+
     function switchLineClass(arrayOfLineIDs, add, classType) {
         arrayOfLineIDs.forEach(function (id) {
             let lineGroupArr = Snap.select("#" + id).selectAll("path");
