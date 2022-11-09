@@ -15,8 +15,8 @@
 
 .clicked {
     stroke-width: 3;
-    stroke: blue;
-    fill: green;
+    stroke: rgb(6, 6, 226);
+    /* fill: green; */
     /* fill: lightgreen; */
 }
 

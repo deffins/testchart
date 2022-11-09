@@ -77,19 +77,24 @@ function onSVGLoaded(data) {
                 let clickedRectID = this.selectedRectArray[i];
                 let state = rectClicked(lastClickedRectID)
                 console.log(state)
+
+                // line = getLineByRectIDs(lastClickedRectID, clickedRectID)
+                // processLine(line, state)
                 if (state) {
 
                     if (clickedRectID != lastClickedRectID) {
                         line = getLineByRectIDs(lastClickedRectID, clickedRectID)
-                        if (line != "") {
-                            Snap.select("#" + line).toggleClass("clicked", 1)
+                        if (line != "" && line != undefined) {
+                            processLine(line, state)
+                            // Snap.select("#" + line).toggleClass("clicked", 1)
                         }
                     }
                 } else {
                     if (clickedRectID != lastClickedRectID) {
                         line = getLineByRectIDs(lastClickedRectID, clickedRectID)
-                        if (line != "") {
-                            Snap.select("#" + line).toggleClass("clicked", 0)
+                        if (line != "" && line != undefined) {
+                            processLine(line, state)
+                            // Snap.select("#" + line).toggleClass("clicked", 0)
                         }
                     }
 
@@ -103,6 +108,18 @@ function onSVGLoaded(data) {
         let stuff = this.elements.find((element) => element.id === id)
         console.log(stuff.clickState)
         return stuff.clickState;
+    }
+
+    function processLine(lineID, state) {
+        if (lineID == "") {
+            return
+        }
+
+        console.log(lineID + "..." + state)
+        let group = Snap.select("#" + lineID).selectAll("path")
+        group.forEach((path) => {
+            path.toggleClass("clicked", state)
+        })
     }
 
 
@@ -156,8 +173,10 @@ function onSVGLoaded(data) {
             }
             // console.log(lineID)
         })
-        // console.log(lineID)
-        return lineID;
+        if (lineID != "") {
+            return lineID;
+        }
+
 
     }
     function clickRectOutLines(rectID) {
