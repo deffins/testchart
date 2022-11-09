@@ -53,7 +53,6 @@ function onSVGLoaded(data) {
         }
     })
 
-
     if (Snap("#dmd") == null) {
         console.log("no dm diagram")
         return
@@ -72,41 +71,20 @@ function onSVGLoaded(data) {
     function connectClickedRects(lastClickedRectID) {
         for (let i = 0; i < this.selectedRectArray.length; i++) {
             let line = "";
-
             if (this.selectedRectArray.length > 1) {
                 let clickedRectID = this.selectedRectArray[i];
                 let state = rectClicked(lastClickedRectID)
-                console.log(state)
-
-                // line = getLineByRectIDs(lastClickedRectID, clickedRectID)
-                // processLine(line, state)
-                if (state) {
-
-                    if (clickedRectID != lastClickedRectID) {
-                        line = getLineByRectIDs(lastClickedRectID, clickedRectID)
-                        if (line != "" && line != undefined) {
-                            processLine(line, state)
-                            // Snap.select("#" + line).toggleClass("clicked", 1)
-                        }
+                if (clickedRectID != lastClickedRectID) {
+                    line = getLineByRectIDs(lastClickedRectID, clickedRectID)
+                    if (line != "" && line != undefined) {
+                        processLine(line, state)
                     }
-                } else {
-                    if (clickedRectID != lastClickedRectID) {
-                        line = getLineByRectIDs(lastClickedRectID, clickedRectID)
-                        if (line != "" && line != undefined) {
-                            processLine(line, state)
-                            // Snap.select("#" + line).toggleClass("clicked", 0)
-                        }
-                    }
-
                 }
-                // let lastClickedRectID = this.selectedRectArray[this.selectedRectArray.length - 1];
-
             }
         }
     }
     function rectClicked(id) {
         let stuff = this.elements.find((element) => element.id === id)
-        console.log(stuff.clickState)
         return stuff.clickState;
     }
 
@@ -114,7 +92,6 @@ function onSVGLoaded(data) {
         if (lineID == "") {
             return
         }
-
         console.log(lineID + "..." + state)
         let group = Snap.select("#" + lineID).selectAll("path")
         group.forEach((path) => {

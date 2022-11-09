@@ -14,8 +14,8 @@
 }
 
 .clicked {
-    stroke-width: 3;
-    stroke: rgb(6, 6, 226);
+    stroke-width: 2;
+    stroke: rgb(226, 6, 215);
     /* fill: green; */
     /* fill: lightgreen; */
 }
@@ -23,20 +23,20 @@
 .selected-out-lines {
     stroke: lightblue;
     stroke-width: 4;
-    opacity: 0.5
+    opacity: 0.3
         /* fill: rgb(17, 17, 160); */
 }
 
 .selected-in-lines {
     stroke: green;
     stroke-width: 4;
-    opacity: 0.5
+    opacity: 0.3
 }
 
 .selected-all-lines {
     stroke: lightcoral;
     stroke-width: 4;
-    opacity: 0.5
+    opacity: 0.3
 }
 
 .circle-in {
