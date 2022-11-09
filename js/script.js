@@ -60,64 +60,21 @@ function onSVGLoaded(data) {
     }
 
 
-
-
-
     Snap.selectAll("rect").forEach(function (element) {
         drawCirclesOnRect(element);
         this.elements.push(buildElementMap(element));
-        element.attr("selectionCount", 0);
         element.click(function (event) {
-            // console.log(this.elements);
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            // connectClickedRects(sourceGroupID);
-            clickRectOutLines(sourceGroupID);
-            // let sourceLines = getLinesFromElements(sourceGroupID, "source");
-            // let targetRects = getRectsFromElements(sourceGroupID);
-            // addSelectionCount(clickedRect, classType);
-            // selectLines(sourceGroupID, targetRects)
-            // if (!clickedRect.hasClass(classType)) {//if not selected before
-            //     clickedRect.addClass(classType);
-            //     addSelectionCount(clickedRect, classType);
-            //     switchLineClass(sourceLines, 1);
-            //     selectTargetRect(sourceLines, 1);
-            // } else { //selected
-            //     let selectionCount = clickedRect.attr("selectionCount")
-            //     console.log("clickedRect selectionCount: " + selectionCount);
-            //     let linesSelected = sourceLinesSelected(sourceLines);
-            //     console.log("are lines selected: " + linesSelected);
-            //     switchLineClass(sourceLines, !linesSelected);
-            //     selectTargetRect(sourceLines, !linesSelected);
-            //     if (sourceLines.length > 0) {
-            //         if (linesSelected) {
-            //             deductSelectionCount(clickedRect, classType);
-            //         } else {
-            //             addSelectionCount(clickedRect, classType);
-            //         }
-            //     } else {
-            //         deductSelectionCount(clickedRect, classType);
-            //     }
-            // }
-
+            clickOnRect(sourceGroupID);
         });
-        element.dblclick(function (event) {
-            return
-        })
     });
 
+    function connectClickedRects() {
 
 
-    function connectClickedRects(sourceGroupID) {
-        let clickedRect = Snap.select("#" + sourceGroupID).select("rect");
-        console.log(clickedRect)
-        if (!clickedRect.hasClass("clicked")) {
-            clickedRect.addClass("clicked")
-        } else {
-            clickedRect.removeClass("clicked")
-        }
-        let selectedRectArray = Snap.selectAll(".clicked");
+
         // console.log(selectedRectArray);
-        for (let i = 0; i < selectedRectArray.length; i++) {
+        for (let i = 0; i < this.selectedRectArray.length; i++) {
             let rect = selectedRectArray[i];
             rectID = rect.parent().attr().id;
             let relatedRectIDs = getRectsFromElements(rectID, "source");
@@ -133,6 +90,37 @@ function onSVGLoaded(data) {
                 }
             }
         }
+    }
+
+    function clickOnRect(rectID) {
+        this.elements.find((element) => {
+            if (element.id === rectID) {
+                if (element.clickState === 0) {
+                    element.selectionCount += 1;
+                    element.clickState = 1;
+                    this.selectedRectArray.push(rectID);
+                } else {
+                    element.selectionCount -= 1;
+                    element.clickState = 0;
+                    let i = this.selectedRectArray.indexOf(rectID);
+                    this.selectedRectArray.splice(i, 1);
+                }
+                console.log(element)
+                console.log(this.selectedRectArray)
+                processRect(element);
+            }
+
+
+        })
+        connectClickedRects()
+
+    }
+
+    function processRect(element) {
+        let rect = Snap.select("#" + element.id).select("rect");
+        let flag = element.clickState;
+        rect.toggleClass("clicked", flag)
+
     }
 
     function getLineByRectIDs(id1, id2) {
