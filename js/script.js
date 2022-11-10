@@ -71,7 +71,7 @@ function onSVGLoaded(data) {
     function connectClickedRects(lastClickedRectID) {
         for (let i = 0; i < this.selectedRectArray.length; i++) {
             let line = "";
-            if (this.selectedRectArray.length > 1) {
+            if (this.selectedRectArray.length > 0) {
                 let clickedRectID = this.selectedRectArray[i];
                 let state = rectClicked(lastClickedRectID)
                 if (clickedRectID != lastClickedRectID) {
@@ -94,9 +94,34 @@ function onSVGLoaded(data) {
         }
         console.log(lineID + "..." + state)
         let group = Snap.select("#" + lineID).selectAll("path")
-        group.forEach((path) => {
-            path.toggleClass("clicked", state)
-        })
+        let highlightedLines = []
+        for (let i = 0; i < group.length; i++) {
+            let path = group[i]
+            let hasClone = path.hasClass("clone")
+            if (hasClone) {
+            } else {
+                path.toggleClass("clicked", state)
+
+            }
+            console.log(path)
+        }
+        let stuff = group.selectAll(".clicked")
+        console.log(stuff)
+
+        // group.forEach((path) => {
+
+
+        //     console.log(path)
+        //     let hasClone = path.hasClass("clone")
+        //     console.log(hasClone)
+
+        //     // path.after()
+        //     if (!hasClone) {
+        //         path.toggleClass("clicked", state)
+        //         highlightedLines.push(path)
+        //     }
+        //     // path.after(group.select("path"));
+        // })
     }
 
 
@@ -124,9 +149,10 @@ function onSVGLoaded(data) {
                     let i = this.selectedRectArray.indexOf(rectID);
                     this.selectedRectArray.splice(i, 1);
                 }
-                console.log(element)
-                console.log(this.selectedRectArray)
+                // console.log(element)
+                // console.log(this.selectedRectArray)
                 processRect(element);
+                console.log(element.selectionCount)
             }
         })
         connectClickedRects(rectID)
@@ -335,12 +361,13 @@ function onSVGLoaded(data) {
         let id = parentG.attr().id;
         let rectPosX = rect.attr("x");
         let rectPosY = rect.attr("y");
-        let xBlue = +rectPosX - 5;
-        let yBlue = +rectPosY - 5;
+        let xBlue = +rectPosX - 3;
+        let yBlue = +rectPosY - 3;
         let xGreen = +rectPosX + 15;
         let yGreen = +rectPosY - 5;
         // let countCircleBlue = Snap().circle(xBlue, yBlue, 12).addClass("circle-out");
         let countCircleBlue = parentG.circle(xBlue, yBlue, 12).appendTo(parentG);
+        countCircleBlue.addClass("circle-out");
         // let countCircleGreen = Snap().circle(xGreen, yGreen, 12).addClass("circle-in");
         rect.after(countCircleBlue);
         let textBlue = parentG.text(xBlue - 4, yBlue + 6, 0).addClass("circle-out");
@@ -348,10 +375,10 @@ function onSVGLoaded(data) {
         // parentG.append(countCircleBlue);
         countCircleBlue.append(textBlue);
         countCircleBlue.click((event) => {
-            let clickState = getHighLightState(id) + 1;
-            console.log(clickState);
-            setElementsByState(id, clickState)
-            setHighLightState(id, clickState);
+            let highLightState = getHighLightState(id) + 1;
+            console.log(highLightState);
+            setElementsByState(id, highLightState)
+            setHighLightState(id, highLightState);
         });
     }
 

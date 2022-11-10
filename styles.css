@@ -14,8 +14,8 @@
 }
 
 .clicked {
-    stroke-width: 2;
-    stroke: rgb(226, 6, 215);
+    stroke-width: 3;
+    stroke: rgb(83, 6, 226);
     /* fill: green; */
     /* fill: lightgreen; */
 }
@@ -23,32 +23,32 @@
 .selected-out-lines {
     stroke: lightblue;
     stroke-width: 4;
-    opacity: 0.3
-        /* fill: rgb(17, 17, 160); */
+    /* opacity: 0.3 */
+    /* fill: rgb(17, 17, 160); */
 }
 
 .selected-in-lines {
-    stroke: green;
+    stroke: lightgreen;
     stroke-width: 4;
-    opacity: 0.3
+    /* opacity: 0.3 */
 }
 
 .selected-all-lines {
     stroke: lightcoral;
     stroke-width: 4;
-    opacity: 0.3
+    /* opacity: 0.3 */
 }
 
 .circle-in {
     /* stroke: black; */
     stroke-width: 1;
-    fill: greenyellow
+    fill: greenyellow;
 }
 
 .circle-out {
-    /* stroke: black; */
+    stroke: black;
     stroke-width: 1;
-    fill: lightblue,
+    fill: yellow
 }
 
 .glow {
@@ -56,6 +56,17 @@
     stroke-width: 3;
     fill: rgb(105, 26, 26);
 }
+
+/* .parent {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 767px) {
+    .parent {
+        flex-direction: column-reverse;
+    }
+} */
 
 
 
