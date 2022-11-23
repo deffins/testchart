@@ -92,12 +92,12 @@ function onSVGLoaded(data) {
         if (lineID == "") {
             return
         }
-        console.log(lineID + "..." + state)
-        let group = Snap.select("#" + lineID).selectAll("path")
-        let highlightedLines = []
+        console.log(lineID + "..." + state);
+        let group = Snap.select("#" + lineID).selectAll("path");
+        let highlightedLines = [];
         for (let i = 0; i < group.length; i++) {
-            let path = group[i]
-            let hasClone = path.hasClass("clone")
+            let path = group[i];
+            let hasClone = path.hasClass("clone");
             if (hasClone) {
             } else {
                 path.toggleClass("clicked", state)
@@ -105,8 +105,7 @@ function onSVGLoaded(data) {
             }
             console.log(path)
         }
-        let stuff = group.selectAll(".clicked")
-        console.log(stuff)
+
 
         // group.forEach((path) => {
 
@@ -417,9 +416,14 @@ function onSVGLoaded(data) {
             if (add) {
                 let lineGroupArrClone = lineGroupArr.clone();
                 lineGroupArrClone.forEach((path) => {
+                    path.removeClass("clicked");
                     path.addClass("clone");
                     path.addClass(classType);
+                    path.insertBefore(lineGroupArr[0]);
+
                 })
+
+
             } else {
                 lineGroupArr.forEach((path) => {
                     if (path.hasClass("clone")) {
@@ -427,8 +431,13 @@ function onSVGLoaded(data) {
                     }
                 });
             }
+
+
         })
+
     }
+
+
 
     function getLines(rectID, attr) {
         let result = [];
@@ -517,7 +526,6 @@ function onSVGLoaded(data) {
         let count = +element.attr("selectionCount");
         let rectValue = getRectGID(element);
         switchClass(element, classType);
-        // drawCountCircle(element, count);
     }
 
     function deductSelectionCount(element, classType) {
@@ -527,7 +535,6 @@ function onSVGLoaded(data) {
         let rectValue = getRectGID(element);
         console.log("rect: " + rectValue + " selected: " + count);
         switchClass(element, classType);
-        // drawCountCircle(element, count);
     }
 
     function getRectGID(rectElement) {
@@ -570,9 +577,6 @@ function onSVGLoaded(data) {
             div.style.setProperty("pointer-events", "none");
         }
     }
-
-
-
 
 }
 
