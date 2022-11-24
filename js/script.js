@@ -68,6 +68,11 @@ function onSVGLoaded(data) {
         });
     });
 
+    Snap.selectAll("path").forEach(function (element) {
+        element.addClass("default")
+    });
+
+
     function connectClickedRects(lastClickedRectID) {
         for (let i = 0; i < this.selectedRectArray.length; i++) {
             let line = "";

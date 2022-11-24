@@ -13,10 +13,14 @@
     fill: lightsalmon;
 }
 
+.default{
+    stroke: silver;
+    fill: none;
+}
+
 .clicked {
     stroke-width: 2;
-    stroke: rgb(83, 6, 226);
-    order: 2;
+    stroke: rgb(90, 6, 226);
     /* fill: green; */
     /* fill: lightgreen; */
 }
