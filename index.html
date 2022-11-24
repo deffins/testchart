@@ -2,16 +2,76 @@
 <html lang="en">
 
 <head>
-    <title>Disease Model</title>
+    <title>TEST Disease Model</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href=styles.css>
+    <style>
+        .button {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: #4CAF50;
+        }
+
+        .button2 {
+            background-color: #008CBA;
+        }
+
+        .button3 {
+            background-color: #4CAF50;
+        }
+
+        #stuff {
+            width: 200px;
+            height: 600px;
+            position: fixed;
+            bottom: 100px;
+            left: 100px;
+            background-color: grey;
+
+
+        }
+
+        body {
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
 
+
+
+    <p></p>
+    <button class="button button2" id="dmbutton">Switch diagrams</button>
+    <button class="button button1" id="thcbutton">Reset diagram</button>
+    <button class="button button3" id="clearhighlights">Clear highlights</button>
+
+    <p id="chartArea">
+
+        <!-- <div id="chart" style="overflow: scroll; height: 1000px; border: 1px solid grey;"> -->
     <div id="chart"></div>
+
+    </div>
+
+    </p>
+
+
 
     <script src="js/snap.svg.js"></script>
     <script src="js/script.js"></script>
-    <link rel="stylesheet" href=styles.css>
+
 
 </body>
 

@@ -1,22 +1,85 @@
-.selected {
-    stroke-width: 3;
+.selected-out {
+    stroke-width: 1;
     fill: lightblue;
 }
 
-.clicked {
-    stroke-width: 3;
-    color: green;
+.selected-in {
+    stroke-width: 1;
     fill: lightgreen;
 }
 
-.selectedLines {
-    stroke: lightblue;
-    stroke-width: 3;
+.selected-all {
+    stroke-width: 1;
+    fill: lightsalmon;
 }
 
-.selectedText {
-    font-weight: bold;
+.default{
+    stroke: silver;
+    fill: none;
 }
+
+.clicked {
+    stroke-width: 2;
+    stroke: rgb(90, 6, 226);
+    /* fill: green; */
+    /* fill: lightgreen; */
+}
+
+.selected-out-lines {
+    stroke: lightblue;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+    /* fill: rgb(17, 17, 160); */
+}
+
+.selected-in-lines {
+    stroke: lightgreen;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+}
+
+.selected-all-lines {
+    stroke: lightcoral;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+}
+
+.circle-in {
+    /* stroke: black; */
+    stroke-width: 1;
+    fill: greenyellow;
+}
+
+.circle-out {
+    stroke: black;
+    stroke-width: 1;
+    fill: yellow
+}
+
+.glow {
+    stroke: rgb(255, 174, 0);
+    stroke-width: 3;
+    fill: rgb(105, 26, 26);
+}
+
+/* .parent {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 767px) {
+    .parent {
+        flex-direction: column-reverse;
+    }
+} */
+
+
+
+
+
+/* .selectedText {
+    font-weight: bold;
+} */
 
 /* text {
     font-weight: bold;
