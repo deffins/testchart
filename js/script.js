@@ -26,7 +26,6 @@ function loadSVG() {
 }
 
 function onSVGLoaded(data) {
-
     chart.append(data);
     fixPointerEventsInSVG();
     // console.log(chart.select("svg").attr().id)
@@ -84,7 +83,9 @@ function clearAllHighlights() {
     console.log(highlightedIDs)
     highlightedIDs.forEach((id) => {
         setElementsByState(id, 0)
+        setHighLightState(id, 0)
     })
+
 }
 
 function getAllHighlightedID() {
@@ -99,6 +100,7 @@ function getAllHighlightedID() {
 }
 
 function setElementsByState(sourceID, state) {
+
     let sourceRect = Snap.select("#" + sourceID).select("rect");
     let sourceLines = getLinesFromElements(sourceID, "source");
     let tagetLines = getLinesFromElements(sourceID, "target");
@@ -130,6 +132,7 @@ function setElementsByState(sourceID, state) {
         selectRects(sourceLineTargets, 0);
         selectRects(targetLineTargets, 0);
     }
+
 }
 
 
@@ -324,11 +327,12 @@ function getHighLightState(id) {
 function setHighLightState(id, state) {
     this.elements.find((element) => {
         if (element.id === id) {
-            if (state > 2) {
+            if (state > 3) {
                 element.highLightState = -1;
             } else {
                 element.highLightState = state;
             }
+            console.log("HS---> " + element.highLightState)
         }
     })
 }
@@ -347,13 +351,16 @@ function drawCirclesOnRect(rect) {
     textBlue.attr({ fontWeight: "bold", fill: "black" })
     countCircleBlue.append(textBlue);
     countCircleBlue.click((event) => {
-        let highLightState = getHighLightState(id) + 1;
-        console.log(highLightState);
-        setElementsByState(id, highLightState)
-        setHighLightState(id, highLightState);
+        let nextHighLightState = getHighLightState(id) + 1;
+        if (nextHighLightState > 3) {
+            nextHighLightState = 0
+        }
+        // console.log(highLightState);
+        setElementsByState(id, nextHighLightState)
+        setHighLightState(id, nextHighLightState);
 
-        let highlighted = getAllHighlightedID();
-        console.log(highlighted);
+        getAllHighlightedID();
+        // console.log(highlighted);
     });
 }
 
