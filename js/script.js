@@ -30,7 +30,8 @@ function onSVGLoaded(data) {
     fixPointerEventsInSVG();
     // console.log(chart.select("svg").attr().id)
     let chartType = chart.select("svg").attr().id;
-    Snap("#" + chartType).drag();
+    // Snap("#" + chartType).drag();
+    Snap("#" + chartType).zpd();
     Snap("#" + chartType).mouseover((event) => {
         if (event.target.nodeName === "svg") {
             document.body.style.cursor = "move";
@@ -43,6 +44,14 @@ function onSVGLoaded(data) {
             document.body.style.cursor = "pointer";
         }
     })
+
+    // Snap("#" + chartType).node.addEventListener('mousewheel', (e) => {
+    //     let stuff = new Snap.Matrix();
+    //     stuff.scale(1, 5)
+    //     e.target.transform(stuff.matrix)
+    //     console.log(e.target)
+    //     console.log(e)
+    // })
 
     if (Snap("#dmd") == null) {
         console.log("no dm diagram")
