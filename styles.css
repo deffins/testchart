@@ -61,26 +61,3 @@
     stroke-width: 3;
     fill: rgb(105, 26, 26);
 }
-
-/* .parent {
-    display: flex;
-    flex-direction: column;
-}
-
-@media (max-width: 767px) {
-    .parent {
-        flex-direction: column-reverse;
-    }
-} */
-
-
-
-
-
-/* .selectedText {
-    font-weight: bold;
-} */
-
-/* text {
-    font-weight: bold;
-} */
