@@ -4,12 +4,14 @@ let thcChart = "../chronic-thc-chart.svg";
 let dmChart = "../dm3.svg";
 
 this.elements = [];
+this.elementInfo = [];
 this.td = "";
 this.selectedRectArray = [];
 
 Snap.load(dmChart, onSVGLoaded);
 
 function loadSVG() {
+
     let svg = chart.select("svg");
     if (svg != null) {
         let id = svg.attr().id;
@@ -26,6 +28,7 @@ function loadSVG() {
 }
 
 function onSVGLoaded(data) {
+    // let self = this;
     chart.append(data);
     fixPointerEventsInSVG();
     // console.log(chart.select("svg").attr().id)
@@ -44,14 +47,18 @@ function onSVGLoaded(data) {
             document.body.style.cursor = "pointer";
         }
     })
+    this.elements = [];
 
-    // Snap("#" + chartType).node.addEventListener('mousewheel', (e) => {
-    //     let stuff = new Snap.Matrix();
-    //     stuff.scale(1, 5)
-    //     e.target.transform(stuff.matrix)
-    //     console.log(e.target)
-    //     console.log(e)
-    // })
+    Snap.selectAll("rect").forEach(function (element) {
+        this.elements.push(buildElementMap(element));
+        this.elementInfo.push(buildOtherObject(element));
+        element.click(function (event) {
+            let sourceGroupID = Snap(event.srcElement).parent().attr().id;
+            clickOnRect(sourceGroupID);
+        });
+    });
+    console.log(JSON.stringify(this.elementInfo))
+
 
     if (Snap("#dmd") == null) {
         console.log("no dm diagram")
@@ -60,11 +67,6 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         drawCirclesOnRect(element);
-        this.elements.push(buildElementMap(element));
-        element.click(function (event) {
-            let sourceGroupID = Snap(event.srcElement).parent().attr().id;
-            clickOnRect(sourceGroupID);
-        });
     });
 
     Snap.selectAll("path").forEach(function (element) {
@@ -73,8 +75,8 @@ function onSVGLoaded(data) {
 }
 
 
-
-const btn2 = document.querySelector(".button2");;
+//switch
+const btn2 = document.querySelector(".button2");
 btn2.addEventListener("click", loadSVG)
 
 const btn1 = document.querySelector(".button1");
@@ -320,6 +322,18 @@ function buildElementMap(rectElement) {
     blockObject.clickState = 0;
     blockObject.selectionCount = 0;
     blockObject.highLightState = 0;
+    return blockObject;
+}
+
+function buildOtherObject(rectElement) {
+    let rectElementID = Snap(rectElement).parent().attr().id;
+    let innerText = getInnerText(rectElementID);
+    let blockObject = {};
+    blockObject.id = rectElementID;
+    blockObject.text = innerText;
+    blockObject.links = [];
+    blockObject.coments = [];
+    blockObject.description = "";
     return blockObject;
 }
 

@@ -1,0 +1,716 @@
+[
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-1",
+    "text": "Oxidative Stress",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-2",
+    "text": "Inflammation,\nElevated Cytokines\nIL-1ß, IL-6, IL-10, TNF-a",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-3",
+    "text": "Hepcidin\nIncreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-4",
+    "text": "Low Iron",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-5",
+    "text": "ssDNA Breakage, PARP ->\nAP1, MAPK,\nNF-kB ??",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-6",
+    "text": "L-DOPA Decreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-7",
+    "text": "Neurotransmitters, Blood Volume Impaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-8",
+    "text": "Norepinephine, Epinephine Dysregulation",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-9",
+    "text": "Fatty Acid Oxidation, Cori Cycle\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-10",
+    "text": "Postural Orthostatic Tachycardia Syndrome",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-11",
+    "text": "Histamine Increased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-12",
+    "text": "Backup Pathways to Succinyl-CoA, Succinate, Fumarate Overused",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-13",
+    "text": "Mast Cell Activation Syndrome",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-14",
+    "text": "Hypovolemia,\nElectrolyte Losses",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-15",
+    "text": "Post-Exertion\n(Lactic) Acidemia,\npH Shift Down",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-16",
+    "text": "Oxidized\nRiboflavin Metabolite\nInsufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-17",
+    "text": "Folate Metabolism, BH4 Impaired\nNitric Oxide ??",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-18",
+    "text": "Cholesterol Elevation,\nBCAA Overuse,\nNitrogen Elevation",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-25",
+    "text": "Unproductive\nSleep",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-43",
+    "text": "Complex II /\nSuccinate Dehydrogenase Impaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-47",
+    "text": "TCA Cycle Impairments",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-50",
+    "text": "Acetyl-CoA\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-53",
+    "text": "Itaconate Pathway Activation",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-55",
+    "text": "Pyruvate Dehydrogenase\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-58",
+    "text": "Hypoxia Inducible Factors (HIF) Promoted",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-60",
+    "text": "Renal Function\nDysregulated",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-68",
+    "text": "LDH Increased, Lactic Acid\nIncreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-70",
+    "text": "Prolyl Hydroxylases\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-73",
+    "text": "Collagen Synthesis\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-75",
+    "text": "Energy Deficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-77",
+    "text": "Intracellular\nPyridoxal-5'-Phosphate\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-84",
+    "text": "Cell Membranes / Transporters Impaired, PEM,\nInsulin Resistance",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-89",
+    "text": "Rouleaux, Thrombi,\nHypoxia, Metabolite Backlog",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-94",
+    "text": "Low\nCopper",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-95",
+    "text": "Thyroid Function\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-97",
+    "text": "Low\nManganese",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-102",
+    "text": "Low\nRubidium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-103",
+    "text": "Excess Lead, Mercury, Uranium, Cadmium, Bismuth",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-110",
+    "text": "Glucose Metabolism\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-115",
+    "text": "Low\nSelenium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-116",
+    "text": "Low\nLithium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-118",
+    "text": "Muscle Weakness,\nGastroparesis",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-123",
+    "text": "Low\nChromium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-124",
+    "text": "Low\nVanadium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-129",
+    "text": "Low\nPhosphorus",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-130",
+    "text": "Low\nIodine",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-133",
+    "text": "Low\nBoron",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-134",
+    "text": "Low\nCobalt",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-143",
+    "text": "Small Intestinal\nBowel Overgrowth, LPS",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-147",
+    "text": "Low\nZinc",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-148",
+    "text": "Low\nGermanium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-149",
+    "text": "Low\nZirconium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-161",
+    "text": "Urea Cycle Dysregulated",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-163",
+    "text": "Choline Increased, Acetylcholine Decreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-165",
+    "text": "Cognitive\n Impairment",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-178",
+    "text": "Complex V Impaired,\nATP Decreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-181",
+    "text": "Low\nBismuth",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-190",
+    "text": "cAMP,\nProtein Kinase A\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-194",
+    "text": "Borrelia, Bartonella\nInfection, Opioids",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-201",
+    "text": "Vitamin D,\nVitamin A\nSufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-204",
+    "text": "(Pathogenic) GDH Elevation, as Direct Competition Against a-KGDH",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-221",
+    "text": "5-AR Inhibitors,\nAR Antagonists",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-230",
+    "text": "Vitamin C\nInsufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-234",
+    "text": "Hyperoxaluria",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-235",
+    "text": "Isocitrate Lyase Expressing Bacteria, \nGlyoxylate Shunt",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-249",
+    "text": "D-Lactate Producing Bacteria",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-254",
+    "text": "Tyrosinase\nDecreased, Tyramine Increased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-256",
+    "text": "Dopamine Beta Hydroxylase\n Insufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-259",
+    "text": "Clostridia1",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-261",
+    "text": "Immune Deficiency,\nT cell Exhaustion",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-265",
+    "text": "GABA\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-270",
+    "text": "Free Testosterone\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-279",
+    "text": "Cortisol\nDysregulated",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-285",
+    "text": "Peripheral Neuropathy",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-310",
+    "text": "Estrogen\nDecreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-329",
+    "text": "Intracellular Mineral Decrease, GI Absorption Blocked",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-333",
+    "text": "Ferroportin, DMT-1 Decreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-1",
+    "text": "Complex III\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-2",
+    "text": "Complex I\nImpaired, NAD+ Redox Impaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-3",
+    "text": "Complex IV\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-4",
+    "text": "ETF-QO\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-16",
+    "text": "NAD+ Insufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-17",
+    "text": "FAD Redox\nImpaired",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-46",
+    "text": " Peroxynitrites ??\nBH4 Oxidation",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SsSSUPxa-LAb5eGQ2vZ6-63",
+    "text": "Low\nMolybdenum",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "dQ1QzTANwKZ9nS4YGn8h-1",
+    "text": "Acyl-CoA Dehydrogenases\nDecreased, Mito Lipid Accumulation",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-1",
+    "text": "PRODH, HYPDH\nExcess Activity",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-8",
+    "text": "Innate Immune Response",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "gaoGFvVwN-zkhQFR8Wzu-196",
+    "text": "Numerous\nPathogens -\neg. SARS-CoV-2,\nHerpesviridae",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-14",
+    "text": "Chronic Cranial Instability",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-23",
+    "text": "Lytic Reactivation\nof Latent\nHHV, HIV",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-29",
+    "text": "Riboflavin Kinase Decreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-32",
+    "text": "FAD Synthase Decreased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-36",
+    "text": "Tinnitus, Myoclonus",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-42",
+    "text": "Silicon\nSufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-53",
+    "text": "SARS-CoV-2 Spike Protein, Fibrinogen",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Lp-_7fw3k4eCupaw-q1m-54",
+    "text": "Necrosis",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "SP7is61G71rsEd1IPgMZ-1",
+    "text": "Decreased ODC, Spermidine",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Ke8cQEUETivan_MI2SsI-1",
+    "text": "Low\nStrontium",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Ke8cQEUETivan_MI2SsI-4",
+    "text": "NADPH Oxidase Increased",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Ke8cQEUETivan_MI2SsI-11",
+    "text": "Lymphatic flow impeded",
+    "links": [],
+    "coments": [],
+    "description": ""
+  },
+  {
+    "id": "Ke8cQEUETivan_MI2SsI-18",
+    "text": "KYAT1 Insufficiency",
+    "links": [],
+    "coments": [],
+    "description": ""
+  }
+]
