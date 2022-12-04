@@ -48,6 +48,7 @@ function onSVGLoaded(data) {
         }
     })
     this.elements = [];
+    this.elementInfo = [];
 
     Snap.selectAll("rect").forEach(function (element) {
         this.elements.push(buildElementMap(element));
