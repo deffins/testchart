@@ -304,4 +304,17 @@
         "coments": [],
         "description": ""
     },
+    {
+        "id": "...",
+        "text": "Phospholipase A2, cox2",
+        "links": [
+            "https://www.cell.com/cell/pdf/S0092-8674(13)01360-3.pdf",
+            "https://www.researchgate.net/publication/224950632_Role_of_phospholipase_A2s_and_lipid_mediators_in_secondary_damage_after_spinal_cord_injury",
+            "https://www.jlr.org/article/S0022-2275(20)31891-5/fulltext",
+            "https://sci-hub.se/10.1021/acschemneuro.5b00073",
+            "https://www.mdpi.com/1422-0067/23/4/2061"
+        ],
+        "coments": [],
+        "description": ""
+    }
 ]
