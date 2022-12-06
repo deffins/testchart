@@ -163,7 +163,14 @@
     {
         "id": "NTBHuSmOTSIGiy9LdF3N-9",
         "text": "CBD",
-        "links": [],
+        "links": [
+            "https://www.sciencedirect.com/science/article/abs/pii/S0014299913007541?via%3Dihub",
+            "https://bpspubs.onlinelibrary.wiley.com/doi/full/10.1038/sj.bjp.0707133",
+            "https://molpharm.aspetjournals.org/content/94/1/743",
+            "https://www.mdpi.com/1420-3049/27/17/5644",
+            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4621983/"
+
+        ],
         "coments": [],
         "description": ""
     },
