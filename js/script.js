@@ -1,6 +1,13 @@
-import thcData from "data/thc-info.json"
-console.log(thcData)
+// import thcData from "data/thc-info.json"
+const myRequest = new Request('data/thc-info.json');
+this.links = [];
 
+function onLoad(myRequest) {
+    getJSONdata(myRequest)
+        .then(buildElements)
+        .then(supWithLinks)
+}
+onLoad(myRequest)
 
 var chart = Snap("#chart");
 
@@ -12,7 +19,7 @@ this.elementInfo = [];
 this.td = "";
 this.selectedRectArray = [];
 
-Snap.load(dmChart, onSVGLoaded);
+Snap.load(thcChart, onSVGLoaded);
 
 function loadSVG() {
 
@@ -31,10 +38,31 @@ function loadSVG() {
 
 }
 
+function getJSONdata(request) {
+    fetch(request)
+        .then((response) => response.json())
+        .then((data) => {
+            this.links = data;
+
+
+        })
+}
+
+
+
+
+
+
 function onSVGLoaded(data) {
     // let self = this;
     chart.append(data);
     fixPointerEventsInSVG();
+
+
+    buildElements();
+
+
+
     // console.log(chart.select("svg").attr().id)
     let chartType = chart.select("svg").attr().id;
     // Snap("#" + chartType).drag();
@@ -55,13 +83,15 @@ function onSVGLoaded(data) {
     this.elementInfo = [];
 
     Snap.selectAll("rect").forEach(function (element) {
-        this.elements.push(buildElementMap(element));
-        this.elementInfo.push(buildOtherObject(element));
+        // this.elements.push(buildElementMap(element));
+
+        // this.elementInfo.push(buildOtherObject(element));
+        // console.log(element)
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             clickOnRect(sourceGroupID);
         });
-    });
+    })
     // console.log(JSON.stringify(this.elementInfo))
 
 
@@ -77,6 +107,14 @@ function onSVGLoaded(data) {
     Snap.selectAll("path").forEach(function (element) {
         element.addClass("default")
     });
+}
+
+function buildElements() {
+
+    Snap.selectAll("rect").forEach(function (element) {
+        this.elements.push(buildElementMap(element));
+
+    })
 }
 
 
@@ -186,7 +224,6 @@ function processLine(lineID, state) {
         } else {
             path.toggleClass("clicked", state)
         }
-        console.log(path)
     }
 }
 
@@ -203,6 +240,7 @@ function show(arr) {
 }
 
 function clickOnRect(rectID) {
+    this.showLinks(rectID);
     this.elements.find((element) => {
         if (element.id === rectID) {
             if (element.clickState === 0) {
@@ -216,7 +254,7 @@ function clickOnRect(rectID) {
                 this.selectedRectArray.splice(i, 1);
             }
             processRect(element);
-            console.log(element.selectionCount)
+            // console.log(element.selectionCount)
         }
     })
     connectClickedRects(rectID)
@@ -582,16 +620,52 @@ function fixPointerEventsInSVG() {
         }
     }
 
-};
+}
 
+function showLinks(id) {
+    let list = document.getElementById("links");
+    removeChilds(list);
+    this.links.find((data) => {
+        if (data.id == id) {
+            data.links.forEach((link) => {
+                let normalizedLink = link.normalize();
+                var a = document.createElement('a');
+                var link = document.createTextNode(link);
+                a.appendChild(link);
+                var row = document.createElement('li');
+                row.append(a);
+                a.title = normalizedLink;
+                a.href = normalizedLink;
+                a.target = "_blank";
+                list.appendChild(row);
+            })
+        }
+    })
+}
 
+const removeChilds = (parent) => {
+    while (parent.lastChild) {
+        parent.removeChild(parent.lastChild);
+    }
+}
 
-function getLinks(id) {
-
+function supWithLinks() {
+    this.elements.forEach((element) => {
+        showReferenceCount(element.id)
+    });
 }
 
 
+function showReferenceCount(id) {
+    this.links.find((data) => {
+        if (data.id == id) {
+            if (data.links.length > 0) {
+                console.log(text + " has: " + data.links.length + " references")
+            }
+        }
+    })
 
+}
 
 
 
