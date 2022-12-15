@@ -1,3 +1,7 @@
+import thcData from "data/thc-info.json"
+console.log(thcData)
+
+
 var chart = Snap("#chart");
 
 let thcChart = "../chronic-thc-chart.svg";
@@ -58,7 +62,7 @@ function onSVGLoaded(data) {
             clickOnRect(sourceGroupID);
         });
     });
-    console.log(JSON.stringify(this.elementInfo))
+    // console.log(JSON.stringify(this.elementInfo))
 
 
     if (Snap("#dmd") == null) {
@@ -582,7 +586,9 @@ function fixPointerEventsInSVG() {
 
 
 
+function getLinks(id) {
 
+}
 
 
 
