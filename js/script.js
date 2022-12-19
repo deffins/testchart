@@ -2,12 +2,20 @@
 const myRequest = new Request('data/thc-info.json');
 this.links = [];
 
-function onLoad(myRequest) {
-    getJSONdata(myRequest)
-        .then(buildElements)
-        .then(supWithLinks)
-}
-onLoad(myRequest)
+function getJSONdata(request) {
+    fetch(request)
+        .then((response) => response.json())
+        .then((data) => {
+            this.links = data;
+        })
+        .then(() => {
+            Snap.load(thcChart, onSVGLoaded);
+        })
+        .then(() => {
+            showALLLinks();
+        })
+} getJSONdata(myRequest)
+
 
 var chart = Snap("#chart");
 
@@ -19,7 +27,7 @@ this.elementInfo = [];
 this.td = "";
 this.selectedRectArray = [];
 
-Snap.load(thcChart, onSVGLoaded);
+// Snap.load(thcChart, onSVGLoaded);
 
 function loadSVG() {
 
@@ -38,15 +46,7 @@ function loadSVG() {
 
 }
 
-function getJSONdata(request) {
-    fetch(request)
-        .then((response) => response.json())
-        .then((data) => {
-            this.links = data;
 
-
-        })
-}
 
 
 
@@ -83,7 +83,7 @@ function onSVGLoaded(data) {
     this.elementInfo = [];
 
     Snap.selectAll("rect").forEach(function (element) {
-        // this.elements.push(buildElementMap(element));
+        this.elements.push(buildElementMap(element));
 
         // this.elementInfo.push(buildOtherObject(element));
         // console.log(element)
@@ -94,9 +94,8 @@ function onSVGLoaded(data) {
     })
     // console.log(JSON.stringify(this.elementInfo))
 
-
+    this.supWithLinks();
     if (Snap("#dmd") == null) {
-        console.log("no dm diagram")
         return
     }
 
@@ -107,6 +106,8 @@ function onSVGLoaded(data) {
     Snap.selectAll("path").forEach(function (element) {
         element.addClass("default")
     });
+
+
 }
 
 function buildElements() {
@@ -284,30 +285,30 @@ function getLineByRectIDs(id1, id2) {
 
 
 }
-function clickRectOutLines(rectID) {
-    let clickedRect = Snap.select("#" + rectID).select("rect");
-    if (clickedRect.hasClass("clicked")) {
-        clickedRect.removeClass("clicked")
-    } else {
-        clickedRect.addClass("clicked")
-    }
-    let sourceLineTargets = getRectsFromElements(rectID, "target");
-    let sourceLines = getLinesFromElements(rectID, "source");
-    switchLineClass(sourceLines, 1, "clicked");
-    selectAllOutward(sourceLineTargets)
-}
+// function clickRectOutLines(rectID) {
+//     let clickedRect = Snap.select("#" + rectID).select("rect");
+//     if (clickedRect.hasClass("clicked")) {
+//         clickedRect.removeClass("clicked")
+//     } else {
+//         clickedRect.addClass("clicked")
+//     }
+//     let sourceLineTargets = getRectsFromElements(rectID, "target");
+//     let sourceLines = getLinesFromElements(rectID, "source");
+//     switchLineClass(sourceLines, 1, "clicked");
+//     selectAllOutward(sourceLineTargets)
+// }
 
-function selectAllOutward(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let rectID = arr[i];
-        let clickedRect = Snap.select("#" + rectID).select("rect");
-        if (clickedRect.hasClass("clicked")) {
-            return
-        } else {
-            clickRectOutLines(rectID);
-        }
-    }
-}
+// function selectAllOutward(arr) {
+//     for (let i = 0; i < arr.length; i++) {
+//         let rectID = arr[i];
+//         let clickedRect = Snap.select("#" + rectID).select("rect");
+//         if (clickedRect.hasClass("clicked")) {
+//             return
+//         } else {
+//             clickRectOutLines(rectID);
+//         }
+//     }
+// }
 
 function selectRects(arr, add, classType) {
     arr.forEach((id) => {
@@ -320,14 +321,14 @@ function selectRects(arr, add, classType) {
     })
 }
 
-function selectLines(sourceID, targetIDs) { //source id = id, targetIDs = array
-    let lines = Snap.selectAll("g").forEach((group) => {
-        if (group.attr("source") == sourceID) {
-            group.addClass("selected-out-lines");
-        }
+// function selectLines(sourceID, targetIDs) { //source id = id, targetIDs = array
+//     let lines = Snap.selectAll("g").forEach((group) => {
+//         if (group.attr("source") == sourceID) {
+//             group.addClass("selected-out-lines");
+//         }
 
-    })
-}
+//     })
+// }
 
 /*
     function testDiagram() {
@@ -643,6 +644,31 @@ function showLinks(id) {
     })
 }
 
+function showALLLinks(arr) {
+    let list = document.getElementById("links");
+    removeChilds(list);
+    this.links.find((data) => {
+        if (data.links.length > 0) {
+            let titleString = data.text;
+            var h1 = document.createElement('h1');
+            h1.innerText = titleString;
+            list.append(h1)
+            data.links.forEach((link) => {
+                let normalizedLink = link.normalize();
+                var a = document.createElement('a');
+                var link = document.createTextNode(link);
+                a.appendChild(link);
+                var row = document.createElement('li');
+                row.append(a);
+                a.title = normalizedLink;
+                a.href = normalizedLink;
+                a.target = "_blank";
+                list.appendChild(row);
+            })
+        }
+    })
+}
+
 const removeChilds = (parent) => {
     while (parent.lastChild) {
         parent.removeChild(parent.lastChild);
@@ -650,6 +676,8 @@ const removeChilds = (parent) => {
 }
 
 function supWithLinks() {
+    console.log(this.links)
+    console.log(this.elements)
     this.elements.forEach((element) => {
         showReferenceCount(element.id)
     });
@@ -657,10 +685,11 @@ function supWithLinks() {
 
 
 function showReferenceCount(id) {
+
     this.links.find((data) => {
         if (data.id == id) {
             if (data.links.length > 0) {
-                console.log(text + " has: " + data.links.length + " references")
+                console.log(data.text + " has: " + data.links.length + " references")
             }
         }
     })
