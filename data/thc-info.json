@@ -120,7 +120,7 @@
     },
     {
         "id": "pECHmDa6fuD7gWAMCEnr-3",
-        "text": "D1-D2 heteromers\nGaq",
+        "text": "D1-D2 heteromers - Gaq",
         "links": [
             "https://www.sciencedirect.com/science/article/pii/S266717432200088X"
         ],
@@ -307,9 +307,15 @@
         "text": "unsorted",
         "links": [
             "https://www.frontiersin.org/articles/10.3389/fnmol.2020.00108/full",
-            "https://pubmed.ncbi.nlm.nih.gov/25891385/"
+            "https://pubmed.ncbi.nlm.nih.gov/25891385/",
+            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4772823/",
+            "https://royalsocietypublishing.org/doi/10.1098/rstb.2011.0382"
         ],
-        "coments": [],
+        "coments": [
+            "",
+            "",
+            "THCV"
+        ],
         "description": ""
     },
     {
@@ -320,8 +326,7 @@
             "https://www.researchgate.net/publication/224950632_Role_of_phospholipase_A2s_and_lipid_mediators_in_secondary_damage_after_spinal_cord_injury",
             "https://www.jlr.org/article/S0022-2275(20)31891-5/fulltext",
             "https://sci-hub.se/10.1021/acschemneuro.5b00073",
-            "https://www.mdpi.com/1422-0067/23/4/2061",
-            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4772823/"
+            "https://www.mdpi.com/1422-0067/23/4/2061"
         ],
         "coments": [],
         "description": ""
