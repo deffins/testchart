@@ -629,7 +629,10 @@ function showLinks(id) {
     removeChilds(list);
     this.links.find((data) => {
         if (data.id == id) {
-            data.links.forEach((link) => {
+            data.links.forEach((data) => {
+                let link = data.normalize();
+                generateLinkPreview(link);
+                /*
                 let normalizedLink = link.normalize();
                 var a = document.createElement('a');
                 var link = document.createTextNode(link);
@@ -640,10 +643,97 @@ function showLinks(id) {
                 a.href = normalizedLink;
                 a.target = "_blank";
                 list.appendChild(row);
+                */
             })
         }
     })
 }
+/*
+attempt 1
+function generateLinkPreview(link) {
+    let normalizedLink = link.normalize();
+    // Fetch the link preview data from the server
+    fetch(`http://api.linkpreview.net/?key=cfebd6bb7601ea5412a7a2c08dc0f291&q=${normalizedLink}`)
+        .then(response => response.json())
+        .then(data => {
+            // Extract the title, description, and image from the response data
+            const title = data.title;
+            const description = data.description;
+            const image = data.image;
+
+            // Create the link preview element
+            const preview = document.createElement('div');
+            preview.classList.add('link-preview');
+
+            // Add the image to the link preview, if available
+            if (image) {
+                const img = document.createElement('img');
+                img.src = image;
+                preview.appendChild(img);
+            }
+
+            // Add the title and description to the link preview
+            const titleEl = document.createElement('h3');
+            titleEl.textContent = title;
+            preview.appendChild(titleEl);
+
+            const descEl = document.createElement('p');
+            descEl.textContent = description;
+            preview.appendChild(descEl);
+            // Append the link preview to the page
+            let list = document.getElementById("links");
+            list.appendChild(preview);
+        });
+}
+
+
+generateLinkPreview("https://www.example.com");
+
+This code uses the fetch function to send a request to a link preview API, which returns the title, description, and image for the specified link.The API response is then used to create a link preview element, which consists of an image(if available), a title, and a description, and appends it to the page.
+
+I hope this helps! Let me know if you have any questions or need further assistance.
+attempt2
+*/
+
+function generateLinkPreview(link) {
+    // Fetch the page HTML
+    fetch(link)
+        .then(response => response.text())
+        .then(html => {
+            // Parse the HTML to retrieve the Open Graph metadata
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const title = doc.querySelector('meta[property="og:title"]').content;
+            const description = doc.querySelector('meta[property="og:description"]').content;
+            const image = doc.querySelector('meta[property="og:image"]').content;
+
+            // Create the link preview element
+            const preview = document.createElement('div');
+            preview.classList.add('link-preview');
+
+            // Add the image to the link preview, if available
+            if (image) {
+                const img = document.createElement('img');
+                img.src = image;
+                preview.appendChild(img);
+            }
+
+            // Add the title and description to the link preview
+            const titleEl = document.createElement('h3');
+            titleEl.textContent = title;
+            preview.appendChild(titleEl);
+
+            const descEl = document.createElement('p');
+            descEl.textContent = description;
+            preview.appendChild(descEl);
+
+            // Append the link preview to the page
+            let list = document.getElementById("links");
+            list.appendChild(preview);
+
+        });
+}
+
 
 function showALLLinks(arr) {
     let list = document.getElementById("links");
