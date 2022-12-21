@@ -690,11 +690,38 @@ function showReferenceCount(id) {
     this.links.find((data) => {
         if (data.id == id) {
             if (data.links.length > 0) {
+                drawReferenceCircleOnRect(data);
                 console.log(data.text + " has: " + data.links.length + " references")
             }
         }
     })
 
+}
+
+function drawReferenceCircleOnRect(data) {
+    let rectG = Snap.select("#" + data.id);
+    let rect = rectG.select("rect");
+    if (!rect) {
+        return
+    }
+    let parentG = rect.parent();
+    let rectPosX = rect.attr("x");
+    let rectPosY = rect.attr("y");
+    let xBlue = +rectPosX - 3;
+    let yBlue = +rectPosY - 3;
+    let circle = rectG.circle(xBlue, yBlue, 12).attr("fill", "grey").attr("opacity", "100").appendTo(rect);
+    circle.addClass("circle-ref");
+    rect.after(circle);
+    let textBlue = rectG.text(xBlue - 4, yBlue + 6, data.links.length).addClass("circle-ref");
+    console.log(textBlue)
+    textBlue.attr({ fontWeight: "bold", fill: "black" })
+
+    circle.append(textBlue);
+    circle.after(textBlue);
+    circle.click((event) => {
+        showLinks(id)
+
+    });
 }
 
 
