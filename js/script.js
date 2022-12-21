@@ -242,6 +242,7 @@ function show(arr) {
 
 function clickOnRect(rectID) {
     this.showLinks(rectID);
+    console.log(rectID);
     this.elements.find((element) => {
         if (element.id === rectID) {
             if (element.clickState === 0) {
