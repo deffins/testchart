@@ -137,7 +137,9 @@
     {
         "id": "pECHmDa6fuD7gWAMCEnr-14",
         "text": "P38 MAPK activation",
-        "links": [],
+        "links": [
+            "https://sci-hub.se/10.1016/j.lfs.2021.119407"
+        ],
         "coments": [],
         "description": ""
     },
