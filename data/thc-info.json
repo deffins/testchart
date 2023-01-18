@@ -318,7 +318,8 @@
             "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4772823/",
             "https://royalsocietypublishing.org/doi/10.1098/rstb.2011.0382",
             "https://www.proteinatlas.org/ENSG00000118432-CNR1",
-            "https://sci-hub.se/10.1002/cpdd.36"
+            "https://sci-hub.se/10.1002/cpdd.36",
+            "https://www.frontiersin.org/articles/10.3389/fnmol.2020.00132/full"
         ],
         "coments": [
             "",
@@ -372,5 +373,5 @@
         ],
         "coments": [],
         "description": ""
-    },
+    }
 ]
