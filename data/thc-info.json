@@ -64,7 +64,8 @@
         "links": [
             "https://sci-hub.se/10.1155/2012/930710",
             "https://pubmed.ncbi.nlm.nih.gov/21253820/",
-            "https://sci-hub.se/10.3390/cells9030727"
+            "https://sci-hub.se/10.3390/cells9030727",
+            "https://pubmed.ncbi.nlm.nih.gov/35782378/"
         ],
         "coments": [],
         "description": ""
@@ -286,7 +287,7 @@
     },
     {
         "id": "BIeTZq3KbKyFNtU_o8Uz-44",
-        "text": "Nicotine ",
+        "text": "Nicotine",
         "links": [],
         "coments": [],
         "description": ""
