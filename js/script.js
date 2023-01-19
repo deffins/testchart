@@ -631,19 +631,19 @@ function showLinks(id) {
         if (data.id == id) {
             data.links.forEach((data) => {
                 let link = data.normalize();
-                generateLinkPreview(link);
-                /*
+                // generateLinkPreview(link);
+
                 let normalizedLink = link.normalize();
                 var a = document.createElement('a');
-                var link = document.createTextNode(link);
-                a.appendChild(link);
+                var textNode = document.createTextNode(link);
+                a.appendChild(textNode);
                 var row = document.createElement('li');
                 row.append(a);
                 a.title = normalizedLink;
                 a.href = normalizedLink;
                 a.target = "_blank";
                 list.appendChild(row);
-                */
+
             })
         }
     })
@@ -693,7 +693,7 @@ This code uses the fetch function to send a request to a link preview API, which
 
 I hope this helps! Let me know if you have any questions or need further assistance.
 attempt2
-*/
+
 
 function generateLinkPreview(link) {
     // Fetch the page HTML
@@ -733,7 +733,7 @@ function generateLinkPreview(link) {
 
         });
 }
-
+*/
 
 function showALLLinks(arr) {
     let list = document.getElementById("links");

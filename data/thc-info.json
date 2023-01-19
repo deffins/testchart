@@ -60,8 +60,12 @@
     },
     {
         "id": "BIeTZq3KbKyFNtU_o8Uz-28",
-        "text": "GSK-3β\nupregulation",
-        "links": [],
+        "text": "GSK-3β upregulation",
+        "links": [
+            "https://sci-hub.se/10.1155/2012/930710",
+            "https://pubmed.ncbi.nlm.nih.gov/21253820/",
+            "https://sci-hub.se/10.3390/cells9030727"
+        ],
         "coments": [],
         "description": ""
     },
@@ -137,7 +141,9 @@
     {
         "id": "pECHmDa6fuD7gWAMCEnr-14",
         "text": "P38 MAPK activation",
-        "links": [],
+        "links": [
+            "https://sci-hub.se/10.1016/j.lfs.2021.119407"
+        ],
         "coments": [],
         "description": ""
     },
@@ -169,7 +175,8 @@
             "https://molpharm.aspetjournals.org/content/94/1/743",
             "https://www.mdpi.com/1420-3049/27/17/5644",
             "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4621983/",
-            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6035094/pdf/nihms977259.pdf"
+            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6035094/pdf/nihms977259.pdf",
+            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7023045/"
         ],
         "coments": [],
         "description": ""
@@ -309,7 +316,10 @@
             "https://www.frontiersin.org/articles/10.3389/fnmol.2020.00108/full",
             "https://pubmed.ncbi.nlm.nih.gov/25891385/",
             "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4772823/",
-            "https://royalsocietypublishing.org/doi/10.1098/rstb.2011.0382"
+            "https://royalsocietypublishing.org/doi/10.1098/rstb.2011.0382",
+            "https://www.proteinatlas.org/ENSG00000118432-CNR1",
+            "https://sci-hub.se/10.1002/cpdd.36",
+            "https://www.frontiersin.org/articles/10.3389/fnmol.2020.00132/full"
         ],
         "coments": [
             "",
@@ -338,7 +348,28 @@
             "https://royalsocietypublishing.org/doi/epdf/10.1098/rstb.2013.0599",
             "https://www.nature.com/articles/s41598-018-28763-6.pdf",
             "https://www.sciencedirect.com/science/article/pii/S2212877813000707?via%3Dihub",
-            "https://www.sciencedirect.com/science/article/abs/pii/S0197018611003597?via%3Dihub"
+            "https://www.sciencedirect.com/science/article/abs/pii/S0197018611003597?via%3Dihub",
+            "https://www.mdpi.com/1422-0067/18/8/1669",
+            "https://www.researchgate.net/publication/314662835_Human_astrocytes_structure_and_functions_in_the_healthy_brain",
+            "https://sci-hub.se/10.1016/j.neuron.2018.04.034"
+        ],
+        "coments": [],
+        "description": ""
+    },
+    {
+        "id": "000",
+        "text": "Testosterone",
+        "links": [
+            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4891325/"
+        ],
+        "coments": [],
+        "description": ""
+    },
+    {
+        "id": "0001",
+        "text": "PQQ",
+        "links": [
+            "https://www.nature.com/articles/s41598-018-26962-9"
         ],
         "coments": [],
         "description": ""
