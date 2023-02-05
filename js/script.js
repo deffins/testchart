@@ -631,18 +631,18 @@ function showLinks(id) {
         if (data.id == id) {
             data.links.forEach((data) => {
                 let link = data.normalize();
-                // generateLinkPreview(link);
+                generateLinkPreview(link);
 
-                let normalizedLink = link.normalize();
-                var a = document.createElement('a');
-                var textNode = document.createTextNode(link);
-                a.appendChild(textNode);
-                var row = document.createElement('li');
-                row.append(a);
-                a.title = normalizedLink;
-                a.href = normalizedLink;
-                a.target = "_blank";
-                list.appendChild(row);
+                // let normalizedLink = link.normalize();
+                // var a = document.createElement('a');
+                // var textNode = document.createTextNode(link);
+                // a.appendChild(textNode);
+                // var row = document.createElement('li');
+                // row.append(a);
+                // a.title = normalizedLink;
+                // a.href = normalizedLink;
+                // a.target = "_blank";
+                // list.appendChild(row);
 
             })
         }
@@ -689,11 +689,10 @@ function generateLinkPreview(link) {
 
 generateLinkPreview("https://www.example.com");
 
-This code uses the fetch function to send a request to a link preview API, which returns the title, description, and image for the specified link.The API response is then used to create a link preview element, which consists of an image(if available), a title, and a description, and appends it to the page.
 
-I hope this helps! Let me know if you have any questions or need further assistance.
-attempt2
+*/
 
+// This code uses the fetch function to send a request to a link preview API, which returns the title, description, and image for the specified link.The API response is then used to create a link preview element, which consists of an image(if available), a title, and a description, and appends it to the page.
 
 function generateLinkPreview(link) {
     // Fetch the page HTML
@@ -733,7 +732,7 @@ function generateLinkPreview(link) {
 
         });
 }
-*/
+
 
 function showALLLinks(arr) {
     let list = document.getElementById("links");
