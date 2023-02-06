@@ -13,7 +13,7 @@
     fill: lightsalmon;
 }
 
-.default{
+.default {
     stroke: silver;
     fill: none;
 }
@@ -60,4 +60,43 @@
     stroke: rgb(255, 174, 0);
     stroke-width: 3;
     fill: rgb(105, 26, 26);
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #4CAF50;
+}
+
+.button2 {
+    background-color: #008CBA;
+}
+
+.button3 {
+    background-color: #4CAF50;
+}
+
+#stuff {
+    width: 200px;
+    height: 600px;
+    position: fixed;
+    bottom: 100px;
+    left: 100px;
+    background-color: grey;
+
+
+}
+
+body {
+    position: relative;
 }
