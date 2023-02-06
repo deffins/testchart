@@ -699,10 +699,6 @@ function generateLinkPreview(link) {
     fetch(link)
         .then(response => response.text())
         .then(html => {
-            //hande cors errors
-            if (html.includes("Access to fetch at")) {
-                return;
-            }
             // Parse the HTML to retrieve the Open Graph metadata
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
