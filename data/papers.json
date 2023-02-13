@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "tags": [
+            "thc",
+            "cox2"
+        ],
+        "title": "∆9-THC and COX-2 Signaling",
+        "links": [
+            "https://sci-hub.ru/https://www.sciencedirect.com/science/article/pii/B9780128007563000867",
+            "https://www.sciencedirect.com/science/article/pii/B9780128007563000867"
+        ],
+        "short_description": [
+            "This chapter briefly describes the role of cyclooxygenase-2 (COX-2) in THC-induced synaptic and cognitive impairments, and other behavioral changes."
+        ],
+        "important": [
+            "Importantly, PGE2 levels are also elevated in the brains of rats and mice exposed to THC, and this elevation can be antagonized by NSAIds. In addition, it has been reported that THC-induced neurotoxicity in cultured hippocampal neurons was prevented by indomethacin or aspirin ",
+            "THC-induced cataleptic effects and behavioral suppression in animals, and marijuana smoking-induced “high” and heart rate acceleration in humans are attenuated by NSAIds",
+            "THC induces time- and dose-dependent increase of COX-2 expression, but not COX-1, in the mouse brain",
+            "Repeated exposure to THC in young adult mice significantly reduces total and surface expressions of AMPA glutamate receptor subunit GluA1, and NMdA receptor subunits GluN2A and GluN2B in the hippocampus, while the amount of these subunits in intracellular compartment are increased, suggesting that chronic cannabinoid exposure not only reduces expression of glutamate receptor subunits, but also changes receptor trafficking.",
+            "COX-2 expression is steadily elevated in the hippocampus from mice that received THC for 7 days."
+        ]
+    },
+    {
+        "id": 2,
+        "tags": [
+            "nfkb",
+            ""
+        ],
+        "title": "",
+        "links": [
+            "https://en.wikipedia.org/wiki/NF-%CE%BAB",
+            ""
+        ],
+        "short_description": [
+            ""
+        ],
+        "important": [
+            ""
+        ]
+    }
+]
