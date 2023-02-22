@@ -115,5 +115,29 @@
                 "description": "The Components of the Endogenous Cannabinoid System in Microglia and Neurons. In the central nervous system (CNS), the endogenous cannabinoids (eCBs) N-arachidonoylethanolamine (AEA) and 2-arachidonoylglycerol (2-AG) are the most widely-recognized ligands of the endogenous cannabinoid (endocannabinoid) system (ECS). The two main receptors for eCBs are cannabinoid receptor 1 (CB1) and cannabinoid receptor 2 (CB2), both of which are G-protein coupled. Within the CNS, eCB signaling is classically understood to modulate synaptic activity. In the example given here, release of glutamate from presynaptic neurons activates N-methyl-D-aspartate receptors (NMDARs) in postsynaptic neurons. In response to increased cytoplasmic calcium, the enzyme diacylglycerol lipase (DAGL) catalyzes the synthesis of 2-AG from diacylgylcerol (DAG) and N-acyl-phosphatidylethanolamine phospholipase D (NAPE-PLD) catalyzes the synthesis of AEA from the precursor N-acylphosphatidylethanolamine (NAPE). After 2-AG and AEA are released into the synaptic cleft, they stimulate CB1 receptors on presynaptic neurons and inhibit further neurotransmitter release. 2-AG is mainly degraded by the enzyme monoacylglycerol lipase (MAGL) whereas AEA is degraded by fatty-acid amide hydrolase (FAAH). While DAGL, NAPE-PLD, MAGL, and FAAH are expressed broadly throughout the CNS, CB1 is enriched in neurons and CB2 is enriched in microglia. Stimulation of CB2 leads to a protective phenotype in microglia that is characterized by a reduction in the release of pro-inflammatory cytokines such as interleukin-1 (IL-1)."
             }
         ]
-    }
-]
+    },
+    {
+        "id": 5,
+        "tags": [
+            "microglia",
+            "astrocytes",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "title": "Endocannabinoid signaling in brain diseases: Emerging relevance of glial cells",
+        "date": "2022.03.30",
+        "links": [
+            "https://doi.org/10.1002/glia.24172",
+            ""
+        ],
+        "short_description": [
+            "The discovery of cannabinoid receptors as the primary molecular targets of psychotropic cannabinoid Δ9-tetrahydrocannabinol (Δ9-THC) in late 1980s paved the way for investigations on the effects of cannabis-based therapeutics in brain pathology. Ever since, a wealth of results obtained from studies on human tissue samples and animal models have highlighted a promising therapeutic potential of cannabinoids and endocannabinoids in a variety of neurological disorders. However, clinical success has been limited and major questions concerning endocannabinoid signaling need to be satisfactorily addressed, particularly with regard to their role as modulators of glial cells in neurodegenerative diseases. Indeed, recent studies have brought into the limelight diverse, often unexpected functions of astrocytes, oligodendrocytes, and microglia in brain injury and disease, thus providing scientific basis for targeting glial cells to treat brain disorders. This Review summarizes the current knowledge on the molecular and cellular hallmarks of endocannabinoid signaling in glial cells and its clinical relevance in neurodegenerative and chronic inflammatory disorders."
+        ],
+        "important": [
+            "Electron microscopy and super-resolution imaging studies show that the majority of neuronal CB1 accumulate presynaptically on axonal terminals where they control neurotransmitter release, with higher expression levels in GABAergic neurons compared to glutamatergic cells of the forebrain.",
+            "Using anatomical and functional techniques, the localization of CB1 has also been demonstrated at postsynaptic sites (somatodendritic) in specific brain areas such as the neocortex, suggesting that CB1 participate in cell-autonomous regulation processes. The location of CB1 in post-synaptic sites has been mostly associated with receptor presence in mitochondria or other intracellular organelles rather than on the plasma membrane.",
+            "Conversely, only anecdotal pharmacological and molecular evidence supports the localization of CB2 in astrocytes and the prevailing view in the field is that astroglia in the intact brain express negligible levels of the receptor protein."
+        }
+    ]
