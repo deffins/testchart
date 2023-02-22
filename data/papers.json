@@ -38,5 +38,82 @@
         "important": [
             ""
         ]
+    },
+    {
+        "id": 3,
+        "tags": [
+            "hippocampus",
+            "astrocyte",
+            "glutamate",
+            "gaba",
+            "glucose"
+        ],
+        "title": "CB1 receptor activation inhibits neuronal and astrocytic intermediary metabolism in the rat hippocampus",
+        "date": "2012.01.01",
+        "links": [
+            "https://doi.org/10.1016/j.neuint.2011.10.019",
+            "https://www.sciencedirect.com/science/article/abs/pii/S0197018611003597?via%3Dihub"
+        ],
+        "short_description": [
+            "Cannabinoid CB1 receptor (CB1R) activation decreases synaptic GABAergic and glutamatergic transmission and it also controls peripheral metabolism."
+        ],
+        "important": [
+            "Hippocampal CB1R activation decreases [2-13C]acetate metabolism into glutamate. ► CB1R activation also decreases [U-13C]glucose metabolism into glutamate and GABA. ► Hence, this control by CB1Rs of the TCA cycle occurs both in neurons and glia. ► We found specific CB1R immunoreactivity in hippocampal astrocytes. ► This control of the TCA cycle may affect synaptic plasticity and neuroprotection.",
+            "The inhibition of mitochondrial intermediary metabolism can hypothetically diminish releasable GABA and glutamate pools, thus contributing to changes in synaptic plasticity. In diseases with increased endocannabinoid levels and impaired synaptic plasticity and memory such as Alzheimer's disease, suppression of glucose metabolism as an early signal is indeed detected. Taking into account that neuroprotection can be achieved via modulating glucose oxidation; the complex pathological and therapeutic role of CB1 Rs in the function of the hippocampus now appears to involve one more mechanism."
+        ]
+    },
+    {
+        "id": 4,
+        "tags": [
+            "glutamate",
+            "astrocyte",
+            "",
+            "",
+            ""
+        ],
+        "title": "strocytes in endocannabinoid signalling",
+        "date": "2014.01.01",
+        "links": [
+            "http://dx.doi.org/10.1098/rstb.2013.0599",
+            "https://royalsocietypublishing.org/doi/10.1098/rstb.2013.0599"
+        ],
+        "short_description": [
+            "Here, we discuss recent evidence showing that astrocytes are involved in the endocannabinoid (ECB) system, responding toexogenous cannabinoids as well as ECBs through activation of type 1 canna-binoid receptors, which increase intracellular calcium and stimulate therelease of glutamate that modulates synaptic transmission and plasticity.We also discuss the consequences of ECB signalling in tripartite synapseson the astrocyte-mediated regulation of synaptic function, which revealnovel properties of synaptic regulation by ECBs, such as the spatially con-trolled dual effect on synaptic strength and the lateral potentiation ofsynaptic efficacy. Finally, we discuss the potential implications of ECBsignalling for astrocytes in brain pathology and animal behaviour."
+        ],
+        "important": [
+            "While it is well known that CB1Rs are preferentially coupled to pertussis toxin-sensitive Gi/oproteins that regulate cAMP levels, ECB-induced astrocyte Ca2+ elevations were mediated by CB1Rs coupled to Gq/11 proteins that activate phospholipase C and produce inositol triphosphate.",
+            "Using the powerful tools of recently generatedconditional transgenic mice lacking CB1Rs selectively in astro-cytes, GABAergic or glutamatergic neurons, have shown that the impairment of spatial working memoryand the LTD of hippocampal synaptic transmission inducedby administration of THC, the major psychoactive ingredientof marijuana, required astrocyte CB1Rs. The mechanisticevents proposed for the exogenous cannabinoid effects arethat they activate astrocytic CB1Rs and stimulate the releaseof glutamate that induces LTD by internalization of AMPAreceptors, resulting in working memory impairment. This study demonstrates that one of the most common effects of cannabinoid intoxication, the impairment of spatial workingmemory, is mediated by ECB signalling in astrocytes."
+        ]
+    },
+    {
+        "id": 4,
+        "tags": [
+            "microglia",
+            "autism",
+            "IL-1",
+            "IL-6",
+            "TNF-alpha",
+            "CBD"
+        ],
+        "title": "The Endocannabinoid System as a Window Into Microglial Biology and Its Relationship to Autism",
+        "date": "2014.01.01",
+        "links": [
+            "https://doi.org/10.3389/fncel.2019.00424",
+            ""
+        ],
+        "short_description": [
+            "Here, we review the literature and propose that ECS signaling represents a largely untapped area for understanding microglial biology and its relationship to ASD, with special attention paid to issues surrounding the use of recreational cannabis (marijuana). We also discuss major questions within the field and suggest directions for future research."
+        ],
+        "important": [
+            "Microglia are the resident immune cells of the central nervous system (CNS) and thus are the first line of defense against CNS infection and injury. For example, they phagocytize debris and pathogens as well as initiate neuroinflammatory responses through release of cytokines such as interleukin-1 (IL-1), IL-6, and tumor necrosis factor alpha (TNF-α). They also recruit natural killer cells, macrophages, and lymphocytes to sites of infection and injury. Moreover, microglia influence the health of their local environment through release of neurotrophic and neurotoxic factors. \n In addition to the aforementioned roles, microglia carry out other functions essential for CNS homeostasis. Specifically, these cells oversee neurogenesis by both phagocytizing and directing the migration of newborn neurons. Microglia also regulate neuronal connections by engulfing excessive synaptic structures through use of the classical complement cascade. Lastly, microglia modulate neuronal plasticity via release of neurotrophins such as brain-derived neurotrophic factor (BDNF). Early wiring of the brain requires tight control of these processes and therefore microglia critically impact CNS development.",
+            "Notably, increased eCB signaling is associated with an anti-inflammatory, protective phenotype in microglia. For example, pharmacological inhibition of FAAH decreases microglial activation marker expression, cytokine production, and synaptic plasticity deficits, in the hippocampi of aged rats. Additionally, stimulation of CB2 inhibits microglial activation and increases striatal neuron survival and motor coordination in a model of Huntington’s disease excitotoxicity. Moreover, exposure to anti-inflammatory cytokines increases eCB production and CB2 expression in microglia. These findings cast the ECS as an attractive target for influencing microglial activity. However, the consequences of manipulating eCB signaling on ASD risk and pathogenesis are largely uncharacterized. The increasing legality and use of cannabis currently seen throughout the world therefore requires a better understanding of eCB signaling in microglia as it relates to ASD.",
+            "Cannabidiol (CBD), the second major phytocannabinoid in cannabis, has gained attention as a possible treatment for ASD. Indeed, three clinical reports have recently established that CBD alleviates major symptoms associated with ASD, including seizures, sleeplessness, and anxiety, in children. In addition, because CBD possess a weak affinity for CB1 and CB2, it has no psychoactive effects and may even prevent some of the harmful consequences of THC. Lastly, a commercially available, oral CBD extract (Epidiolex) has recently gained FDA-approval for treatment of drug-resistant epilepsy, which can be an additional burden faced by ASD patients. Nevertheless, because exposure to other cannabinoids negatively affects the development of the adolescent brain in rats, parents and physicians should practice extreme caution when recommending the use of cannabinoids to treat ASD.\nSubsequent work in this field must emphasize replicating the usefulness of ECS signaling in ASD via paradigms that include larger and more diverse populations. If these results hold, it will be important to establish if abatement of ASD symptoms is due to eCB signaling in microglia. For example, CBD blocks microglial activation and neuroinflammation, both of which are linked to seizure susceptibility. Consequently, it will be beneficial to establish if CBD-based reduction of epilepsy in ASD patients is reliant on microglial-based mechanisms. Utilizing mice with microglia-specific loss of ECS components in combination with ASD-relevant mouse models could shed light on this area."
+        ],
+        "files": [
+            {
+                "jpg": "data/pictures/microglia001.jpg",
+                "description": "The Components of the Endogenous Cannabinoid System in Microglia and Neurons. In the central nervous system (CNS), the endogenous cannabinoids (eCBs) N-arachidonoylethanolamine (AEA) and 2-arachidonoylglycerol (2-AG) are the most widely-recognized ligands of the endogenous cannabinoid (endocannabinoid) system (ECS). The two main receptors for eCBs are cannabinoid receptor 1 (CB1) and cannabinoid receptor 2 (CB2), both of which are G-protein coupled. Within the CNS, eCB signaling is classically understood to modulate synaptic activity. In the example given here, release of glutamate from presynaptic neurons activates N-methyl-D-aspartate receptors (NMDARs) in postsynaptic neurons. In response to increased cytoplasmic calcium, the enzyme diacylglycerol lipase (DAGL) catalyzes the synthesis of 2-AG from diacylgylcerol (DAG) and N-acyl-phosphatidylethanolamine phospholipase D (NAPE-PLD) catalyzes the synthesis of AEA from the precursor N-acylphosphatidylethanolamine (NAPE). After 2-AG and AEA are released into the synaptic cleft, they stimulate CB1 receptors on presynaptic neurons and inhibit further neurotransmitter release. 2-AG is mainly degraded by the enzyme monoacylglycerol lipase (MAGL) whereas AEA is degraded by fatty-acid amide hydrolase (FAAH). While DAGL, NAPE-PLD, MAGL, and FAAH are expressed broadly throughout the CNS, CB1 is enriched in neurons and CB2 is enriched in microglia. Stimulation of CB2 leads to a protective phenotype in microglia that is characterized by a reduction in the release of pro-inflammatory cytokines such as interleukin-1 (IL-1)."
+            }
+        ]
     }
 ]
