@@ -3,7 +3,7 @@ body {
     margin: 0px;
 }
 
-div.chart {
+div#chart {
     height: calc(100vh - 92px);
 }
 
