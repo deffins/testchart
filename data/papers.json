@@ -121,7 +121,7 @@
         "tags": [
             "microglia",
             "astrocytes",
-            "",
+            "COX-2",
             "",
             "",
             ""
@@ -138,6 +138,11 @@
         "important": [
             "Electron microscopy and super-resolution imaging studies show that the majority of neuronal CB1 accumulate presynaptically on axonal terminals where they control neurotransmitter release, with higher expression levels in GABAergic neurons compared to glutamatergic cells of the forebrain.",
             "Using anatomical and functional techniques, the localization of CB1 has also been demonstrated at postsynaptic sites (somatodendritic) in specific brain areas such as the neocortex, suggesting that CB1 participate in cell-autonomous regulation processes. The location of CB1 in post-synaptic sites has been mostly associated with receptor presence in mitochondria or other intracellular organelles rather than on the plasma membrane.",
-            "Conversely, only anecdotal pharmacological and molecular evidence supports the localization of CB2 in astrocytes and the prevailing view in the field is that astroglia in the intact brain express negligible levels of the receptor protein."
-        }
-    ]
+            "Conversely, only anecdotal pharmacological and molecular evidence supports the localization of CB2 in astrocytes and the prevailing view in the field is that astroglia in the intact brain express negligible levels of the receptor protein.",
+            "Neuronal endocannabinoid biosynthesis can be induced by membrane depolarization or by activation of Gq coupled GPCRs, such as dopamine D2, glutamate mGluR1/5 and muscarinic acetylcholine M1/M3",
+            "The products of endocannabinoid catabolism are important substrates for biosynthesis of inflammatory mediators. Thus, during the last decade, a number of studies have demonstrated the relevance of 2-AG enzymatic hydrolysis in the generation of the AA pool available for cycloxygenase-2 (COX-2) mediated prostaglandin (PGs) biosynthesis in certain neurodegenerative, inflammatory conditions.",
+            "These early in vitro studies also showed that microglia produce ~20-fold more endocannabinoids than neurons and astrocytes, suggesting a relevant role of these cells as source of these lipid compounds during neuroinflammation. Recent proteomic and functional analyses show that DAGLβ drives the production of 2-AG and downstream metabolic products PGs in microglia/macrophages and that the activity of this enzyme promotes pro-inflammatory signaling in neuroinflammation and pain.",
+            "mtCB1 receptors are crucial mediators of endocannabinoid effects on brain function. This concept emerged upon demonstration that mtCB1 inhibit complex I of the respiratory chain by modulation of soluble AC and mitochondrial PKA activities, thereby decreasing neuronal energy production. Moreover, this same study showed that mtCB1 receptors in hippocampal neurons modulate mitochondrial motility, synaptic transmission and memory formation thus providing a link between cellular bioenergetics and cognitive behaviors. More recently, mtCB1 located at striatonigral terminals have been put forward as mediators of cannabinoid-induced catalepsy through the decrease in cellular respiration and synaptic transmission"
+        ]
+    }
+]
