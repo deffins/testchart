@@ -1,3 +1,12 @@
+body {
+    overflow: hidden;
+    margin: 0px;
+}
+
+div.chart {
+    height: calc(100vh - 92px);
+}
+
 .selected-out {
     stroke-width: 1;
     fill: lightblue;
@@ -13,7 +22,7 @@
     fill: lightsalmon;
 }
 
-.default{
+.default {
     stroke: silver;
     fill: none;
 }
