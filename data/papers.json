@@ -144,5 +144,28 @@
             "These early in vitro studies also showed that microglia produce ~20-fold more endocannabinoids than neurons and astrocytes, suggesting a relevant role of these cells as source of these lipid compounds during neuroinflammation. Recent proteomic and functional analyses show that DAGLβ drives the production of 2-AG and downstream metabolic products PGs in microglia/macrophages and that the activity of this enzyme promotes pro-inflammatory signaling in neuroinflammation and pain.",
             "mtCB1 receptors are crucial mediators of endocannabinoid effects on brain function. This concept emerged upon demonstration that mtCB1 inhibit complex I of the respiratory chain by modulation of soluble AC and mitochondrial PKA activities, thereby decreasing neuronal energy production. Moreover, this same study showed that mtCB1 receptors in hippocampal neurons modulate mitochondrial motility, synaptic transmission and memory formation thus providing a link between cellular bioenergetics and cognitive behaviors. More recently, mtCB1 located at striatonigral terminals have been put forward as mediators of cannabinoid-induced catalepsy through the decrease in cellular respiration and synaptic transmission"
         ]
-    }
+    },
+    {
+        "id": 6,
+        "tags": [
+            "gliotransmitter",
+            "astrocytes",
+            "LHb",
+            "",
+            "",
+            ""
+        ],
+        "title": "Opposing retrograde and astrocyte-dependent endocannabinoid signaling mechanisms regulate lateral habenula synaptic transmission",
+        "date": "2023.02.25",
+        "links": [
+            "https://doi.org/10.1038/s41598-021-91300-9",
+            ""
+        ],
+        "short_description": [
+            "The lateral habenula (LHb) encodes aversive states, and its dysregulation is implicated in neuropsychiatric disorders, including depression. The endocannabinoid (eCB) system is a neuromodulatory signaling system that broadly serves to counteract the adverse effects of stress; however, CB1 receptor signaling within the LHb can paradoxically promote anxiogenic- and depressive-like effects. Current reports of synaptic actions of eCBs in the LHb are conflicting and lack systematic investigation of eCB regulation of excitatory and inhibitory transmission. Here, we report that eCBs differentially regulate glutamatergic and GABAergic transmission in the LHb, exhibiting canonical and circuit-specific inhibition of both systems and an opposing potentiation of synaptic glutamate release mediated via activation of CB1 receptors on astrocytes. Moreover, simultaneous depression of GABA and potentiation of glutamate release increases the net excitation-inhibition ratio onto LHb neurons, suggesting a potential cellular mechanism by which cannabinoids may promote LHb activity and subsequent anxious- and depressive-like aversive states."],
+        "important": ["Supporting this hypothesis, astrocyte membranes exhibit the highest relative density of CB1 receptor immunoreactivity in the rodent LHb.", "At a population level, CB1 appears to shunt the LHb spontaneous synaptic E/I ratio toward greater net excitation via simultaneous reductions in spontaneous GABAergic and potentiation of spontaneous glutamatergic transmission. These CB1-induced synaptic effects are predicted to increase LHb output, enhancing aversion and increasing anxiety- and depressive-like phenotypes. These data could thus explain the antidepressant- and anxiolytic-like effects of intra-LHb CB1 receptor blockade, which could reduce spontaneous excitatory drive onto LHb neurons via impairment in astrocytic 2-AG-CB1 signaling. It is also well known that high doses of exogenous cannabinoids, and 2-AG augmentation under some conditions, can produce aversive and anxiogenic phenotypes in rodents and humans, and it is tempting to speculate that potentiation of LHb glutamatergic transmission via astrocytic CB1 could contribute to these phenomena, particularly given recent evidence that astrocytic CB1 receptors may contribute to the aversive properties of cannabinoids. These data provide mechanistic insight into how eCB signaling within the LHb could produce aversive-like phenotypes and potentially contribute to dose-dependent subjective experiences of exogenous cannabinoids, which have been thus far unexplained from a synaptic perspective." 
+    ]
+    },
+
+    
 ]
