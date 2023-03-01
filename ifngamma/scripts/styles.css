@@ -1,0 +1,68 @@
+/* BASE STYLE */
+body {
+    overflow: scroll;
+    margin: 0px;
+}
+
+div.button-area {
+    position: fixed;
+}
+
+div.button-area .button {
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+circle.box-ui-circle {
+    stroke: black;
+    stroke-width: 1;
+    fill: yellow;
+}
+
+path {
+    opacity: 0.25;
+}
+
+path[highlight-state=in],
+path[highlight-state=out],
+path[highlight-state=all] {
+    opacity: 1;
+}
+
+/* HIGHLIGHTS */
+.modelBox[highlight-state=out] {
+    stroke-width: 1;
+    fill: lightblue;
+}
+
+.modelBox[highlight-state=in] {
+    stroke-width: 1;
+    fill: lightgreen;
+}
+
+.modelBox[highlight-state=all] {
+    stroke-width: 1;
+    fill: lightsalmon;
+}
+
+path[highlight-state=out] {
+    stroke: lightblue;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+    /* fill: rgb(17, 17, 160); */
+}
+
+path[highlight-state=in] {
+    stroke: lightgreen;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+}
+
+path[highlight-state=all] {
+    stroke: lightcoral;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+}
