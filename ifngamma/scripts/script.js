@@ -38,57 +38,122 @@ function svgInit() {
     });
 
     // Process model boxes
-    document.querySelectorAll(".modelBox").forEach(box => {
-        boxLabel(box);
-        boxLinesLabel(box);
+    document.querySelectorAll(".modelBox").forEach(node => {
+        let box = boxLabel(node);
+        boxRelationsLabel(box);
         boxUiCircleRender(box).addEventListener("click", uiCallback.boxUiCircleClick);
 
     });
 
 }
 
-function boxLabel(box) {
-    let boxId = "box" + (document.querySelectorAll(".modelBox[box-id]").length + 1);
-    box.setAttribute("box-id", boxId);
-    box.classList.add(boxId);
+function boxLabel(node) {
+    box = {
+        node:   node,
+        id:     "box" + (document.querySelectorAll(".modelBox[box-id]").length + 1),
+    }
+
+    box.node.setAttribute("box-id", box.id);
+    box.node.classList.add(box.id);
+
+    return box;
 }
 
-function boxLinesLabel(box) {
-    let boxArea = {
-        left: +box.getAttribute("x"),
-        top: +box.getAttribute("y"),
+function boxRelationsLabel(box) {
+    box.area = {
+        left: +box.node.getAttribute("x"),
+        top: +box.node.getAttribute("y"),
     }
-    boxArea.bottom = boxArea.top + +box.getAttribute("height");
-    boxArea.right = boxArea.left + +box.getAttribute("width");
+    box.area.bottom = box.area.top + +box.node.getAttribute("height");
+    box.area.right = box.area.left + +box.node.getAttribute("width");
 
-    let boxId = box.getAttribute("box-id");
+    let pathsAll = document.querySelectorAll("path");
+    pathsAll.forEach(node => {
+        let parts = node.getAttribute("d").split(" ");
+        
+        let startPoint = {
+            left:   +parts[1],
+            top:    +parts[2],
+        }
+        
+        let endPoint = {
+            left:   +parts[parts.length - 2],
+            top:    +parts[parts.length - 1],
+        }
 
-    let allPaths = document.querySelectorAll("path");
-    allPaths.forEach(path => {
-        let parts = path.getAttribute("d").split(" ");
+        if (!areaContainsPoint(box.area, startPoint)) 
+            return;
+            
+        let boxRelation = {
+            box:        box,
+            node:       node,
+            points:     {
+                start:      startPoint,
+                end:        endPoint,
+            },
+        }
+
+        boxRelationLabel(boxRelation);
+        boxRelationEndsLabel(boxRelation);
+
+    });
+}
+
+function boxRelationLabel(boxRelation) {
+    boxRelation.node.classList.add("boxRelation");
+    boxRelation.node.setAttribute("from-box-id", boxRelation.box.id);
+
+    let stroke = boxRelation.node.getAttribute("stroke");
+    let dashArray = boxRelation.node.getAttribute("stroke-dasharray");
+    
+    boxRelation.relationType = "";
+    if (dashArray)
+        boxRelation.relationType = "promotes-far";
+    else if (stroke == "#000000")
+        boxRelation.relationType = "promotes";
+    else if (stroke == "#d6b656")
+        boxRelation.relationType = "inhibits";
+
+    boxRelation.node.setAttribute("relation-type", boxRelation.relationType);
+}
+
+function boxRelationEndsLabel(boxRelation) {
+    let pathsUnlabeled = document.querySelectorAll("path:not(.boxRelation)");
+    pathsUnlabeled.forEach(node => {
+        if (boxRelation.node === node) return;
+
+        let parts = node.getAttribute("d").split(" ");
         let pathStartPoint = {
             left: +parts[1],
             top: +parts[2],
         }
-        
-        if (!areaContainsPoint(boxArea, pathStartPoint)) 
-            return;
-            
-        path.classList.add(boxId);
-        
-        // Categorise paths
-        let stroke = path.getAttribute("stroke");
-        let dashArray = path.getAttribute("stroke-dasharray");
-        
-        let pathType = "";
-        if (dashArray)
-            pathType = "promotes-far";
-        else if (stroke == "#000000")
-            pathType = "promotes";
-        else if (stroke == "#d6b656")
-            pathType = "inhibits";
 
-        path.setAttribute("relation-type", pathType);
+        let rangeA = distanceBetweenPoints(boxRelation.points.start, pathStartPoint);
+        let rangeB = distanceBetweenPoints(boxRelation.points.end, pathStartPoint);
+
+        if (rangeA < 10) {
+            boxRelation.start = {
+                node:   node,
+            }
+
+            boxRelation.start.node.setAttribute("from-box-id", boxRelation.box.id);
+            boxRelation.start.node.classList.add("boxRelation");
+            boxRelation.start.node.classList.add("boxRelationStart");
+
+            boxRelation.start.node.setAttribute("relation-type", boxRelation.relationType);
+        }
+
+        if (rangeB < 10) {
+            boxRelation.end = {
+                node:   node,
+            }
+
+            boxRelation.end.node.setAttribute("from-box-id", boxRelation.box.id);
+            boxRelation.end.node.classList.add("boxRelation");
+            boxRelation.end.node.classList.add("boxRelationEnd");
+
+            boxRelation.end.node.setAttribute("relation-type", boxRelation.relationType);
+        }
     });
 }
 
@@ -100,20 +165,23 @@ function areaContainsPoint(area, point) {
     return true;
 }
 
+function distanceBetweenPoints(pointA, pointB) {
+    let a = pointA.left - pointB.left;
+    let b = pointA.top - pointB.top;
+    
+    return Math.hypot(a, b);
+}
+
 
 function boxUiCircleRender(box) {
     let uiCirclePos = {
-        left:   +box.getAttribute("x") - 3,
-        top:    +box.getAttribute("y") - 3,
+        left:   +box.node.getAttribute("x") - 3,
+        top:    +box.node.getAttribute("y") - 3,
     }
-    let boxId = box.getAttribute("box-id");
-    let boxParent = box.parentElement;
-    let uiCircle = Snap(boxParent).circle(uiCirclePos.left, uiCirclePos.top, 12).node;
-    uiCircle.classList.add("circle-out");
+    let uiCircle = Snap(box.node.parentElement).circle(uiCirclePos.left, uiCirclePos.top, 12).node;
     uiCircle.classList.add("box-ui-circle");
-    uiCircle.classList.add(boxId);
-    uiCircle.setAttribute("for-box-id", boxId);
-    box.after(uiCircle);
+    uiCircle.setAttribute("for-box-id", box.id);
+    box.node.after(uiCircle);
 
     return uiCircle;
 }
@@ -144,16 +212,17 @@ let uiCallback = {
     },
 
     btnClearClick: function() {
-        document.querySelectorAll("[highlight-state]").forEach(elem => {
-            elem.removeAttribute("highlight-state");
+        document.querySelectorAll("[highlight-state]").forEach(node => {
+            node.removeAttribute("highlight-state");
         });
     },
 
     boxUiCircleClick: function() {
         let boxUiCircle = this;
         let boxId = boxUiCircle.getAttribute("for-box-id");
-        let box = document.querySelector(".modelBox." + boxId);
-        let boxLines = document.querySelectorAll("path." + boxId);
+        let box = document.querySelector(`.modelBox.${boxId}`);
+        let boxRelationsOut = document.querySelectorAll(`.boxRelation[from-box-id=${boxId}]`);
+        let boxRelationsIn = document.querySelectorAll(`.boxRelation[to-box-id=${boxId}]`);
         let highlightState = box.getAttribute("highlight-state") || "";
 
         highlightState = {
@@ -165,8 +234,19 @@ let uiCallback = {
         }[highlightState];
 
         box.setAttribute("highlight-state", highlightState);
-        boxLines.forEach(line => {
-            line.setAttribute("highlight-state", highlightState);
+
+        boxRelationsOut.forEach(node => {
+            if (["out", "all"].includes(highlightState))
+                node.setAttribute("highlight-state", highlightState);
+            else
+                node.setAttribute("highlight-state", "");
+        });
+
+        boxRelationsIn.forEach(node => {
+            if (["in", "all"].includes(highlightState))
+                node.setAttribute("highlight-state", highlightState);
+            else
+                node.setAttribute("highlight-state", "");
         });
     },
 }

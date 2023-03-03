@@ -22,13 +22,13 @@ circle.box-ui-circle {
     fill: yellow;
 }
 
-path {
+.boxRelation {
     opacity: 0.25;
 }
 
-path[highlight-state=in],
-path[highlight-state=out],
-path[highlight-state=all] {
+.boxRelation[highlight-state=in],
+.boxRelation[highlight-state=out],
+.boxRelation[highlight-state=all] {
     opacity: 1;
 }
 
@@ -48,20 +48,20 @@ path[highlight-state=all] {
     fill: lightsalmon;
 }
 
-path[highlight-state=out] {
+.boxRelation[highlight-state=out] {
     stroke: lightblue;
     stroke-width: 4;
     /* opacity: 0.3 */
     /* fill: rgb(17, 17, 160); */
 }
 
-path[highlight-state=in] {
+.boxRelation[highlight-state=in] {
     stroke: lightgreen;
     stroke-width: 4;
     /* opacity: 0.3 */
 }
 
-path[highlight-state=all] {
+.boxRelation[highlight-state=all] {
     stroke: lightcoral;
     stroke-width: 4;
     /* opacity: 0.3 */
