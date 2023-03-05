@@ -51,21 +51,30 @@ circle.box-ui-circle {
 
 .boxRelation.highlight-to {
     stroke: lightgreen;
-    stroke-width: 4;
-    /* opacity: 0.3 */
+    stroke-width: 2;
+    opacity: 0.5
+}
+
+.boxRelationEnd.highlight-to {
+    fill: lightgreen;
 }
 
 .boxRelation.highlight-from {
     stroke: lightblue;
-    stroke-width: 4;
-    /* opacity: 0.3 */
-    /* fill: rgb(17, 17, 160); */
+    stroke-width: 2;
+}
+
+.boxRelationEnd.highlight-from {
+    fill: lightblue;
 }
 
 .boxRelation.highlight-from.highlight-to {
     stroke: lightcoral;
-    stroke-width: 4;
-    /* opacity: 0.3 */
+    stroke-width: 3;
+}
+
+.boxRelationEnd.highlight-from.highlight-to {
+    fill: lightcoral;
 }
 
 .boxRelationEnd.highlight-from,
