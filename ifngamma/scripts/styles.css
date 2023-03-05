@@ -26,11 +26,6 @@ circle.box-ui-circle {
     opacity: 0.25;
 }
 
-.boxRelation.highlight-from,
-.boxRelation.highlight-to {
-    opacity: 1;
-}
-
 /* HIGHLIGHTS */
 /* Multimodal highlighting disabled for now - seems un-necessary
 .modelBox[highlight-state=from] {
@@ -60,17 +55,19 @@ circle.box-ui-circle {
 }
 
 .boxRelation.highlight-from {
-    stroke: lightblue;
+    stroke: navy;
     stroke-width: 2;
+    opacity: 0.35;
 }
 
 .boxRelationEnd.highlight-from {
-    fill: lightblue;
+    fill: darkblue;
 }
 
 .boxRelation.highlight-from.highlight-to {
     stroke: lightcoral;
     stroke-width: 3;
+    opacity: 1;
 }
 
 .boxRelationEnd.highlight-from.highlight-to {
