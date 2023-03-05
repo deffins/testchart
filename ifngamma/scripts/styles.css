@@ -26,43 +26,50 @@ circle.box-ui-circle {
     opacity: 0.25;
 }
 
-.boxRelation[highlight-state=in],
-.boxRelation[highlight-state=out],
-.boxRelation[highlight-state=all] {
+.boxRelation.highlight-from,
+.boxRelation.highlight-to {
     opacity: 1;
 }
 
 /* HIGHLIGHTS */
-.modelBox[highlight-state=out] {
+/* Multimodal highlighting disabled for now - seems un-necessary
+.modelBox[highlight-state=from] {
     stroke-width: 1;
     fill: lightblue;
 }
 
-.modelBox[highlight-state=in] {
+.modelBox[highlight-state=to] {
     stroke-width: 1;
     fill: lightgreen;
 }
+*/
 
 .modelBox[highlight-state=all] {
     stroke-width: 1;
     fill: lightsalmon;
 }
 
-.boxRelation[highlight-state=out] {
+.boxRelation.highlight-to {
+    stroke: lightgreen;
+    stroke-width: 4;
+    /* opacity: 0.3 */
+}
+
+.boxRelation.highlight-from {
     stroke: lightblue;
     stroke-width: 4;
     /* opacity: 0.3 */
     /* fill: rgb(17, 17, 160); */
 }
 
-.boxRelation[highlight-state=in] {
-    stroke: lightgreen;
+.boxRelation.highlight-from.highlight-to {
+    stroke: lightcoral;
     stroke-width: 4;
     /* opacity: 0.3 */
 }
 
-.boxRelation[highlight-state=all] {
-    stroke: lightcoral;
-    stroke-width: 4;
-    /* opacity: 0.3 */
+.boxRelationEnd.highlight-from,
+.boxRelationEnd.highlight-to,
+.boxRelationEnd.highlight-from.boxRelationEnd.highlight-to {
+    stroke-width: 2;
 }
