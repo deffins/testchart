@@ -16,6 +16,10 @@ div.button-area .button {
     margin: 4px 2px;
 }
 
+svg.hidden {
+    display: none;
+}
+
 circle.box-ui-circle {
     stroke: black;
     stroke-width: 1;

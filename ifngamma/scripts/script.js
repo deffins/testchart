@@ -1,30 +1,38 @@
+// Code by Jesse Morgan 2023
+// jmorgan.nz@gmail.com
+// (refactored from previous version by deffins)
+
 function init() {
     wireUpUI();
     svgInit();
 }
 
 function wireUpUI() {
-    document.querySelector("#btn-reset").addEventListener("click", uiCallback.btnResetClick);
+    document.querySelector("#btn-fig2").addEventListener("click", uiCallback.btnFig2Click);
+    document.querySelector("#btn-fig3").addEventListener("click", uiCallback.btnFig3Click);
+    document.querySelector("#btn-fig4").addEventListener("click", uiCallback.btnFig4Click);
     document.querySelector("#btn-clear").addEventListener("click", uiCallback.btnClearClick);
 }
 
 function svgInit() {
     fixPointerEventsInSVG();
 
-    var chartElement = document.querySelector("svg");
-    chart = Snap(chartElement);
-    chart.zpd();
-    
-    chart.mouseover((event) => {
-        if (event.target.nodeName === "svg") {
-            document.body.style.cursor = "move";
-        } else if (event.target.nodeName === "rect") {
-            document.body.style.cursor = "default";
-        } else if (event.target.nodeName === "path") {
-            document.body.style.cursor = "default";
-        } else if (event.target.nodeName === "circle") {
-            document.body.style.cursor = "pointer";
-        }
+    var chartElements = document.querySelectorAll("svg");
+    chartElements.forEach(chartElement => {
+        chart = Snap(chartElement);
+        chart.zpd();
+        
+        chart.mouseover((event) => {
+            if (event.target.nodeName === "svg") {
+                document.body.style.cursor = "move";
+            } else if (event.target.nodeName === "rect") {
+                document.body.style.cursor = "default";
+            } else if (event.target.nodeName === "path") {
+                document.body.style.cursor = "default";
+            } else if (event.target.nodeName === "circle") {
+                document.body.style.cursor = "pointer";
+            }
+        });
     });
 
     // Mark model boxes
@@ -43,6 +51,13 @@ function svgInit() {
         boxRelationsLabel(box);
         boxUiCircleRender(box).addEventListener("click", uiCallback.boxUiCircleClick);
 
+    });
+
+    // Hide all but current chart
+    var nodes = document.querySelectorAll("svg");
+    nodes.forEach(node => {
+        if (nodes.id !== "figure3")
+            nodes.classList.add("hidden");
     });
 
 }
@@ -237,8 +252,25 @@ function fixPointerEventsInSVG() {
 
 // |||||||||||||||| UI CALLBACKS ||||||||||||||||||
 let uiCallback = {
-    btnResetClick: function() {
-        uiCallback.btnClearClick();
+    btnFig2Click: function() {
+        document.querySelectorAll("svg").forEach(node => {
+            node.classList.add("hidden");
+        })
+        document.querySelector("#figure2").classList.remove("hidden");
+    },
+
+    btnFig3Click: function() {
+        document.querySelectorAll("svg").forEach(node => {
+            node.classList.add("hidden");
+        })
+        document.querySelector("#figure3").classList.remove("hidden");
+    },
+
+    btnFig4Click: function() {
+        document.querySelectorAll("svg").forEach(node => {
+            node.classList.add("hidden");
+        })
+        document.querySelector("#figure4").classList.remove("hidden");
     },
 
     btnClearClick: function() {
