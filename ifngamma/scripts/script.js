@@ -277,6 +277,9 @@ let uiCallback = {
     },
 
     btnClearClick: function() {
+        document.querySelectorAll("svg").forEach(node => {
+            node.classList.remove("highlights");
+        })
         document.querySelectorAll("[highlight-state]").forEach(node => {
             node.removeAttribute("highlight-state");
         });
