@@ -309,7 +309,7 @@ let uiCallback = {
             let boxToNode = svg.querySelector(`.modelBox[box-id=${boxToId}]`);
             let boxToDivNode = svg.querySelector(`.modelBoxDiv[for-box-id=${boxToId}]`);
 
-            if (["from", "all"].includes(highlightState)) {
+            if (["all"].includes(highlightState)) {
                 node.classList.add("highlight-from");
                 boxToNode.classList.add("highlight-to");
                 boxToDivNode.classList.add("highlight-to");
@@ -325,11 +325,17 @@ let uiCallback = {
         });
 
         boxRelationsTo.forEach(node => {
-            if (["to", "all"].includes(highlightState))
+            if (["all"].includes(highlightState))
                 node.classList.add("highlight-to");
             else
                 node.classList.remove("highlight-to");
         });
+
+        let boxesHighlighted = svg.querySelectorAll(".modelBox[highlight-state=all]");
+        if (boxesHighlighted.length > 0)
+            svg.classList.add("highlights");
+        else
+            svg.classList.remove("highlights");
     },
 }
 

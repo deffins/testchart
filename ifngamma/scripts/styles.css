@@ -31,15 +31,15 @@ circle.box-ui-circle {
     opacity: 0.30;
 }
 
-.modelBox, .modelBoxDiv {
+svg.highlights .modelBox, svg.highlights .modelBoxDiv {
     opacity: 0.30;
 }
 
-.modelBox:hover, .modelBoxDiv:hover {
+svg.highlights .modelBox:hover, svg.highlights .modelBoxDiv:hover {
     /*opacity: 1;*/
 }
 
-.boxRelation {
+svg.highlights .boxRelation {
     opacity: 0.30;
 }
 
@@ -54,33 +54,43 @@ circle.box-ui-circle {
     opacity: 1;
 }
 
-.modelBox.highlight-to, .modelBoxDiv.highlight-to {
+svg.highlights .modelBox.highlight-to, svg.highlights .modelBoxDiv.highlight-to {
     opacity: 1;
 }
 
-.boxRelation.highlight-to {
+svg.highlights .boxRelation.highlight-to {
     stroke: lightgreen;
     stroke-width: 2;
+}
+
+svg.highlights .boxRelation.highlight-to {
     opacity: 0.5
 }
 
-.boxRelationEnd.highlight-to {
+svg.highlights .boxRelationEnd.highlight-to {
     fill: lightgreen;
 }
 
 .boxRelation.highlight-from {
     stroke: navy;
     stroke-width: 2;
-    opacity: 0.35;
+}
+
+svg.highlights .boxRelation.highlight-from {
+    opacity: 0.35;    
 }
 
 .boxRelationEnd.highlight-from {
     fill: darkblue;
 }
 
-.boxRelation.highlight-from.highlight-to {
+svg.highlights .boxRelation.highlight-from.highlight-to {
     stroke: lightcoral;
     stroke-width: 3;
+
+}
+
+svg.highlights .boxRelation.highlight-from.highlight-to {
     opacity: 1;
 }
 
