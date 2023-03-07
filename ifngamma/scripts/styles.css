@@ -39,7 +39,7 @@ svg.highlights .modelBox:hover, svg.highlights .modelBoxDiv:hover {
     /*opacity: 1;*/
 }
 
-svg.highlights .boxRelation {
+.boxRelation {
     opacity: 0.30;
 }
 
