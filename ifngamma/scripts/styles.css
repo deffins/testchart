@@ -16,6 +16,10 @@ div.button-area .button {
     margin: 4px 2px;
 }
 
+#btn-fig2, #btn-fig3, #btn-fig4 {
+    display: none;
+}
+
 svg.hidden {
     display: none;
 }
@@ -24,28 +28,34 @@ circle.box-ui-circle {
     stroke: black;
     stroke-width: 1;
     fill: yellow;
+    opacity: 0.30;
+}
+
+.modelBox, .modelBoxDiv {
+    opacity: 0.30;
+}
+
+.modelBox:hover, .modelBoxDiv:hover {
+    /*opacity: 1;*/
 }
 
 .boxRelation {
-    opacity: 0.25;
+    opacity: 0.30;
 }
 
 /* HIGHLIGHTS */
-/* Multimodal highlighting disabled for now - seems un-necessary
-.modelBox[highlight-state=from] {
-    stroke-width: 1;
-    fill: lightblue;
-}
-
-.modelBox[highlight-state=to] {
-    stroke-width: 1;
-    fill: lightgreen;
-}
-*/
-
 .modelBox[highlight-state=all] {
     stroke-width: 1;
     fill: lightsalmon;
+    opacity: 1;
+}
+
+.modelBoxDiv[highlight-state=all] {
+    opacity: 1;
+}
+
+.modelBox.highlight-to, .modelBoxDiv.highlight-to {
+    opacity: 1;
 }
 
 .boxRelation.highlight-to {

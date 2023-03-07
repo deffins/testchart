@@ -17,9 +17,28 @@ function wireUpUI() {
 function svgInit() {
     fixPointerEventsInSVG();
 
-    var chartElements = document.querySelectorAll("svg");
-    chartElements.forEach(chartElement => {
-        chart = Snap(chartElement);
+    // Mark model boxes
+    document.querySelectorAll("g foreignObject > div").forEach(node => { 
+        let associatedRect = node.parentElement.parentElement.parentElement.previousElementSibling;
+        let width  = +associatedRect.getAttribute("width");
+        let height = +associatedRect.getAttribute("height");
+        if (width < 100 || width > 200) return;
+        if (height < 40 || height > 80) return;
+        associatedRect.classList.add("modelBox");
+    });
+
+    // Process model boxes
+    document.querySelectorAll(".modelBox").forEach(node => {
+        let box = boxLabel(node);
+        boxRelationsLabel(box);
+        boxUiCircleRender(box).addEventListener("click", uiCallback.boxUiCircleClick);
+
+    });
+
+    // Init Snap zoom/pan/drag
+    let chartElements = document.querySelectorAll("svg#figure3");
+    chartElements.forEach(node => {
+        chart = Snap(node);
         chart.zpd();
         
         chart.mouseover((event) => {
@@ -35,48 +54,32 @@ function svgInit() {
         });
     });
 
-    // Mark model boxes
-    document.querySelectorAll("g foreignObject > div").forEach(element => { 
-        var associatedRect = element.parentElement.parentElement.parentElement.previousElementSibling;
-        var width  = +associatedRect.getAttribute("width");
-        var height = +associatedRect.getAttribute("height");
-        if (width < 100 || width > 200) return;
-        if (height < 40 || height > 80) return;
-        associatedRect.classList.add("modelBox");
-    });
-
-    // Process model boxes
-    document.querySelectorAll(".modelBox").forEach(node => {
-        let box = boxLabel(node);
-        boxRelationsLabel(box);
-        boxUiCircleRender(box).addEventListener("click", uiCallback.boxUiCircleClick);
-
-    });
-
     // Hide all but current chart
-    var nodes = document.querySelectorAll("svg");
+    let nodes = document.querySelectorAll("svg");
     nodes.forEach(node => {
-        if (nodes.id !== "figure3")
-            nodes.classList.add("hidden");
+        if (node.id !== "figure3")
+            node.classList.add("hidden");
     });
-
 }
 
 function boxLabel(node) {
     box = {
-        node:   node,
-        id:     "box" + (document.querySelectorAll(".modelBox[box-id]").length + 1),
-        area:   getBounds(node).area,
+        node:       node,
+        divNode:    node.nextElementSibling.querySelector("foreignObject > div"),
+        id:         "box" + (document.querySelectorAll(".modelBox[box-id]").length + 1),
+        area:       getBounds(node).area,
     }
 
     box.node.setAttribute("box-id", box.id);
-    box.node.classList.add(box.id);
 
+    box.divNode.classList.add("modelBoxDiv");
+    box.divNode.setAttribute("for-box-id", box.id);
+    
     return box;
 }
 
 function boxRelationsLabel(box) {
-    let pathsAll = document.querySelectorAll("path");
+    let pathsAll = box.node.closest("svg").querySelectorAll("path");
     pathsAll.forEach(node => {
         let pathBounds = getPathBounds(node);
 
@@ -106,6 +109,7 @@ function boxRelationsLabel(box) {
 
 function boxRelationLabel(boxRelation) {
     boxRelation.node.classList.add("boxRelation");
+    boxRelation.node.classList.add("boxRelationLine");
 
     boxRelation.node.setAttribute(`${boxRelation.direction}-box-id`, boxRelation.box.id);
 
@@ -124,7 +128,7 @@ function boxRelationLabel(boxRelation) {
 }
 
 function boxRelationEndsLabel(boxRelation) {
-    let allPaths = document.querySelectorAll("path");
+    let allPaths = boxRelation.node.closest("svg").querySelectorAll("path");
     allPaths.forEach(node => {
         if (boxRelation.node === node) return;
 
@@ -217,7 +221,6 @@ function distanceBetweenPoints(pointA, pointB) {
     return Math.hypot(a, b);
 }
 
-
 function boxUiCircleRender(box) {
     let uiCirclePos = {
         left:   +box.node.getAttribute("x") - 3,
@@ -285,28 +288,40 @@ let uiCallback = {
 
     boxUiCircleClick: function() {
         let boxUiCircle = this;
+        let svg = boxUiCircle.closest("svg");
         let boxId = boxUiCircle.getAttribute("for-box-id");
-        let box = document.querySelector(`.modelBox.${boxId}`);
-        let boxRelationsFrom = document.querySelectorAll(`.boxRelation[from-box-id=${boxId}]`);
-        let boxRelationsTo = document.querySelectorAll(`.boxRelation[to-box-id=${boxId}]`);
+        let box = svg.querySelector(`.modelBox[box-id=${boxId}]`);
+        let boxDiv = svg.querySelector(`.modelBoxDiv[for-box-id=${boxId}]`);
+        let boxRelationsFrom = svg.querySelectorAll(`.boxRelation[from-box-id=${boxId}]`);
+        let boxRelationsTo = svg.querySelectorAll(`.boxRelation[to-box-id=${boxId}]`);
         let highlightState = box.getAttribute("highlight-state") || "";
 
         highlightState = {
             "":     "all",
-            /* Multimodal seems unnecessary
-            "":     "from",
-            "from":  "to",
-            "to":   "all",*/
             "all":  "",
         }[highlightState];
 
         box.setAttribute("highlight-state", highlightState);
+        boxDiv.setAttribute("highlight-state", highlightState);
 
         boxRelationsFrom.forEach(node => {
-            if (["from", "all"].includes(highlightState))
+            let boxToId = node.getAttribute("to-box-id");
+            let boxToNode = svg.querySelector(`.modelBox[box-id=${boxToId}]`);
+            let boxToDivNode = svg.querySelector(`.modelBoxDiv[for-box-id=${boxToId}]`);
+
+            if (["from", "all"].includes(highlightState)) {
                 node.classList.add("highlight-from");
-            else
+                boxToNode.classList.add("highlight-to");
+                boxToDivNode.classList.add("highlight-to");
+            } else {
                 node.classList.remove("highlight-from");
+                // Only remove highlight if others don't have it highlighted
+                let boxRelationsToHighlighted = svg.querySelectorAll(`.boxRelationLine.highlight-from[to-box-id=${boxToId}]`);
+                if (boxRelationsToHighlighted.length == 0) {
+                    boxToNode.classList.remove("highlight-to");
+                    boxToDivNode.classList.remove("highlight-to");
+                }
+            }
         });
 
         boxRelationsTo.forEach(node => {
