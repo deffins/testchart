@@ -43,28 +43,15 @@ svg.highlights .boxRelation {
     opacity: 0.30;
 }
 
-/* HIGHLIGHTS */
+/* HIGHLIGHTS STYLES */
 .modelBox[highlight-state=all] {
     stroke-width: 1;
     fill: lightsalmon;
-    opacity: 1;
-}
-
-.modelBoxDiv[highlight-state=all] {
-    opacity: 1;
-}
-
-svg.highlights .modelBox.highlight-to, svg.highlights .modelBoxDiv.highlight-to {
-    opacity: 1;
 }
 
 svg.highlights .boxRelation.highlight-to {
     stroke: lightgreen;
     stroke-width: 2;
-}
-
-svg.highlights .boxRelation.highlight-to {
-    opacity: 0.5
 }
 
 svg.highlights .boxRelationEnd.highlight-to {
@@ -76,10 +63,6 @@ svg.highlights .boxRelationEnd.highlight-to {
     stroke-width: 2;
 }
 
-svg.highlights .boxRelation.highlight-from {
-    opacity: 0.35;    
-}
-
 .boxRelationEnd.highlight-from {
     fill: darkblue;
 }
@@ -87,11 +70,6 @@ svg.highlights .boxRelation.highlight-from {
 svg.highlights .boxRelation.highlight-from.highlight-to {
     stroke: lightcoral;
     stroke-width: 3;
-
-}
-
-svg.highlights .boxRelation.highlight-from.highlight-to {
-    opacity: 1;
 }
 
 .boxRelationEnd.highlight-from.highlight-to {
@@ -102,4 +80,29 @@ svg.highlights .boxRelation.highlight-from.highlight-to {
 .boxRelationEnd.highlight-to,
 .boxRelationEnd.highlight-from.boxRelationEnd.highlight-to {
     stroke-width: 2;
+}
+
+/* HIGHLIGHTS OPACITIES */
+svg.highlights .modelBox[highlight-state=all] {
+    opacity: 1;
+}
+
+svg.highlights .modelBoxDiv[highlight-state=all] {
+    opacity: 1;
+}
+
+svg.highlights .modelBox.highlight-to, svg.highlights .modelBoxDiv.highlight-to {
+    opacity: 1;
+}
+
+svg.highlights .boxRelation.highlight-to {
+    opacity: 0.5
+}
+
+svg.highlights .boxRelation.highlight-from {
+    opacity: 0.35;
+}
+
+svg.highlights .boxRelation.highlight-from.highlight-to {
+    opacity: 1;
 }
