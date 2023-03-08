@@ -36,7 +36,7 @@ function svgInit() {
     });
 
     // Init Snap zoom/pan/drag
-    let chartElements = document.querySelectorAll("svg#figure3");
+    let chartElements = document.querySelectorAll("svg");
     chartElements.forEach(node => {
         chart = Snap(node);
         chart.zpd();

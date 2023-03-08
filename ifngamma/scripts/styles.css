@@ -17,7 +17,7 @@ div.button-area .button {
 }
 
 #btn-fig2, #btn-fig3, #btn-fig4 {
-    display: none;
+    display: initial;
 }
 
 svg.hidden {
