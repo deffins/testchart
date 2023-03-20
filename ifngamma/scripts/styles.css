@@ -9,11 +9,15 @@ div.button-area {
 }
 
 div.button-area .button {
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     margin: 4px 2px;
+    height: 60px;
+    white-space: pre;
+    vertical-align: top;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #btn-fig2, #btn-fig3, #btn-fig4 {

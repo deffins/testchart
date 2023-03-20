@@ -3,14 +3,59 @@
 // (refactored from previous version by deffins)
 
 function init() {
-    wireUpUI();
-    svgInit();
+    chartsImport()
+        .then(wireUpUI)
+        .then(svgInit);
+
+}
+
+function chartsImport() {
+    let nodes = document.querySelectorAll("chart");
+    let promises = [];
+    var foundDefault = false;
+
+    nodes.forEach(node => {
+        let chart = {
+            node:   node,
+            id:     node.getAttribute("id"),
+            title:  node.getAttribute("title"),
+        };
+
+        promises.push(
+            fetch(`charts/${chart.id}.svg`)
+                .then(response => {
+                    if (!response.ok) throw `http ${response.status} - ${response.statusText}`;
+                    return response.text();
+                }).then(text => {
+                    let parser = new DOMParser();
+                    let svgDoc = parser.parseFromString(text, "text/xml");
+                    let svg = svgDoc.querySelector("svg");
+                    svg.setAttribute("id", chart.id);
+                    svg.classList.add("hidden");
+                    node.parentElement.replaceChild(svg, node);
+
+                    if (!foundDefault && node.hasAttribute("default")) {
+                        svg.classList.remove("hidden");
+                        foundDefault = true;
+                    }
+
+                    let button = document.createElement("button");
+                    button.setAttribute("id", `btn-${chart.id}`);
+                    button.setAttribute("for-chart", chart.id);
+                    button.textContent = chart.title.replace(/\\n/g, "\n");
+                    button.classList.add("button");
+                    button.addEventListener("click", uiCallback.buttonAreaButtonClick);
+                    document.querySelector(".button-area").lastChild.before(button);
+                }).catch(err => {
+                    console.warn(`Exception loading chart '${chart.id}' - ${err}`);
+                })
+        );
+    });
+
+    return Promise.all(promises);
 }
 
 function wireUpUI() {
-    document.querySelector("#btn-fig2").addEventListener("click", uiCallback.btnFig2Click);
-    document.querySelector("#btn-fig3").addEventListener("click", uiCallback.btnFig3Click);
-    document.querySelector("#btn-fig4").addEventListener("click", uiCallback.btnFig4Click);
     document.querySelector("#btn-clear").addEventListener("click", uiCallback.btnClearClick);
 }
 
@@ -255,25 +300,12 @@ function fixPointerEventsInSVG() {
 
 // |||||||||||||||| UI CALLBACKS ||||||||||||||||||
 let uiCallback = {
-    btnFig2Click: function() {
+    buttonAreaButtonClick: function(event) {
+        let targetChartId = this.getAttribute("for-chart");
         document.querySelectorAll("svg").forEach(node => {
             node.classList.add("hidden");
-        })
-        document.querySelector("#figure2").classList.remove("hidden");
-    },
-
-    btnFig3Click: function() {
-        document.querySelectorAll("svg").forEach(node => {
-            node.classList.add("hidden");
-        })
-        document.querySelector("#figure3").classList.remove("hidden");
-    },
-
-    btnFig4Click: function() {
-        document.querySelectorAll("svg").forEach(node => {
-            node.classList.add("hidden");
-        })
-        document.querySelector("#figure4").classList.remove("hidden");
+        });
+        document.querySelector(`#${targetChartId}`).classList.remove("hidden");
     },
 
     btnClearClick: function() {
