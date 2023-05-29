@@ -31,11 +31,10 @@ function chartsImport() {
                     let svgDoc = parser.parseFromString(text, "text/xml");
                     let svg = svgDoc.querySelector("svg");
                     svg.setAttribute("id", chart.id);
-                    svg.classList.add("hidden");
                     node.parentElement.replaceChild(svg, node);
 
                     if (!foundDefault && node.hasAttribute("default")) {
-                        svg.classList.remove("hidden");
+                        svg.classList.add("default-view");
                         foundDefault = true;
                     }
 
@@ -67,7 +66,7 @@ function svgInit() {
         let associatedRect = node.parentElement.parentElement.parentElement.previousElementSibling;
         let width  = +associatedRect.getAttribute("width");
         let height = +associatedRect.getAttribute("height");
-        if (width < 100 || width > 200) return;
+        if (width < 100 || width > 400) return;
         if (height < 40 || height > 80) return;
         associatedRect.classList.add("modelBox");
     });
@@ -77,7 +76,6 @@ function svgInit() {
         let box = boxLabel(node);
         boxRelationsLabel(box);
         boxUiCircleRender(box).addEventListener("click", uiCallback.boxUiCircleClick);
-
     });
 
     // Init Snap zoom/pan/drag
@@ -102,7 +100,7 @@ function svgInit() {
     // Hide all but current chart
     let nodes = document.querySelectorAll("svg");
     nodes.forEach(node => {
-        if (node.id !== "figure3")
+        if (node.classList.contains("default-view") == false)
             node.classList.add("hidden");
     });
 }

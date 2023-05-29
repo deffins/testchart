@@ -1,6 +1,6 @@
 /* BASE STYLE */
 body {
-    overflow: scroll;
+    overflow: hidden;
     margin: 0px;
 }
 
@@ -22,6 +22,12 @@ div.button-area .button {
 
 #btn-fig2, #btn-fig3, #btn-fig4 {
     display: initial;
+}
+
+svg {
+    overflow: visible;
+    padding-top: 90px;
+    padding-left: 40px;
 }
 
 svg.hidden {
