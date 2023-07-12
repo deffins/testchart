@@ -197,8 +197,7 @@
         "tags": [
             "gliotransmitter",
             "astrocytes",
-            "d-serine",
-
+            "d-serine"
         ],
         "title": "Astroglial CB1 Receptors Determine Synaptic D-Serine Availability to Enable Recognition Memory",
         "date": "2018.06",
@@ -211,5 +210,39 @@
             "By showing that astroglial CB1 receptors play a key role in the maintenance of the basal levels of D-serine in the synaptic cleft and thus in the control of NMDAR activity, these data shed light onto the pathway underpinning D-serine availability at synapses. Interestingly, it has been recently demonstrated that the amount of D-serine available during wakefulness depends on the activity of cholinergic fibers from the medial septum. Thus, synaptic D-serine levels are under the control of at least two sets of astroglial receptors, namely CB1 (present data) and α7-nicotinic acetylcholine receptors.",
         ]
     },
+
+    {
+        "id": 9,
+        "tags": [
+            "mitochondria",
+            "mtCB1",
+            "electron transport chain"
+        ],
+        "title": "Linking Mitochondria and Synaptic Transmission: The CB1 Receptor",
+        "date": "2017",
+        "links": [
+            "https://sci-hub.se/10.1002/bies.201700126",
+            "https://doi.org/10.1002/bies.201700126"
+        ],
+        "short_description": [""],
+        "important": [
+            ""
+        ]
+    },
+    {
+        "id": 10,
+        "tags": [
+            "",
+            "",
+            ""
+        ],
+        "title": "",
+        "date": "",
+        "links": [
+            "https://sci-hub.se/10.1016/j.neuron.2018.04.034",
+            "https://www.cell.com/neuron/fulltext/S0896-6273(18)30369-6"
+        ],
+        "short_description": ["Astrocytes are important for long-term object recognition memory", "Astroglial CB1 receptors are coupled to D-serine availability at synapses", "Appropriate D-serine levels
+
 
     
