@@ -57,7 +57,7 @@ function onSVGLoaded(data) {
     // let self = this;
     chart.append(data);
     fixPointerEventsInSVG();
-
+zpd
 
     buildElements();
 
