@@ -57,7 +57,7 @@ function onSVGLoaded(data) {
     // let self = this;
     chart.append(data);
     fixPointerEventsInSVG();
-zpd
+
 
     buildElements();
 
@@ -65,6 +65,10 @@ zpd
 
     // console.log(chart.select("svg").attr().id)
     let chartType = chart.select("svg").attr().id;
+    if (!chartType) {
+        console.log("===> no chart type")
+        return
+    }
     // Snap("#" + chartType).drag();
     Snap("#" + chartType).zpd();
     Snap("#" + chartType).mouseover((event) => {
