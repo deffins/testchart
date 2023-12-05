@@ -589,8 +589,10 @@ function getTextDiv(id) {
 
 function getInnerText(rectID) {
     if (rectID != null) {
-        return Snap.select("#" + rectID).select("foreignObject").select("div").children("text")[1].node.innerText;
-
+        var foreignObject = Snap.select("#" + rectID).select("foreignObject");
+        var div = foreignObject.node.querySelector("div");
+        var textNode = div.getElementsByTagName("text")[1];
+        return textNode ? textNode.innerText : null;
     }
 }
 
