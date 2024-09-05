@@ -53,9 +53,9 @@
     </div>
     </p>
 
-    <!-- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('/thc-diagrams')
+            fetch('list_svgs.php')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
@@ -65,27 +65,18 @@
                 .then(data => {
                     const dropdown = document.getElementById('svgDropdown');
                     data.forEach(file => {
-                        if (file.endsWith('.svg')) {
-                            const option = document.createElement('option');
-                            option.value = file;
-                            option.textContent = file;
-                            dropdown.appendChild(option);
-                        }
+                        const option = document.createElement('option');
+                        option.value = file;
+                        option.textContent = file;
+                        dropdown.appendChild(option);
                     });
                 })
                 .catch(error => {
                     console.error('Error fetching SVG files:', error);
-                    fetch('/thc-diagrams')
-                        .then(response => response.text())
-                        .then(text => console.log('Response text:', text));
                 });
         });
-    </script> -->
-    <script>
-        var fs = require('fs');
-        var files = fs.readdirSync('/thc-diagrams');
-        console.log(files);
     </script>
+
 
     <p>
     <ul id="links">
