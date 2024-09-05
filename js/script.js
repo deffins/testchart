@@ -19,7 +19,7 @@ function getJSONdata(request) {
 
 var chart = Snap("#chart");
 
-let thcChart = "../chronic-thc-chart.svg";
+let thcChart = "../chronic-thc-chart-new22.svg";
 let dmChart = "../dm3.svg";
 
 this.elements = [];
