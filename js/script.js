@@ -33,6 +33,7 @@ this.selectedRectArray = [];
 
 function onSelectingDropdown() {
     //on even change svg set thcChart to the selected value and reload the svg
+    thcChart = thcChartFolderPath + SVGPath;
     Snap.load(thcChart, onSVGLoaded);
 
 }
