@@ -54,10 +54,14 @@
     </p>
 
     <script>
-        // JavaScript to fetch and populate the dropdown
         document.addEventListener('DOMContentLoaded', function () {
-            fetch("/thc-diagrams")
-                .then(response => response.json())
+            fetch('/thc-diagrams')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const dropdown = document.getElementById('svgDropdown');
                     data.forEach(file => {
@@ -69,7 +73,12 @@
                         }
                     });
                 })
-                .catch(error => console.error('Error fetching SVG files:', error));
+                .catch(error => {
+                    console.error('Error fetching SVG files:', error);
+                    fetch('/thc-diagrams')
+                        .then(response => response.text())
+                        .then(text => console.log('Response text:', text));
+                });
         });
     </script>
 
