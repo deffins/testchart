@@ -70,11 +70,21 @@
                         option.textContent = file;
                         dropdown.appendChild(option);
                     });
+
+                    dropdown.addEventListener('change', function () {
+                        const selectedFile = dropdown.value;
+                        if (selectedFile) {
+                            thcChart = selectedFile;
+                            console.log(`thcChart set to: ${thcChart}`);
+                            // You can add additional logic here to load the SVG or perform other actions
+                        }
+                    });
                 })
                 .catch(error => {
                     console.error('Error fetching SVG files:', error);
                 });
         });
+        let thcChart = "";
     </script>
 
 
