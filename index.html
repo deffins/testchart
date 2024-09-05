@@ -34,6 +34,25 @@
 
 <body>
 
+
+
+    <p>
+        <button class="button button2" id="dmbutton">Switch diagrams</button>
+        <button class="button button1" id="thcbutton">Reset diagram</button>
+        <button class="button button3" id="clearhighlights">Clear highlights</button>
+        <select id="svgDropdown">
+            <option value="">Select a diagram</option>
+        </select>
+    <p id="chartArea">
+
+
+
+    <div id="chart" style="overflow: scroll; height: 1000px; width: 1200px; border: 1px solid grey;">
+        <!-- <div id="chart"></div> -->
+
+    </div>
+    </p>
+
     <script>
         // JavaScript to fetch and populate the dropdown
         document.addEventListener('DOMContentLoaded', function () {
@@ -53,21 +72,6 @@
                 .catch(error => console.error('Error fetching SVG files:', error));
         });
     </script>
-
-    <p>
-        <button class="button button2" id="dmbutton">Switch diagrams</button>
-        <button class="button button1" id="thcbutton">Reset diagram</button>
-        <button class="button button3" id="clearhighlights">Clear highlights</button>
-
-    <p id="chartArea">
-
-
-
-    <div id="chart" style="overflow: scroll; height: 1000px; width: 1200px; border: 1px solid grey;">
-        <!-- <div id="chart"></div> -->
-
-    </div>
-    </p>
 
     <p>
     <ul id="links">
