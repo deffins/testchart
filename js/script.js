@@ -35,25 +35,25 @@ function onSelectingDropdown() {
     //on even change svg set thcChart to the selected value and reload the svg
     thcChart = thcChartFolderPath + SVGPath;
     console.log("===> thcChart: " + thcChart)
-    Snap.load(thcChart, onSVGLoaded);
+    loadSVG(thcChart);
 
 }
 
 
 
-function loadSVG() {
+function loadSVG(path) {
 
     let svg = chart.select("svg");
     if (svg != null) {
         let id = svg.attr().id;
         chart.children().forEach((element) => element.remove())
         if (id == "dmd") {
-            Snap.load(thcChart, onSVGLoaded);
+            Snap.load(path, onSVGLoaded);
         } else {
             Snap.load(dmChart, onSVGLoaded);
         }
     } else {
-        Snap.load(dmChart, onSVGLoaded);
+        Snap.load(path, onSVGLoaded);
     }
 
 }
