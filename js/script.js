@@ -19,7 +19,9 @@ function getJSONdata(request) {
 
 var chart = Snap("#chart");
 
-let thcChart = "/thc-diagrams/chronic-thc-chart-new22.svg";
+let thcChartFolderPath = "/thc-diagrams/";
+let SVGPath = "chronic-thc-chart.svg"
+let thcChart = thcChartFolderPath + SVGPath;
 let dmChart = "/dm3.svg";
 
 this.elements = [];
@@ -28,6 +30,14 @@ this.td = "";
 this.selectedRectArray = [];
 
 // Snap.load(thcChart, onSVGLoaded);
+
+function onSelectingDropdown() {
+    //on even change svg set thcChart to the selected value and reload the svg
+    Snap.load(thcChart, onSVGLoaded);
+
+}
+
+
 
 function loadSVG() {
 

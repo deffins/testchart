@@ -71,12 +71,12 @@
                         dropdown.appendChild(option);
                     });
 
-                    dropdown.addEventListener('change', function () {
+                    dropdown.addEventListener('changeSVG', function () {
                         const selectedFile = dropdown.value;
                         if (selectedFile) {
-                            thcChart = selectedFile;
+                            SVGPath = selectedFile;
                             console.log(`thcChart set to: ${thcChart}`);
-                            // You can add additional logic here to load the SVG or perform other actions
+                            onSelectingDropdown();
                         }
                     });
                 })
@@ -84,7 +84,7 @@
                     console.error('Error fetching SVG files:', error);
                 });
         });
-        let thcChart = "";
+
     </script>
 
 
