@@ -56,7 +56,7 @@
     <script>
         // JavaScript to fetch and populate the dropdown
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('../thc-diagrams')
+            fetch("/thc-diagrams")
                 .then(response => response.json())
                 .then(data => {
                     const dropdown = document.getElementById('svgDropdown');
