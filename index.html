@@ -53,7 +53,7 @@
     </div>
     </p>
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             fetch('/thc-diagrams')
                 .then(response => {
@@ -80,6 +80,11 @@
                         .then(text => console.log('Response text:', text));
                 });
         });
+    </script> -->
+    <script>
+        var fs = require('fs');
+        var files = fs.readdirSync('/thc-diagrams');
+        console.log(files);
     </script>
 
     <p>
