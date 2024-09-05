@@ -45,15 +45,16 @@ function loadSVG(path) {
 
     let svg = chart.select("svg");
     if (svg != null) {
-        let id = svg.attr().id;
+        // let id = svg.attr().id;
         chart.children().forEach((element) => element.remove())
-        if (id == "dmd") {
-            Snap.load(path, onSVGLoaded);
-        } else {
-            Snap.load(dmChart, onSVGLoaded);
-        }
-    } else {
         Snap.load(path, onSVGLoaded);
+        // if (id == "dmd") {
+        //     Snap.load(dmChart, onSVGLoaded);
+        // } else {
+        //     Snap.load(path, onSVGLoaded);
+        // }
+    } else {
+        // Snap.load(path, onSVGLoaded);
     }
 
 }
