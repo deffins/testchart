@@ -72,9 +72,6 @@ function onSVGLoaded(data) {
 
     buildElements();
 
-
-
-    // console.log(chart.select("svg").attr().id)
     let chartType = chart.select("svg").attr().id;
     if (!chartType) {
         console.log("===> no chart type")
@@ -88,7 +85,6 @@ function onSVGLoaded(data) {
         } else if (event.target.nodeName === "rect") {
             document.body.style.cursor = "default";
         } else if (event.target.nodeName === "path") {
-            // console.log(Snap(event.srcElement).parent().attr().id)
             document.body.style.cursor = "default";
         } else if (event.target.nodeName === "circle") {
             document.body.style.cursor = "pointer";
@@ -99,15 +95,11 @@ function onSVGLoaded(data) {
 
     Snap.selectAll("rect").forEach(function (element) {
         this.elements.push(buildElementMap(element));
-
-        // this.elementInfo.push(buildOtherObject(element));
-        // console.log(element)
         element.click(function (event) {
             let sourceGroupID = Snap(event.srcElement).parent().attr().id;
             clickOnRect(sourceGroupID);
         });
     })
-    // console.log(JSON.stringify(this.elementInfo))
 
     this.supWithLinks();
     if (Snap("#dmd") == null) {
@@ -150,7 +142,6 @@ btn3.addEventListener("click", clearAllHighlights)
 
 function clearAllHighlights() {
     let highlightedIDs = getAllHighlightedID()
-    console.log(highlightedIDs)
     highlightedIDs.forEach((id) => {
         setElementsByState(id, 0)
         setHighLightState(id, 0)
@@ -165,7 +156,6 @@ function getAllHighlightedID() {
             highlighted.push(element.id)
         }
     })
-    console.log(highlighted)
     return highlighted;
 }
 
@@ -231,7 +221,7 @@ function processLine(lineID, state) {
     if (lineID == "") {
         return
     }
-    console.log(lineID + "..." + state);
+
     let group = Snap.select("#" + lineID).selectAll("path");
     for (let i = 0; i < group.length; i++) {
         let path = group[i];
@@ -257,7 +247,6 @@ function show(arr) {
 
 function clickOnRect(rectID) {
     this.showLinks(rectID);
-    console.log(rectID);
     this.elements.find((element) => {
         if (element.id === rectID) {
             if (element.clickState === 0) {
@@ -271,7 +260,6 @@ function clickOnRect(rectID) {
                 this.selectedRectArray.splice(i, 1);
             }
             processRect(element);
-            // console.log(element.selectionCount)
         }
     })
     connectClickedRects(rectID)
@@ -301,30 +289,7 @@ function getLineByRectIDs(id1, id2) {
 
 
 }
-// function clickRectOutLines(rectID) {
-//     let clickedRect = Snap.select("#" + rectID).select("rect");
-//     if (clickedRect.hasClass("clicked")) {
-//         clickedRect.removeClass("clicked")
-//     } else {
-//         clickedRect.addClass("clicked")
-//     }
-//     let sourceLineTargets = getRectsFromElements(rectID, "target");
-//     let sourceLines = getLinesFromElements(rectID, "source");
-//     switchLineClass(sourceLines, 1, "clicked");
-//     selectAllOutward(sourceLineTargets)
-// }
 
-// function selectAllOutward(arr) {
-//     for (let i = 0; i < arr.length; i++) {
-//         let rectID = arr[i];
-//         let clickedRect = Snap.select("#" + rectID).select("rect");
-//         if (clickedRect.hasClass("clicked")) {
-//             return
-//         } else {
-//             clickRectOutLines(rectID);
-//         }
-//     }
-// }
 
 function selectRects(arr, add, classType) {
     arr.forEach((id) => {
@@ -337,33 +302,8 @@ function selectRects(arr, add, classType) {
     })
 }
 
-// function selectLines(sourceID, targetIDs) { //source id = id, targetIDs = array
-//     let lines = Snap.selectAll("g").forEach((group) => {
-//         if (group.attr("source") == sourceID) {
-//             group.addClass("selected-out-lines");
-//         }
 
-//     })
-// }
 
-/*
-    function testDiagram() {
-        let array = this.elements;
-        let string = ""
-        for (let i = 0; i < 20; i++) {
-            let elementData = array[i];
-            let slicedText1 = elementData.text.slice(0, 16).trim();
-            for (let j = 0; j < elementData.sources.length; j++) {
-                let sourceID = elementData.sources[j]
-                let sourceText = getInnerText(sourceID)
-                let slicedText2 = sourceText.slice(0, 16).trim();
-                string = string.concat("[", slicedText1, "]->[", slicedText2, "]","\n")
-            }
- 
-        }
-        console.log(string)
-    }
-    */
 
 function buildElementMap(rectElement) {
     let rectElementID = Snap(rectElement).parent().attr().id;
@@ -438,12 +378,12 @@ function drawCirclesOnRect(rect) {
         if (nextHighLightState > 3) {
             nextHighLightState = 0
         }
-        // console.log(highLightState);
+
         setElementsByState(id, nextHighLightState)
         setHighLightState(id, nextHighLightState);
 
         getAllHighlightedID();
-        // console.log(highlighted);
+
     });
 }
 
@@ -451,15 +391,13 @@ function sourceLinesSelected(sourceLines) {
     if (Array.isArray(sourceLines) && sourceLines.length > 0) {
         let firstLineID = sourceLines[0];
         let hasClass = Snap.select("#" + firstLineID).hasClass("selectedLines");
-        console.log(sourceLines + " hasClass: " + hasClass)
         return hasClass;
     }
 }
 
 function getTargetRect(lineID) {
-    console.log(lineID)
     let targetRect = Snap.select("#" + lineID).attr("target");
-    console.log(targetRect);
+
 }
 
 function getLineRectIDs(arrayOfLineIDs, attr) {
@@ -534,13 +472,11 @@ function getRectsFromElements(rectID, type) {
 
         }
     })
-    // console.log(arr)
     return arr;
 }
 
 function selectTargetRect(arrayOfLineIDs, add, classType) {
     arrayOfLineIDs.forEach(function (id) {
-        console.log(id)
         let targetRectID = Snap.select("#" + id).attr("target");
         let targetRect = Snap.select("#" + targetRectID).select("rect")
         if (add) {
@@ -553,7 +489,6 @@ function selectTargetRect(arrayOfLineIDs, add, classType) {
 
 function selectSourceRect(arrayOfLineIDs, add, classType) {
     arrayOfLineIDs.forEach(function (id) {
-        console.log(id)
         let sourceRectID = Snap.select("#" + id).attr("source");
         let sourceRect = Snap.select("#" + sourceRectID).select("rect")
         if (add) {
@@ -590,7 +525,6 @@ function deductSelectionCount(element, classType) {
     element.attr("selectionCount", currentCount - 1);
     let count = +element.attr("selectionCount");
     let rectValue = getRectGID(element);
-    console.log("rect: " + rectValue + " selected: " + count);
     switchClass(element, classType);
 }
 
@@ -695,8 +629,6 @@ const removeChilds = (parent) => {
 }
 
 function supWithLinks() {
-    console.log(this.links)
-    console.log(this.elements)
     this.elements.forEach((element) => {
         showReferenceCount(element.id)
     });
@@ -709,7 +641,6 @@ function showReferenceCount(id) {
         if (data.id == id) {
             if (data.links.length > 0) {
                 drawReferenceCircleOnRect(data);
-                console.log(data.text + " has: " + data.links.length + " references")
             }
         }
     })
@@ -731,7 +662,6 @@ function drawReferenceCircleOnRect(data) {
     circle.addClass("circle-ref");
     rect.after(circle);
     let textBlue = rectG.text(xBlue - 4, yBlue + 6, data.links.length).addClass("circle-ref");
-    console.log(textBlue)
     textBlue.attr({ fontWeight: "bold", fill: "black" })
 
     circle.append(textBlue);
