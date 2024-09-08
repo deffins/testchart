@@ -440,7 +440,7 @@ function getLines(rectID, attr) {
     let result = [];
     Snap.selectAll("g").forEach(function (element) {
         let lineID = element.attr(attr);
-        if (lineID == rectID) {
+        if (lineID != null && lineID == rectID) {
             result.push(element.attr().id);
         }
     })
