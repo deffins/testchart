@@ -491,6 +491,7 @@ function selectTargetRect(arrayOfLineIDs, add, classType) {
 
 function selectSourceRect(arrayOfLineIDs, add, classType) {
     arrayOfLineIDs.forEach(function (id) {
+
         let sourceRectID = Snap.select("#" + id).attr("source");
         let sourceRect = Snap.select("#" + sourceRectID).select("rect")
         if (add) {
