@@ -28,9 +28,12 @@ function loadSVG() {
 function onSVGLoaded(data) {
     chart.append(data);
     fixPointerEventsInSVG();
-    // console.log(chart.select("svg").attr().id)
+    loadPaths(); // Ielādē saglabātos ceļus
+    let savedRects = loadSelectedRects();
+    savedRects.forEach(rectID => {
+        clickOnRect(rectID);
+    });
     let chartType = chart.select("svg").attr().id;
-    // Snap("#" + chartType).drag();
     Snap("#" + chartType).zpd();
     Snap("#" + chartType).mouseover((event) => {
         if (event.target.nodeName === "svg") {
@@ -38,20 +41,11 @@ function onSVGLoaded(data) {
         } else if (event.target.nodeName === "rect") {
             document.body.style.cursor = "default";
         } else if (event.target.nodeName === "path") {
-            // console.log(Snap(event.srcElement).parent().attr().id)
             document.body.style.cursor = "default";
         } else if (event.target.nodeName === "circle") {
             document.body.style.cursor = "pointer";
         }
     })
-
-    // Snap("#" + chartType).node.addEventListener('mousewheel', (e) => {
-    //     let stuff = new Snap.Matrix();
-    //     stuff.scale(1, 5)
-    //     e.target.transform(stuff.matrix)
-    //     console.log(e.target)
-    //     console.log(e)
-    // })
 
     if (Snap("#dmd") == null) {
         console.log("no dm diagram")
@@ -195,7 +189,7 @@ function show(arr) {
     })
 }
 
-function clickOnRect(rectID) {
+function clickOnRect(rectID, skipSave = false) {
     this.elements.find((element) => {
         if (element.id === rectID) {
             if (element.clickState === 0) {
@@ -209,11 +203,13 @@ function clickOnRect(rectID) {
                 this.selectedRectArray.splice(i, 1);
             }
             processRect(element);
-            console.log(element.selectionCount)
+            console.log(element.selectionCount);
         }
-    })
-    connectClickedRects(rectID)
-
+    });
+    connectClickedRects(rectID);
+    if (!skipSave) {
+        saveSelectedRects(this.selectedRectArray); // Saglabā atlasītos taisnstūrus tikai tad, ja `skipSave` ir `false`
+    }
 }
 
 function processRect(element) {
@@ -283,25 +279,6 @@ function selectLines(sourceID, targetIDs) { //source id = id, targetIDs = array
 
     })
 }
-
-/*
-    function testDiagram() {
-        let array = this.elements;
-        let string = ""
-        for (let i = 0; i < 20; i++) {
-            let elementData = array[i];
-            let slicedText1 = elementData.text.slice(0, 16).trim();
-            for (let j = 0; j < elementData.sources.length; j++) {
-                let sourceID = elementData.sources[j]
-                let sourceText = getInnerText(sourceID)
-                let slicedText2 = sourceText.slice(0, 16).trim();
-                string = string.concat("[", slicedText1, "]->[", slicedText2, "]","\n")
-            }
- 
-        }
-        console.log(string)
-    }
-    */
 
 function buildElementMap(rectElement) {
     let rectElementID = Snap(rectElement).parent().attr().id;
@@ -563,10 +540,25 @@ function fixPointerEventsInSVG() {
         }
     }
 
+    const btn4 = document.querySelector(".button4");
+    btn4.addEventListener("click", function () {
+        let savedRects = loadSelectedRects();
+        savedRects.forEach(rectID => {
+            clickOnRect(rectID, true);
+        });
+    });
+
+
+
 };
 
 
-
+function clearAllSelectedRects() {
+    this.selectedRectArray.forEach(rectID => {
+        clickOnRect(rectID, true); // Pievienojiet otro parametru, lai norādītu, ka nevajag saglabāt
+    });
+    this.selectedRectArray = [];
+}
 
 
 
